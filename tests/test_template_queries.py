@@ -32,27 +32,37 @@ PREFIXES = {
 }
 
 
-def _template_files(settings) -> list[Path]:
-    return sorted(settings.sparql_templates_dir.glob("*.jinja.rq"))
+def _discover_templates() -> list[Path]:
+    # Collection-time discovery so we parametrize over real files only.
+    try:
+        from app.core.config import get_settings
+
+        tdir = get_settings().sparql_templates_dir
+    except Exception:  # noqa: BLE001
+        tdir = Path(__file__).resolve().parents[1] / "sparql" / "templates"
+    return sorted(Path(tdir).glob("*.jinja.rq"))
 
 
-def test_template_dir_exists(settings):
-    files = _template_files(settings)
-    if not files:
+TEMPLATE_FILES = _discover_templates()
+
+
+def test_template_dir_exists():
+    if not TEMPLATE_FILES:
         pytest.skip("no Jinja templates present yet")
-    assert files
+    assert TEMPLATE_FILES
 
 
-@pytest.mark.parametrize("idx", range(8))
-def test_each_template_renders_and_parses(settings, idx):
+@pytest.mark.skipif(not TEMPLATE_FILES, reason="no Jinja templates present yet")
+@pytest.mark.parametrize(
+    "tmpl_path",
+    TEMPLATE_FILES or [None],
+    ids=[p.name for p in TEMPLATE_FILES] or ["none"],
+)
+def test_each_template_renders_and_parses(tmpl_path):
     jinja2 = pytest.importorskip("jinja2")
-    rdflib = pytest.importorskip("rdflib")
+    pytest.importorskip("rdflib")
     from rdflib.plugins.sparql import prepareQuery
 
-    files = _template_files(settings)
-    if idx >= len(files):
-        pytest.skip("fewer templates than parametrized index")
-    tmpl_path = files[idx]
     source = tmpl_path.read_text(encoding="utf-8")
     env = jinja2.Environment(undefined=jinja2.Undefined)
     rendered = env.from_string(source).render(**SAMPLE_SLOTS)

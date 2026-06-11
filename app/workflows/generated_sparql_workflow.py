@@ -50,6 +50,9 @@ def run_generated_sparql_kgqa(
 
     steps: list[WorkflowStep] = []
     result = KgqaResult(question=question, steps=steps)
+    # Rebind so appends to `steps` are reflected in result.steps
+    # (pydantic copies the list on construction).
+    result.steps = steps
 
     cleaned, inj_report = sanitize_question(question)
     steps.append(WorkflowStep(name="injection_filter", status="ok",

@@ -64,6 +64,9 @@ def run_template_kgqa(
 
     steps: list[WorkflowStep] = []
     result = KgqaResult(question=question, steps=steps)
+    # Rebind so appends to `steps` are reflected in result.steps
+    # (pydantic copies the list on construction).
+    result.steps = steps
 
     # 1. Injection filter
     cleaned, inj_report = sanitize_question(question)

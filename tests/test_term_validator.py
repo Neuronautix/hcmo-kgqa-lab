@@ -6,11 +6,11 @@ import pytest
 
 KNOWN = "http://w3id.org/hcmo#Dataset"
 KNOWN_QUERY = (
-    "PREFIX hcmo: <http://w3id.org/hcmo#> "
+    "PREFIX hcmo: <http://w3id.org/hcmo#>\n"
     "SELECT ?d WHERE { ?d a hcmo:Dataset } LIMIT 5"
 )
 UNKNOWN_QUERY = (
-    "PREFIX hcmo: <http://w3id.org/hcmo#> "
+    "PREFIX hcmo: <http://w3id.org/hcmo#>\n"
     "SELECT ?d WHERE { ?d a hcmo:NotARealClassXYZ } LIMIT 5"
 )
 
