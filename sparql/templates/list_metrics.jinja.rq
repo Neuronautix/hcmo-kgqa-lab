@@ -1,0 +1,15 @@
+# Template: list_metrics
+# Required slots:
+#   dataset_iri  -- IRI of the dataset whose metrics to list
+PREFIX hcmo: <http://w3id.org/hcmo#>
+PREFIX ex:   <http://example.org/hcmo/data#>
+
+SELECT DISTINCT ?metric ?metricName ?metricUnit
+WHERE {
+  {{ dataset_iri }} hcmo:hasExperiment ?exp .
+  ?exp hcmo:measuresMetric ?metric .
+  ?metric a hcmo:BehavioralMetric .
+  OPTIONAL { ?metric hcmo:metricName ?metricName }
+  OPTIONAL { ?metric hcmo:metricUnit ?metricUnit }
+}
+ORDER BY ?metricName

@@ -1,0 +1,26 @@
+# Template: compare_experiments
+# Required slots:
+#   experiment_a  -- IRI of the first experiment
+#   experiment_b  -- IRI of the second experiment
+PREFIX hcmo: <http://w3id.org/hcmo#>
+PREFIX ex:   <http://example.org/hcmo/data#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?experiment ?label ?species ?strain ?sampleSize ?systemName ?durationDays
+WHERE {
+  VALUES ?experiment { {{ experiment_a }} {{ experiment_b }} }
+  ?experiment a hcmo:HomeCageExperiment .
+  OPTIONAL { ?experiment rdfs:label ?label }
+  OPTIONAL { ?experiment hcmo:durationDays ?durationDays }
+  OPTIONAL {
+    ?experiment hcmo:hasCohort ?cohort .
+    OPTIONAL { ?cohort hcmo:species ?species }
+    OPTIONAL { ?cohort hcmo:strain ?strain }
+    OPTIONAL { ?cohort hcmo:sampleSize ?sampleSize }
+  }
+  OPTIONAL {
+    ?experiment hcmo:usesSystem ?system .
+    ?system hcmo:systemName ?systemName .
+  }
+}
+ORDER BY ?experiment

@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hcmo-kgqa-lab"
+version = "0.1.0"
+description = "Ontology-native KGQA lab for Home Cage Monitoring (HCMO) over an Apache Jena/Fuseki RDF backend."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "HCMO-KGQA Lab contributors" }]
+keywords = ["knowledge-graph", "kgqa", "ontology", "rdf", "sparql", "shacl", "hcmo"]
+
+dependencies = [
+    "streamlit",
+    "rdflib",
+    "pyshacl",
+    "SPARQLWrapper",
+    "requests",
+    "jinja2",
+    "pyyaml",
+    "pydantic>=2",
+    "pydantic-settings",
+    "python-dotenv",
+    "openai",
+    "anthropic",
+    "pandas",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "owlrl",
+]
+
+[project.urls]
+Homepage = "https://github.com/hcmo-kgqa/hcmo-kgqa-lab"
+Documentation = "https://github.com/hcmo-kgqa/hcmo-kgqa-lab/tree/main/docs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "fuseki: tests that require a live Fuseki endpoint",
+    "llm: tests that require an LLM provider / API key",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true

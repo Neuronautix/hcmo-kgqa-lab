@@ -1,0 +1,151 @@
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<http://w3id.org/hcmo> a owl:Ontology ;
+    rdfs:label "Home Cage Monitoring Ontology (HCMO)" ;
+    rdfs:comment "A small ontology describing home cage monitoring datasets, experiments, animal cohorts, monitoring systems and behavioral metrics." ;
+    owl:versionInfo "0.1.0" .
+
+##################
+# Classes
+##################
+
+hcmo:Dataset a owl:Class ;
+    rdfs:label "Dataset" ;
+    rdfs:comment "A dataset produced by a home cage monitoring experiment." .
+
+hcmo:VCGReadyDataset a owl:Class ;
+    rdfs:subClassOf hcmo:Dataset ;
+    rdfs:label "VCG-Ready Dataset" ;
+    rdfs:comment "A dataset that carries the complete metadata required for Virtual Control Group (VCG) reuse." .
+
+hcmo:HomeCageExperiment a owl:Class ;
+    rdfs:label "Home Cage Experiment" ;
+    rdfs:comment "An experiment conducted using a home cage monitoring system." .
+
+hcmo:AnimalCohort a owl:Class ;
+    rdfs:label "Animal Cohort" ;
+    rdfs:comment "A group of animals sharing species, strain and experimental conditions." .
+
+hcmo:HomeCageSystem a owl:Class ;
+    rdfs:label "Home Cage System" ;
+    rdfs:comment "A hardware/software platform used to monitor animals in their home cage." .
+
+hcmo:BehavioralMetric a owl:Class ;
+    rdfs:label "Behavioral Metric" ;
+    rdfs:comment "A measurable behavioral readout (e.g. distance travelled, sleep bouts)." .
+
+##################
+# Object properties
+##################
+
+hcmo:hasExperiment a owl:ObjectProperty ;
+    rdfs:label "has experiment" ;
+    rdfs:comment "Relates a dataset to the experiment that produced it." ;
+    rdfs:domain hcmo:Dataset ;
+    rdfs:range hcmo:HomeCageExperiment .
+
+hcmo:hasDataset a owl:ObjectProperty ;
+    rdfs:label "has dataset" ;
+    rdfs:comment "Relates an experiment to a dataset it produced." ;
+    owl:inverseOf hcmo:hasExperiment ;
+    rdfs:domain hcmo:HomeCageExperiment ;
+    rdfs:range hcmo:Dataset .
+
+hcmo:usesSystem a owl:ObjectProperty ;
+    rdfs:label "uses system" ;
+    rdfs:comment "Relates an experiment to the home cage system it uses." ;
+    rdfs:domain hcmo:HomeCageExperiment ;
+    rdfs:range hcmo:HomeCageSystem .
+
+hcmo:hasCohort a owl:ObjectProperty ;
+    rdfs:label "has cohort" ;
+    rdfs:comment "Relates an experiment to an animal cohort it studies." ;
+    rdfs:domain hcmo:HomeCageExperiment ;
+    rdfs:range hcmo:AnimalCohort .
+
+hcmo:measuresMetric a owl:ObjectProperty ;
+    rdfs:label "measures metric" ;
+    rdfs:comment "Relates an experiment to a behavioral metric it measures." ;
+    rdfs:domain hcmo:HomeCageExperiment ;
+    rdfs:range hcmo:BehavioralMetric .
+
+##################
+# Datatype properties
+##################
+
+hcmo:title a owl:DatatypeProperty ;
+    rdfs:label "title" ;
+    rdfs:comment "Human-readable title." ;
+    rdfs:range xsd:string .
+
+hcmo:identifier a owl:DatatypeProperty ;
+    rdfs:label "identifier" ;
+    rdfs:comment "A persistent identifier or accession." ;
+    rdfs:range xsd:string .
+
+hcmo:species a owl:DatatypeProperty ;
+    rdfs:label "species" ;
+    rdfs:comment "Species of the animals in a cohort." ;
+    rdfs:domain hcmo:AnimalCohort ;
+    rdfs:range xsd:string .
+
+hcmo:strain a owl:DatatypeProperty ;
+    rdfs:label "strain" ;
+    rdfs:comment "Strain of the animals in a cohort." ;
+    rdfs:domain hcmo:AnimalCohort ;
+    rdfs:range xsd:string .
+
+hcmo:sampleSize a owl:DatatypeProperty ;
+    rdfs:label "sample size" ;
+    rdfs:comment "Number of animals in a cohort." ;
+    rdfs:domain hcmo:AnimalCohort ;
+    rdfs:range xsd:integer .
+
+hcmo:durationDays a owl:DatatypeProperty ;
+    rdfs:label "duration (days)" ;
+    rdfs:comment "Duration of an experiment in days." ;
+    rdfs:domain hcmo:HomeCageExperiment ;
+    rdfs:range xsd:integer .
+
+hcmo:metricName a owl:DatatypeProperty ;
+    rdfs:label "metric name" ;
+    rdfs:comment "Name of a behavioral metric." ;
+    rdfs:domain hcmo:BehavioralMetric ;
+    rdfs:range xsd:string .
+
+hcmo:metricUnit a owl:DatatypeProperty ;
+    rdfs:label "metric unit" ;
+    rdfs:comment "Unit of measurement of a behavioral metric." ;
+    rdfs:domain hcmo:BehavioralMetric ;
+    rdfs:range xsd:string .
+
+hcmo:systemName a owl:DatatypeProperty ;
+    rdfs:label "system name" ;
+    rdfs:comment "Name of a home cage system." ;
+    rdfs:domain hcmo:HomeCageSystem ;
+    rdfs:range xsd:string .
+
+hcmo:vendor a owl:DatatypeProperty ;
+    rdfs:label "vendor" ;
+    rdfs:comment "Vendor or manufacturer of a home cage system." ;
+    rdfs:domain hcmo:HomeCageSystem ;
+    rdfs:range xsd:string .
+
+##################
+# Inference opportunity
+# A Dataset whose producing experiment uses a system is classified as VCGReadyDataset.
+##################
+
+hcmo:VCGReadyDataset owl:equivalentClass [
+    a owl:Class ;
+    owl:intersectionOf (
+        hcmo:Dataset
+        [ a owl:Restriction ;
+          owl:onProperty hcmo:hasExperiment ;
+          owl:someValuesFrom hcmo:HomeCageExperiment ]
+    )
+] .

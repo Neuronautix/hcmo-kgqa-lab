@@ -1,0 +1,17 @@
+# CQ005 - VCG-ready candidate datasets: producing experiment supplies
+# species, strain, sample size and duration.
+PREFIX hcmo: <http://w3id.org/hcmo#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?dataset ?title ?species ?strain ?sampleSize ?durationDays
+WHERE {
+  ?dataset a hcmo:Dataset ;
+           hcmo:hasExperiment ?exp .
+  ?exp hcmo:durationDays ?durationDays ;
+       hcmo:hasCohort ?cohort .
+  ?cohort hcmo:species ?species ;
+          hcmo:strain ?strain ;
+          hcmo:sampleSize ?sampleSize .
+  OPTIONAL { ?dataset hcmo:title ?title }
+}
+ORDER BY ?dataset

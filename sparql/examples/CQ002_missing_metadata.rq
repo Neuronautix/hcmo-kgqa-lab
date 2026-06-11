@@ -1,0 +1,28 @@
+# CQ002 - Datasets missing identifier or experiments missing durationDays.
+PREFIX hcmo: <http://w3id.org/hcmo#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?node ?type ?missing
+WHERE {
+  {
+    ?node a hcmo:Dataset .
+    FILTER NOT EXISTS { ?node hcmo:identifier ?id }
+    BIND("Dataset" AS ?type)
+    BIND("identifier" AS ?missing)
+  }
+  UNION
+  {
+    ?node a hcmo:HomeCageExperiment .
+    FILTER NOT EXISTS { ?node hcmo:durationDays ?d }
+    BIND("HomeCageExperiment" AS ?type)
+    BIND("durationDays" AS ?missing)
+  }
+  UNION
+  {
+    ?node a hcmo:AnimalCohort .
+    FILTER NOT EXISTS { ?node hcmo:species ?s }
+    BIND("AnimalCohort" AS ?type)
+    BIND("species" AS ?missing)
+  }
+}
+ORDER BY ?node

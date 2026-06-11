@@ -1,0 +1,18 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+hcmo:HomeCageSystemShape a sh:NodeShape ;
+    sh:targetClass hcmo:HomeCageSystem ;
+    sh:property [
+        sh:path hcmo:systemName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "A HomeCageSystem must have hcmo:systemName." ;
+    ] ;
+    sh:property [
+        sh:path hcmo:vendor ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "A HomeCageSystem must have hcmo:vendor." ;
+    ] .

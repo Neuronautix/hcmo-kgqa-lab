@@ -1,0 +1,14 @@
+# Template: missing_metadata
+# Required slots:
+#   class_iri      -- IRI of the target class (e.g. hcmo:Dataset)
+#   required_prop  -- IRI of the property that must be present (e.g. hcmo:identifier)
+PREFIX hcmo: <http://w3id.org/hcmo#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?node ?label
+WHERE {
+  ?node a {{ class_iri }} .
+  OPTIONAL { ?node rdfs:label ?label }
+  FILTER NOT EXISTS { ?node {{ required_prop }} ?value }
+}
+ORDER BY ?node

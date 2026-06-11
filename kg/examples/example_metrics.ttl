@@ -1,0 +1,33 @@
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix ex:   <http://example.org/hcmo/data#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:metric_distance a hcmo:BehavioralMetric ;
+    rdfs:label "Distance travelled" ;
+    hcmo:metricName "distance travelled" ;
+    hcmo:metricUnit "m" .
+
+ex:metric_locomotor a hcmo:BehavioralMetric ;
+    rdfs:label "Locomotor activity" ;
+    hcmo:metricName "locomotor activity" ;
+    hcmo:metricUnit "counts/h" .
+
+ex:metric_sleep a hcmo:BehavioralMetric ;
+    rdfs:label "Sleep bouts" ;
+    hcmo:metricName "sleep bouts" ;
+    hcmo:metricUnit "count" .
+
+ex:metric_food a hcmo:BehavioralMetric ;
+    rdfs:label "Food intake" ;
+    hcmo:metricName "food intake" ;
+    hcmo:metricUnit "g" .
+
+ex:metric_water a hcmo:BehavioralMetric ;
+    rdfs:label "Water intake" ;
+    hcmo:metricName "water intake" ;
+    hcmo:metricUnit "mL" .
+
+ex:metric_rearing a hcmo:BehavioralMetric ;
+    rdfs:label "Rearing events" ;
+    hcmo:metricName "rearing events" ;
+    hcmo:metricUnit "count" .

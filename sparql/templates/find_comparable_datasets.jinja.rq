@@ -1,0 +1,24 @@
+# Template: find_comparable_datasets
+# Required slots:
+#   dataset_iri  -- IRI (with prefix or full <...>) of the reference dataset
+PREFIX hcmo: <http://w3id.org/hcmo#>
+PREFIX ex:   <http://example.org/hcmo/data#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?dataset ?title ?species ?strain
+WHERE {
+  {{ dataset_iri }} hcmo:hasExperiment ?refExp .
+  ?refExp hcmo:hasCohort ?refCohort .
+  ?refCohort hcmo:species ?species ;
+             hcmo:strain  ?strain .
+
+  ?dataset a hcmo:Dataset ;
+           hcmo:hasExperiment ?exp .
+  ?exp hcmo:hasCohort ?cohort .
+  ?cohort hcmo:species ?species ;
+          hcmo:strain  ?strain .
+
+  OPTIONAL { ?dataset hcmo:title ?title }
+  FILTER (?dataset != {{ dataset_iri }})
+}
+ORDER BY ?dataset

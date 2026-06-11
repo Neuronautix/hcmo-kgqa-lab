@@ -1,0 +1,25 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+hcmo:AnimalCohortShape a sh:NodeShape ;
+    sh:targetClass hcmo:AnimalCohort ;
+    sh:property [
+        sh:path hcmo:species ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "An AnimalCohort must have hcmo:species." ;
+    ] ;
+    sh:property [
+        sh:path hcmo:strain ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "An AnimalCohort must have hcmo:strain." ;
+    ] ;
+    sh:property [
+        sh:path hcmo:sampleSize ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:minInclusive 1 ;
+        sh:message "An AnimalCohort must have hcmo:sampleSize (>= 1)." ;
+    ] .

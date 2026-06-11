@@ -1,0 +1,34 @@
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix ex:   <http://example.org/hcmo/data#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ex:cohort_b6_male a hcmo:AnimalCohort ;
+    rdfs:label "C57BL/6J males" ;
+    hcmo:species "Mus musculus" ;
+    hcmo:strain "C57BL/6J" ;
+    hcmo:sampleSize 12 .
+
+ex:cohort_b6_female a hcmo:AnimalCohort ;
+    rdfs:label "C57BL/6J females" ;
+    hcmo:species "Mus musculus" ;
+    hcmo:strain "C57BL/6J" ;
+    hcmo:sampleSize 12 .
+
+ex:cohort_balbc a hcmo:AnimalCohort ;
+    rdfs:label "BALB/c males" ;
+    hcmo:species "Mus musculus" ;
+    hcmo:strain "BALB/c" ;
+    hcmo:sampleSize 10 .
+
+ex:cohort_wistar a hcmo:AnimalCohort ;
+    rdfs:label "Wistar rats" ;
+    hcmo:species "Rattus norvegicus" ;
+    hcmo:strain "Wistar" ;
+    hcmo:sampleSize 8 .
+
+# Deliberately incomplete cohort: missing hcmo:species AND hcmo:sampleSize.
+# SHACL animal_cohort_shape.ttl must report violations for this node.
+ex:cohort_incomplete a hcmo:AnimalCohort ;
+    rdfs:label "Unspecified cohort" ;
+    hcmo:strain "unknown" .

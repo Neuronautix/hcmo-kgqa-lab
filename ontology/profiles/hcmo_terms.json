@@ -1,0 +1,25 @@
+[
+  {"iri": "http://w3id.org/hcmo#Dataset", "label": "Dataset", "type": "class", "comment": "A dataset produced by a home cage monitoring experiment."},
+  {"iri": "http://w3id.org/hcmo#VCGReadyDataset", "label": "VCG-Ready Dataset", "type": "class", "comment": "A dataset that carries the complete metadata required for Virtual Control Group (VCG) reuse."},
+  {"iri": "http://w3id.org/hcmo#HomeCageExperiment", "label": "Home Cage Experiment", "type": "class", "comment": "An experiment conducted using a home cage monitoring system."},
+  {"iri": "http://w3id.org/hcmo#AnimalCohort", "label": "Animal Cohort", "type": "class", "comment": "A group of animals sharing species, strain and experimental conditions."},
+  {"iri": "http://w3id.org/hcmo#HomeCageSystem", "label": "Home Cage System", "type": "class", "comment": "A hardware/software platform used to monitor animals in their home cage."},
+  {"iri": "http://w3id.org/hcmo#BehavioralMetric", "label": "Behavioral Metric", "type": "class", "comment": "A measurable behavioral readout (e.g. distance travelled, sleep bouts)."},
+
+  {"iri": "http://w3id.org/hcmo#hasExperiment", "label": "has experiment", "type": "object_property", "comment": "Relates a dataset to the experiment that produced it."},
+  {"iri": "http://w3id.org/hcmo#hasDataset", "label": "has dataset", "type": "object_property", "comment": "Relates an experiment to a dataset it produced."},
+  {"iri": "http://w3id.org/hcmo#usesSystem", "label": "uses system", "type": "object_property", "comment": "Relates an experiment to the home cage system it uses."},
+  {"iri": "http://w3id.org/hcmo#hasCohort", "label": "has cohort", "type": "object_property", "comment": "Relates an experiment to an animal cohort it studies."},
+  {"iri": "http://w3id.org/hcmo#measuresMetric", "label": "measures metric", "type": "object_property", "comment": "Relates an experiment to a behavioral metric it measures."},
+
+  {"iri": "http://w3id.org/hcmo#title", "label": "title", "type": "datatype_property", "comment": "Human-readable title."},
+  {"iri": "http://w3id.org/hcmo#identifier", "label": "identifier", "type": "datatype_property", "comment": "A persistent identifier or accession."},
+  {"iri": "http://w3id.org/hcmo#species", "label": "species", "type": "datatype_property", "comment": "Species of the animals in a cohort."},
+  {"iri": "http://w3id.org/hcmo#strain", "label": "strain", "type": "datatype_property", "comment": "Strain of the animals in a cohort."},
+  {"iri": "http://w3id.org/hcmo#sampleSize", "label": "sample size", "type": "datatype_property", "comment": "Number of animals in a cohort."},
+  {"iri": "http://w3id.org/hcmo#durationDays", "label": "duration (days)", "type": "datatype_property", "comment": "Duration of an experiment in days."},
+  {"iri": "http://w3id.org/hcmo#metricName", "label": "metric name", "type": "datatype_property", "comment": "Name of a behavioral metric."},
+  {"iri": "http://w3id.org/hcmo#metricUnit", "label": "metric unit", "type": "datatype_property", "comment": "Unit of measurement of a behavioral metric."},
+  {"iri": "http://w3id.org/hcmo#systemName", "label": "system name", "type": "datatype_property", "comment": "Name of a home cage system."},
+  {"iri": "http://w3id.org/hcmo#vendor", "label": "vendor", "type": "datatype_property", "comment": "Vendor or manufacturer of a home cage system."}
+]

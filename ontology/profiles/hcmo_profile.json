@@ -1,0 +1,43 @@
+{
+  "classes": [
+    "http://w3id.org/hcmo#Dataset",
+    "http://w3id.org/hcmo#VCGReadyDataset",
+    "http://w3id.org/hcmo#HomeCageExperiment",
+    "http://w3id.org/hcmo#AnimalCohort",
+    "http://w3id.org/hcmo#HomeCageSystem",
+    "http://w3id.org/hcmo#BehavioralMetric"
+  ],
+  "object_properties": [
+    "http://w3id.org/hcmo#hasExperiment",
+    "http://w3id.org/hcmo#hasDataset",
+    "http://w3id.org/hcmo#usesSystem",
+    "http://w3id.org/hcmo#hasCohort",
+    "http://w3id.org/hcmo#measuresMetric"
+  ],
+  "datatype_properties": [
+    "http://w3id.org/hcmo#title",
+    "http://w3id.org/hcmo#identifier",
+    "http://w3id.org/hcmo#species",
+    "http://w3id.org/hcmo#strain",
+    "http://w3id.org/hcmo#sampleSize",
+    "http://w3id.org/hcmo#durationDays",
+    "http://w3id.org/hcmo#metricName",
+    "http://w3id.org/hcmo#metricUnit",
+    "http://w3id.org/hcmo#systemName",
+    "http://w3id.org/hcmo#vendor"
+  ],
+  "counts": {
+    "classes": 6,
+    "object_properties": 5,
+    "datatype_properties": 10
+  },
+  "namespaces": {
+    "hcmo": "http://w3id.org/hcmo#",
+    "ex": "http://example.org/hcmo/data#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "sh": "http://www.w3.org/ns/shacl#"
+  }
+}

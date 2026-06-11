@@ -1,0 +1,28 @@
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix ex:   <http://example.org/hcmo/data#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:ds_gait2021 a hcmo:Dataset ;
+    rdfs:label "Gait dataset 2021" ;
+    hcmo:title "Home cage gait analysis dataset (B6 males, 2021)" ;
+    hcmo:identifier "HCMO-DS-0001" ;
+    hcmo:hasExperiment ex:exp_gait2021 .
+
+ex:ds_metabolic2022 a hcmo:Dataset ;
+    rdfs:label "Metabolic dataset 2022" ;
+    hcmo:title "Metabolic phenotyping dataset (B6 females, 2022)" ;
+    hcmo:identifier "HCMO-DS-0002" ;
+    hcmo:hasExperiment ex:exp_metabolic2022 .
+
+ex:ds_sleep2023 a hcmo:Dataset ;
+    rdfs:label "Sleep dataset 2023" ;
+    hcmo:title "Sleep monitoring dataset (BALB/c, 2023)" ;
+    hcmo:identifier "HCMO-DS-0003" ;
+    hcmo:hasExperiment ex:exp_sleep2023 .
+
+# Deliberately incomplete dataset: missing hcmo:identifier.
+# SHACL hcm_dataset_shape.ttl must report a violation here.
+ex:ds_activity2023 a hcmo:Dataset ;
+    rdfs:label "Activity dataset 2023" ;
+    hcmo:title "Spontaneous activity dataset (Wistar, 2023)" ;
+    hcmo:hasExperiment ex:exp_activity2023 .

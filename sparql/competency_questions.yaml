@@ -1,0 +1,44 @@
+# Competency questions for the HCMO KGQA lab.
+# Each entry drives a runnable example (sparql/examples/) and a Jinja template
+# (sparql/templates/).
+competency_questions:
+  - id: CQ001
+    question: "Which datasets are comparable to a given dataset (same species and strain)?"
+    description: >
+      Find datasets whose underlying cohort shares species and strain with a
+      reference dataset, supporting reuse and cross-study comparison.
+    template: find_comparable_datasets
+    example: CQ001_find_comparable_datasets.rq
+
+  - id: CQ002
+    question: "Which datasets or experiments are missing mandatory metadata?"
+    description: >
+      Surface records lacking required fields (identifier, species, sampleSize,
+      durationDays) so they can be flagged for curation.
+    template: missing_metadata
+    example: CQ002_missing_metadata.rq
+
+  - id: CQ003
+    question: "What behavioral metrics are measured for a given dataset?"
+    description: >
+      List the behavioral metrics (name and unit) measured by the experiment(s)
+      that produced a given dataset.
+    template: list_metrics
+    example: CQ003_list_metrics_for_dataset.rq
+
+  - id: CQ004
+    question: "How do two experiments compare on cohort, system, duration and metrics?"
+    description: >
+      Side-by-side comparison of two experiments across species, strain, sample
+      size, monitoring system and study duration.
+    template: compare_experiments
+    example: CQ004_compare_experiments.rq
+
+  - id: CQ005
+    question: "Which datasets are VCG-ready (carry all metadata for Virtual Control Group reuse)?"
+    description: >
+      Identify datasets whose producing experiment supplies species, strain,
+      sample size and duration, making them candidates for Virtual Control Group
+      reuse.
+    template: vcg_readiness
+    example: CQ005_vcg_candidates.rq

@@ -1,0 +1,18 @@
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix ex:   <http://example.org/hcmo/data#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:sys_digigait a hcmo:HomeCageSystem ;
+    rdfs:label "DigiGait" ;
+    hcmo:systemName "DigiGait" ;
+    hcmo:vendor "Mouse Specifics, Inc." .
+
+ex:sys_phenomaster a hcmo:HomeCageSystem ;
+    rdfs:label "PhenoMaster" ;
+    hcmo:systemName "PhenoMaster" ;
+    hcmo:vendor "TSE Systems" .
+
+ex:sys_digitalventicage a hcmo:HomeCageSystem ;
+    rdfs:label "Digital Ventilated Cage" ;
+    hcmo:systemName "DVC" ;
+    hcmo:vendor "Tecniplast" .

@@ -1,0 +1,13 @@
+# CQ003 - List behavioral metrics measured for ex:ds_metabolic2022.
+PREFIX hcmo: <http://w3id.org/hcmo#>
+PREFIX ex:   <http://example.org/hcmo/data#>
+
+SELECT DISTINCT ?metric ?metricName ?metricUnit
+WHERE {
+  ex:ds_metabolic2022 hcmo:hasExperiment ?exp .
+  ?exp hcmo:measuresMetric ?metric .
+  ?metric a hcmo:BehavioralMetric .
+  OPTIONAL { ?metric hcmo:metricName ?metricName }
+  OPTIONAL { ?metric hcmo:metricUnit ?metricUnit }
+}
+ORDER BY ?metricName

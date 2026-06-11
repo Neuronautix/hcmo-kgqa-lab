@@ -1,0 +1,44 @@
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix ex:   <http://example.org/hcmo/data#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ex:exp_gait2021 a hcmo:HomeCageExperiment ;
+    rdfs:label "Gait analysis in B6 males" ;
+    hcmo:durationDays 14 ;
+    hcmo:usesSystem ex:sys_digigait ;
+    hcmo:hasCohort ex:cohort_b6_male ;
+    hcmo:measuresMetric ex:metric_distance , ex:metric_locomotor ;
+    hcmo:hasDataset ex:ds_gait2021 .
+
+ex:exp_metabolic2022 a hcmo:HomeCageExperiment ;
+    rdfs:label "Metabolic phenotyping" ;
+    hcmo:durationDays 7 ;
+    hcmo:usesSystem ex:sys_phenomaster ;
+    hcmo:hasCohort ex:cohort_b6_female ;
+    hcmo:measuresMetric ex:metric_food , ex:metric_water , ex:metric_locomotor ;
+    hcmo:hasDataset ex:ds_metabolic2022 .
+
+ex:exp_sleep2023 a hcmo:HomeCageExperiment ;
+    rdfs:label "Sleep monitoring in BALB/c" ;
+    hcmo:durationDays 21 ;
+    hcmo:usesSystem ex:sys_digitalventicage ;
+    hcmo:hasCohort ex:cohort_balbc ;
+    hcmo:measuresMetric ex:metric_sleep , ex:metric_locomotor ;
+    hcmo:hasDataset ex:ds_sleep2023 .
+
+ex:exp_activity2023 a hcmo:HomeCageExperiment ;
+    rdfs:label "Spontaneous activity in Wistar rats" ;
+    hcmo:durationDays 10 ;
+    hcmo:usesSystem ex:sys_digitalventicage ;
+    hcmo:hasCohort ex:cohort_wistar ;
+    hcmo:measuresMetric ex:metric_distance , ex:metric_rearing ;
+    hcmo:hasDataset ex:ds_activity2023 .
+
+# Deliberately incomplete experiment: missing hcmo:durationDays.
+# Links to the incomplete cohort. SHACL hcm_experiment_shape must report this.
+ex:exp_pilot2024 a hcmo:HomeCageExperiment ;
+    rdfs:label "Pilot run (incomplete metadata)" ;
+    hcmo:usesSystem ex:sys_phenomaster ;
+    hcmo:hasCohort ex:cohort_incomplete ;
+    hcmo:measuresMetric ex:metric_locomotor .

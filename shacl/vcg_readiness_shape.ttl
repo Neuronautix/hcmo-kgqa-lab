@@ -1,0 +1,48 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# VCG-readiness: a Dataset is "Virtual Control Group ready" only if it carries a
+# stable identifier AND its producing experiment supplies a duration and a
+# cohort with species, strain and sample size. This shape reports what is still
+# missing for reuse. It is intentionally stricter than DatasetShape.
+
+hcmo:VCGReadinessShape a sh:NodeShape ;
+    sh:targetClass hcmo:Dataset ;
+
+    sh:property [
+        sh:path hcmo:identifier ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "VCG-readiness: Dataset is missing hcmo:identifier." ;
+    ] ;
+
+    # The producing experiment must carry a duration.
+    sh:property [
+        sh:path ( hcmo:hasExperiment hcmo:durationDays ) ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "VCG-readiness: producing experiment is missing hcmo:durationDays." ;
+    ] ;
+
+    # The cohort behind the producing experiment must carry species ...
+    sh:property [
+        sh:path ( hcmo:hasExperiment hcmo:hasCohort hcmo:species ) ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "VCG-readiness: cohort is missing hcmo:species." ;
+    ] ;
+    # ... strain ...
+    sh:property [
+        sh:path ( hcmo:hasExperiment hcmo:hasCohort hcmo:strain ) ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "VCG-readiness: cohort is missing hcmo:strain." ;
+    ] ;
+    # ... and sample size.
+    sh:property [
+        sh:path ( hcmo:hasExperiment hcmo:hasCohort hcmo:sampleSize ) ;
+        sh:minCount 1 ;
+        sh:severity sh:Warning ;
+        sh:message "VCG-readiness: cohort is missing hcmo:sampleSize." ;
+    ] .

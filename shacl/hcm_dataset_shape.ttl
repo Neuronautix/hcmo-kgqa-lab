@@ -1,0 +1,24 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+hcmo:DatasetShape a sh:NodeShape ;
+    sh:targetClass hcmo:Dataset ;
+    sh:property [
+        sh:path hcmo:title ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "A Dataset must have an hcmo:title." ;
+    ] ;
+    sh:property [
+        sh:path hcmo:identifier ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "A Dataset must have an hcmo:identifier." ;
+    ] ;
+    sh:property [
+        sh:path hcmo:hasExperiment ;
+        sh:class hcmo:HomeCageExperiment ;
+        sh:minCount 1 ;
+        sh:message "A Dataset must link to at least one hcmo:HomeCageExperiment." ;
+    ] .

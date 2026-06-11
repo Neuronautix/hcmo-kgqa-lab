@@ -1,0 +1,18 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix hcmo: <http://w3id.org/hcmo#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+hcmo:BehavioralMetricShape a sh:NodeShape ;
+    sh:targetClass hcmo:BehavioralMetric ;
+    sh:property [
+        sh:path hcmo:metricName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "A BehavioralMetric must have hcmo:metricName." ;
+    ] ;
+    sh:property [
+        sh:path hcmo:metricUnit ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "A BehavioralMetric must have hcmo:metricUnit." ;
+    ] .
