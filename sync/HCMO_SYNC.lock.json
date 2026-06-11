@@ -1,0 +1,151 @@
+{
+  "commit_sha": "2e60566310e7fe0204b4fb261f2395415b197187",
+  "files": [
+    {
+      "dest": "ontology/vendor/hcmo/hcm.ttl",
+      "sha256": "0ae5eafbf9740e7c9b402b2827a59e5937705f94a18026719f2b7966e981965f",
+      "src": "ontology/hcm.ttl"
+    },
+    {
+      "dest": "ontology/vendor/hcmo/hcm-align.ttl",
+      "sha256": "a5faf85fa03f36337896861999154df43206a9de9699f7594c385bd7cd66a43e",
+      "src": "ontology/hcm-align.ttl"
+    },
+    {
+      "dest": "ontology/vendor/hcmo/hcm-metadata.ttl",
+      "sha256": "e503a219f52afb75297b2a9954b5bd62dca691c9881f4595651bf04eafba1111",
+      "src": "ontology/hcm-metadata.ttl"
+    },
+    {
+      "dest": "ontology/vendor/hcmo/hcm-bridge-animal.ttl",
+      "sha256": "e777cd08cb7068b7e9b910a34b1021bf0135bc605dd8030e4cfbdf2b23117589",
+      "src": "ontology/hcm-bridge-animal.ttl"
+    },
+    {
+      "dest": "ontology/vendor/hcmo/context.jsonld",
+      "sha256": "1ca87b9350e26ffb4f16ae8da4e9f0b6d35ab1f1acc2dd7bb4b5daafb31cb8c3",
+      "src": "ontology/context.jsonld"
+    },
+    {
+      "dest": "shapes/vendor/hcmo/hcm-shapes.ttl",
+      "sha256": "2485b71f772927d23608303744a3706638b3df1a6e305597bb25b87a8199820f",
+      "src": "shapes/hcm-shapes.ttl"
+    },
+    {
+      "dest": "sparql/vendor/hcmo/queries/cq-animals-by-enclosure.rq",
+      "sha256": "a54f9efff060c654802d3d3b0e0db5e4b13df83165d341221d2464ae254d3be9",
+      "src": "queries/cq-animals-by-enclosure.rq"
+    },
+    {
+      "dest": "sparql/vendor/hcmo/queries/cq-missing-dimensions.rq",
+      "sha256": "14a5cf542874a2be093689fed0b6539a0ec115cefc9273c908d98e9d59240c55",
+      "src": "queries/cq-missing-dimensions.rq"
+    },
+    {
+      "dest": "sparql/vendor/hcmo/queries/cq-needs-provisioning.rq",
+      "sha256": "fe7bde9f3a36e4b5cee951dce179542199fc766bba37c71ea191a367126b524a",
+      "src": "queries/cq-needs-provisioning.rq"
+    },
+    {
+      "dest": "sparql/vendor/hcmo/queries/cq-sensors-behaviors.rq",
+      "sha256": "d5a106d4e82cf4925efd585134022e89d0e6b7ae0f06138ae746f507622fd2d9",
+      "src": "queries/cq-sensors-behaviors.rq"
+    },
+    {
+      "dest": "sparql/vendor/hcmo/queries/cq-systems-24h-limited.rq",
+      "sha256": "701b21c30e3fddaca7cbd9ce0ff0bd353210b59a4c44dbeeb924eac77e313992",
+      "src": "queries/cq-systems-24h-limited.rq"
+    },
+    {
+      "dest": "kg/vendor/hcmo/examples/abox-minimal.ttl",
+      "sha256": "4bb78eff76265a444c5392c7073b2cc6907e1d9b4536dfd81b74de106636a662",
+      "src": "examples/abox-minimal.ttl"
+    },
+    {
+      "dest": "kg/vendor/hcmo/examples/abox-edge-cases.ttl",
+      "sha256": "40a01af01238a517c6a6eb845421661bbe7742c78397774245755eb3c8b7421f",
+      "src": "examples/abox-edge-cases.ttl"
+    }
+  ],
+  "lab_namespace_detected": "http://w3id.org/hcmo#",
+  "ontology_terms": {
+    "classes": [
+      "Actuator",
+      "Animal",
+      "AnimalNeedProfile",
+      "BehaviorAndPhysiology",
+      "CircadianRhythm",
+      "CollectionOfActuators",
+      "CollectionOfSensors",
+      "CommercialSupplier",
+      "Dimensions",
+      "Enclosure",
+      "EnvironmentalEnrichment",
+      "Food",
+      "Hardware",
+      "HumanInteractionProfile",
+      "Laboratory",
+      "LimitedInteractionWithHumans",
+      "NeedsSequence",
+      "ObservationWindow",
+      "PhysicalSpace",
+      "SafetyFromThreat",
+      "Sensor",
+      "SocialContacts",
+      "Software",
+      "Supplier",
+      "System",
+      "TimeInterval",
+      "Water"
+    ],
+    "datatype_properties": [
+      "durationHours",
+      "height",
+      "indefinitelyExtendable",
+      "isExtendable",
+      "length",
+      "limitedHumanInteraction",
+      "unit",
+      "width"
+    ],
+    "object_properties": [
+      "captures",
+      "communicatesWith",
+      "displays",
+      "elicits",
+      "extendsEnoughToCapture",
+      "extendsOver",
+      "hasActuator",
+      "hasActuatorComponent",
+      "hasActuatorSet",
+      "hasCircadianRhythm",
+      "hasCondition",
+      "hasDimensions",
+      "hasEnclosure",
+      "hasEnvironmentalEnrichment",
+      "hasFood",
+      "hasHardware",
+      "hasLimitedHumanInteraction",
+      "hasPhysicalSpace",
+      "hasProperty",
+      "hasSafetyFromThreat",
+      "hasSensor",
+      "hasSensorComponent",
+      "hasSensorSet",
+      "hasSocialContacts",
+      "hasSoftware",
+      "hasSpaceRegion",
+      "hasWater",
+      "isCapturedOver",
+      "isDisplayedInside",
+      "livesIn",
+      "producedBy",
+      "providesNeedProfile",
+      "requiresToThrive"
+    ]
+  },
+  "ref": "main",
+  "repo_url": "https://github.com/Neuronautix/HCMO",
+  "synced_at": "2026-06-11T06:10:33.027209+00:00",
+  "upstream_namespace_detected": "https://w3id.org/hcmo/ontology/hcm#"
+}

@@ -1,0 +1,632 @@
+{
+  "classes": [
+    {
+      "comment": "A device that elicits or perturbs behavior or physiology.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Actuator",
+      "label": "Actuator",
+      "local_name": "Actuator"
+    },
+    {
+      "comment": "An experimental animal housed in an enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Animal",
+      "label": "Animal",
+      "local_name": "Animal"
+    },
+    {
+      "comment": "Provisioning covering food, water, social contacts, safety, enrichment.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile",
+      "label": "Animal Need Profile",
+      "local_name": "AnimalNeedProfile"
+    },
+    {
+      "comment": "Observed behavioral or physiological process displayed by an animal.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology",
+      "label": "Behavior and Physiology",
+      "local_name": "BehaviorAndPhysiology"
+    },
+    {
+      "comment": "A circadian rhythm associated with a behavior or physiology process.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#CircadianRhythm",
+      "label": "Circadian Rhythm",
+      "local_name": "CircadianRhythm"
+    },
+    {
+      "comment": "Deprecated; model actuators via hcm:hasActuatorComponent on Hardware.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#CollectionOfActuators",
+      "label": "Collection Of Actuators (deprecated)",
+      "local_name": "CollectionOfActuators"
+    },
+    {
+      "comment": "Deprecated; model sensors via hcm:hasSensorComponent on Hardware.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#CollectionOfSensors",
+      "label": "Collection Of Sensors (deprecated)",
+      "local_name": "CollectionOfSensors"
+    },
+    {
+      "comment": "A commercial supplier that produces a system.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#CommercialSupplier",
+      "label": "Commercial Supplier",
+      "local_name": "CommercialSupplier"
+    },
+    {
+      "comment": "Geometric dimensions (width, length, height) of a physical space.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Dimensions",
+      "label": "Dimensions",
+      "local_name": "Dimensions"
+    },
+    {
+      "comment": "A physical enclosure (artifact) where animals live and behaviors are displayed.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Enclosure",
+      "label": "Enclosure",
+      "local_name": "Enclosure"
+    },
+    {
+      "comment": "An environmental enrichment need or provision for an animal.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#EnvironmentalEnrichment",
+      "label": "Environmental Enrichment",
+      "local_name": "EnvironmentalEnrichment"
+    },
+    {
+      "comment": "A food need or provision for an animal.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Food",
+      "label": "Food",
+      "local_name": "Food"
+    },
+    {
+      "comment": "Physical computing hardware component(s) of a system.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Hardware",
+      "label": "Hardware",
+      "local_name": "Hardware"
+    },
+    {
+      "comment": "Deprecated; use hcm:LimitedInteractionWithHumans as a condition.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#HumanInteractionProfile",
+      "label": "Human Interaction Profile (deprecated)",
+      "local_name": "HumanInteractionProfile"
+    },
+    {
+      "comment": "A laboratory that produces a system.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Laboratory",
+      "label": "Laboratory",
+      "local_name": "Laboratory"
+    },
+    {
+      "comment": "A condition indicating minimal human interference during observation.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#LimitedInteractionWithHumans",
+      "label": "Limited Interaction With Humans",
+      "local_name": "LimitedInteractionWithHumans"
+    },
+    {
+      "comment": "Deprecated; use hcm:AnimalNeedProfile with object-based needs.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#NeedsSequence",
+      "label": "Needs Sequence (deprecated)",
+      "local_name": "NeedsSequence"
+    },
+    {
+      "comment": "An observation time window for behavior capture (must be > 24h; may be extendable indefinitely).",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#ObservationWindow",
+      "label": "Observation Window",
+      "local_name": "ObservationWindow"
+    },
+    {
+      "comment": "A spatial region relevant to HCM (e.g., the interior space of an enclosure).",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#PhysicalSpace",
+      "label": "Physical Space",
+      "local_name": "PhysicalSpace"
+    },
+    {
+      "comment": "A safety-from-threat need or provision for an animal.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#SafetyFromThreat",
+      "label": "Safety From Threat",
+      "local_name": "SafetyFromThreat"
+    },
+    {
+      "comment": "A device that captures signals related to behavior or physiology.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Sensor",
+      "label": "Sensor",
+      "local_name": "Sensor"
+    },
+    {
+      "comment": "A social contact need or provision for an animal.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#SocialContacts",
+      "label": "Social Contacts",
+      "local_name": "SocialContacts"
+    },
+    {
+      "comment": "Software component(s) of a system.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Software",
+      "label": "Software",
+      "local_name": "Software"
+    },
+    {
+      "comment": "Commercial supplier or laboratory providing the system.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Supplier",
+      "label": "Supplier",
+      "local_name": "Supplier"
+    },
+    {
+      "comment": "A home-cage monitoring system comprising an enclosure, hardware, and software.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#System",
+      "label": "System",
+      "local_name": "System"
+    },
+    {
+      "comment": "Deprecated; use hcm:ObservationWindow.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#TimeInterval",
+      "label": "Time Interval (deprecated)",
+      "local_name": "TimeInterval"
+    },
+    {
+      "comment": "A water need or provision for an animal.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Water",
+      "label": "Water",
+      "local_name": "Water"
+    }
+  ],
+  "counts": {
+    "classes": 27,
+    "datatype_properties": 8,
+    "object_properties": 33,
+    "triples": 491
+  },
+  "datatype_properties": [
+    {
+      "comment": "Duration of the observation window in hours (must be > 24).",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#ObservationWindow"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#durationHours",
+      "label": "duration (hours)",
+      "local_name": "durationHours",
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ]
+    },
+    {
+      "comment": "Height magnitude for Dimensions (units specified in unit).",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Dimensions"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#height",
+      "label": "height",
+      "local_name": "height",
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ]
+    },
+    {
+      "comment": "Deprecated; represent extendability with hcm:isExtendable.",
+      "domain": [],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#indefinitelyExtendable",
+      "label": "indefinitely extendable (deprecated)",
+      "local_name": "indefinitelyExtendable",
+      "range": []
+    },
+    {
+      "comment": "Whether the observation window is extendable.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#ObservationWindow"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#isExtendable",
+      "label": "is extendable",
+      "local_name": "isExtendable",
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#boolean"
+      ]
+    },
+    {
+      "comment": "Length magnitude for Dimensions (units specified in unit).",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Dimensions"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#length",
+      "label": "length",
+      "local_name": "length",
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ]
+    },
+    {
+      "comment": "Deprecated; use hcm:hasCondition with hcm:LimitedInteractionWithHumans.",
+      "domain": [],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#limitedHumanInteraction",
+      "label": "limited human interaction (deprecated boolean)",
+      "local_name": "limitedHumanInteraction",
+      "range": []
+    },
+    {
+      "comment": "Unit label for dimensions (e.g., 'cm').",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Dimensions"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#unit",
+      "label": "unit",
+      "local_name": "unit",
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#string"
+      ]
+    },
+    {
+      "comment": "Width magnitude for Dimensions (units specified in unit).",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Dimensions"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#width",
+      "label": "width",
+      "local_name": "width",
+      "range": [
+        "http://www.w3.org/2001/XMLSchema#decimal"
+      ]
+    }
+  ],
+  "object_properties": [
+    {
+      "comment": "A Sensor captures signals of a behavior or physiology.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Sensor"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#captures",
+      "label": "captures",
+      "local_name": "captures",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
+      ]
+    },
+    {
+      "comment": "Hardware communicates with software component(s).",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Hardware"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#communicatesWith",
+      "label": "communicates with",
+      "local_name": "communicatesWith",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Software"
+      ]
+    },
+    {
+      "comment": "An Animal displays a behavior or physiological process.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Animal"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#displays",
+      "label": "displays",
+      "local_name": "displays",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
+      ]
+    },
+    {
+      "comment": "An Actuator elicits or perturbs a behavior or physiology.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Actuator"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#elicits",
+      "label": "elicits",
+      "local_name": "elicits",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
+      ]
+    },
+    {
+      "comment": "Deprecated; use hcm:isCapturedOver.",
+      "domain": [],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#extendsEnoughToCapture",
+      "label": "extends enough to capture (deprecated)",
+      "local_name": "extendsEnoughToCapture",
+      "range": []
+    },
+    {
+      "comment": "Deprecated; no direct replacement; model with hcm:ObservationWindow if needed.",
+      "domain": [],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#extendsOver",
+      "label": "extends over (deprecated)",
+      "local_name": "extendsOver",
+      "range": []
+    },
+    {
+      "comment": "Derived (via property chain) from hasHardware o hasActuatorComponent.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#System"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasActuator",
+      "label": "has actuator",
+      "local_name": "hasActuator",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Actuator"
+      ]
+    },
+    {
+      "comment": "Links Hardware to an Actuator component.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Hardware"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasActuatorComponent",
+      "label": "has actuator component",
+      "local_name": "hasActuatorComponent",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Actuator"
+      ]
+    },
+    {
+      "comment": "Deprecated; use hcm:hasActuatorComponent.",
+      "domain": [],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasActuatorSet",
+      "label": "has actuator set (deprecated)",
+      "local_name": "hasActuatorSet",
+      "range": []
+    },
+    {
+      "comment": "Associates a behavior or physiology process with a circadian rhythm.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasCircadianRhythm",
+      "label": "has circadian rhythm",
+      "local_name": "hasCircadianRhythm",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#CircadianRhythm"
+      ]
+    },
+    {
+      "comment": "Links an ObservationWindow to an observation condition.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#ObservationWindow"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasCondition",
+      "label": "has condition",
+      "local_name": "hasCondition",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#LimitedInteractionWithHumans"
+      ]
+    },
+    {
+      "comment": "Links a PhysicalSpace to its Dimensions record.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#PhysicalSpace"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasDimensions",
+      "label": "has dimensions",
+      "local_name": "hasDimensions",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Dimensions"
+      ]
+    },
+    {
+      "comment": "Links a System to its Enclosure.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#System"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnclosure",
+      "label": "has enclosure",
+      "local_name": "hasEnclosure",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Enclosure"
+      ]
+    },
+    {
+      "comment": "Links an AnimalNeedProfile to EnvironmentalEnrichment.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnvironmentalEnrichment",
+      "label": "has environmental enrichment",
+      "local_name": "hasEnvironmentalEnrichment",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#EnvironmentalEnrichment"
+      ]
+    },
+    {
+      "comment": "Links an AnimalNeedProfile to a Food need.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasFood",
+      "label": "has food",
+      "local_name": "hasFood",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Food"
+      ]
+    },
+    {
+      "comment": "Links a System to its Hardware component.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#System"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasHardware",
+      "label": "has hardware",
+      "local_name": "hasHardware",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Hardware"
+      ]
+    },
+    {
+      "comment": "Deprecated; use hcm:hasCondition with hcm:LimitedInteractionWithHumans.",
+      "domain": [],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasLimitedHumanInteraction",
+      "label": "has limited human interaction (deprecated)",
+      "local_name": "hasLimitedHumanInteraction",
+      "range": []
+    },
+    {
+      "comment": "Deprecated; use hcm:hasSpaceRegion.",
+      "domain": [],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasPhysicalSpace",
+      "label": "has physical space (deprecated)",
+      "local_name": "hasPhysicalSpace",
+      "range": []
+    },
+    {
+      "comment": "Deprecated; use hcm:hasCondition.",
+      "domain": [],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasProperty",
+      "label": "has property (deprecated)",
+      "local_name": "hasProperty",
+      "range": []
+    },
+    {
+      "comment": "Links an AnimalNeedProfile to SafetyFromThreat.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSafetyFromThreat",
+      "label": "has safety from threat",
+      "local_name": "hasSafetyFromThreat",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#SafetyFromThreat"
+      ]
+    },
+    {
+      "comment": "Derived (via property chain) from hasHardware o hasSensorComponent.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#System"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSensor",
+      "label": "has sensor",
+      "local_name": "hasSensor",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Sensor"
+      ]
+    },
+    {
+      "comment": "Links Hardware to a Sensor component.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Hardware"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSensorComponent",
+      "label": "has sensor component",
+      "local_name": "hasSensorComponent",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Sensor"
+      ]
+    },
+    {
+      "comment": "Deprecated; use hcm:hasSensorComponent.",
+      "domain": [],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSensorSet",
+      "label": "has sensor set (deprecated)",
+      "local_name": "hasSensorSet",
+      "range": []
+    },
+    {
+      "comment": "Links an AnimalNeedProfile to SocialContacts.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSocialContacts",
+      "label": "has social contacts",
+      "local_name": "hasSocialContacts",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#SocialContacts"
+      ]
+    },
+    {
+      "comment": "Links a System to its Software component.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#System"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSoftware",
+      "label": "has software",
+      "local_name": "hasSoftware",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Software"
+      ]
+    },
+    {
+      "comment": "Links an enclosure (artifact) to its relevant spatial region (e.g., internal cage volume).",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Enclosure"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSpaceRegion",
+      "label": "has space region",
+      "local_name": "hasSpaceRegion",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#PhysicalSpace"
+      ]
+    },
+    {
+      "comment": "Links an AnimalNeedProfile to a Water need.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasWater",
+      "label": "has water",
+      "local_name": "hasWater",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Water"
+      ]
+    },
+    {
+      "comment": "Links a behavior or physiology process to an observation window sufficient to capture it.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#isCapturedOver",
+      "label": "is captured over",
+      "local_name": "isCapturedOver",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#ObservationWindow"
+      ]
+    },
+    {
+      "comment": "Behavior or physiology occurs inside an Enclosure.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#isDisplayedInside",
+      "label": "is displayed inside",
+      "local_name": "isDisplayedInside",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Enclosure"
+      ]
+    },
+    {
+      "comment": "Animal lives in (is housed in) an Enclosure.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Animal"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#livesIn",
+      "label": "lives in",
+      "local_name": "livesIn",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Enclosure"
+      ]
+    },
+    {
+      "comment": "Links a System to the supplier or laboratory that produced it.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#System"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#producedBy",
+      "label": "produced by",
+      "local_name": "producedBy",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#Supplier"
+      ]
+    },
+    {
+      "comment": "Needs provisioning provided by the enclosure context.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Enclosure"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#providesNeedProfile",
+      "label": "provides need profile",
+      "local_name": "providesNeedProfile",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
+      ]
+    },
+    {
+      "comment": "Links an Animal to the AnimalNeedProfile it requires.",
+      "domain": [
+        "https://w3id.org/hcmo/ontology/hcm#Animal"
+      ],
+      "iri": "https://w3id.org/hcmo/ontology/hcm#requiresToThrive",
+      "label": "requires to thrive",
+      "local_name": "requiresToThrive",
+      "range": [
+        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
+      ]
+    }
+  ]
+}

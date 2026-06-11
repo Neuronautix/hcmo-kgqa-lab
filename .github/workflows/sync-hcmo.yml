@@ -1,0 +1,74 @@
+name: Sync HCMO upstream
+
+# Keeps the lab's vendored HCMO (ontology / shapes / queries / examples) in
+# step with the canonical upstream repo. Runs weekly and on demand; opens a
+# PR only when the synced state actually changes.
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"  # every Monday 06:17 UTC
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Upstream git ref to sync (branch/tag/SHA). Defaults to manifest."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout lab
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install minimal deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install rdflib pyyaml requests "pydantic>=2" pydantic-settings
+
+      - name: Run HCMO sync
+        id: sync
+        run: |
+          REF_ARG=""
+          if [ -n "${{ github.event.inputs.ref }}" ]; then
+            REF_ARG="--ref ${{ github.event.inputs.ref }}"
+          fi
+          # Capture the run log so the term-diff summary can go in the PR body.
+          python scripts/sync_hcmo.py $REF_ARG | tee sync_run.log
+
+      - name: Build PR body (term-diff summary)
+        if: always()
+        run: |
+          {
+            echo "Automated sync of the canonical HCMO upstream into the lab's vendor/ trees."
+            echo ""
+            echo '```'
+            grep -A4 "TERM-DIFF REPORT" sync_run.log || echo "(no term-diff captured)"
+            echo '```'
+            echo ""
+            echo "See sync/HCMO_SYNC.lock.json for the resolved commit SHA and file hashes."
+          } > pr_body.md
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: sync HCMO upstream"
+          title: "chore: sync HCMO upstream"
+          body-path: pr_body.md
+          branch: chore/sync-hcmo
+          delete-branch: true
+          add-paths: |
+            ontology/vendor/**
+            shapes/vendor/**
+            sparql/vendor/**
+            kg/vendor/**
+            sync/HCMO_SYNC.lock.json

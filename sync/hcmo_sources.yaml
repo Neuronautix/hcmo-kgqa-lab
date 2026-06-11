@@ -1,0 +1,81 @@
+# ===========================================================================
+# HCMO upstream sync manifest
+# ===========================================================================
+# This is the SINGLE PLACE to edit when the upstream HCMO repository changes
+# its file names, adds/removes modules, or moves things around.
+#
+# The sync layer (scripts/sync_hcmo.py) is ontology-agnostic: it does NOT
+# hardcode any class names, property names, or the upstream namespace. It only
+# knows the repo URL, the git ref to track, and this list of file mappings.
+# When a new HCMO is published with different file names, update the `files`
+# list below and re-run `make sync-hcmo` -- nothing else needs to change.
+#
+# Each mapping has:
+#   src  : path of the file inside the upstream repo
+#   dest : path (relative to this lab's repo root) to vendor the file into
+#   kind : one of ontology | shapes | queries | examples | context
+#          (informational; "ontology" / "context" files are also the inputs
+#           used for namespace detection and the term-diff/profile build)
+# ===========================================================================
+
+repo_url: https://github.com/Neuronautix/HCMO
+
+# Track `main` by default. Pin to a tag or commit SHA here (or via --ref /
+# HCMO_REF) for reproducible builds; the resolved commit SHA is always
+# recorded in sync/HCMO_SYNC.lock.json regardless of what `ref` says.
+ref: main
+
+# The primary ontology module. Used for namespace detection, the term-diff
+# report and the vendored profile. Must appear in `files` below as well.
+primary_ontology: ontology/vendor/hcmo/hcm.ttl
+
+files:
+  # --- Ontology modules ----------------------------------------------------
+  - src: ontology/hcm.ttl
+    dest: ontology/vendor/hcmo/hcm.ttl
+    kind: ontology
+  - src: ontology/hcm-align.ttl
+    dest: ontology/vendor/hcmo/hcm-align.ttl
+    kind: ontology
+  - src: ontology/hcm-metadata.ttl
+    dest: ontology/vendor/hcmo/hcm-metadata.ttl
+    kind: ontology
+  - src: ontology/hcm-bridge-animal.ttl
+    dest: ontology/vendor/hcmo/hcm-bridge-animal.ttl
+    kind: ontology
+
+  # --- JSON-LD context (sits beside the ontology modules) ------------------
+  - src: ontology/context.jsonld
+    dest: ontology/vendor/hcmo/context.jsonld
+    kind: context
+
+  # --- SHACL shapes --------------------------------------------------------
+  - src: shapes/hcm-shapes.ttl
+    dest: shapes/vendor/hcmo/hcm-shapes.ttl
+    kind: shapes
+
+  # --- Competency queries --------------------------------------------------
+  # Add new cq-*.rq files here as upstream publishes them (one line each).
+  - src: queries/cq-animals-by-enclosure.rq
+    dest: sparql/vendor/hcmo/queries/cq-animals-by-enclosure.rq
+    kind: queries
+  - src: queries/cq-missing-dimensions.rq
+    dest: sparql/vendor/hcmo/queries/cq-missing-dimensions.rq
+    kind: queries
+  - src: queries/cq-needs-provisioning.rq
+    dest: sparql/vendor/hcmo/queries/cq-needs-provisioning.rq
+    kind: queries
+  - src: queries/cq-sensors-behaviors.rq
+    dest: sparql/vendor/hcmo/queries/cq-sensors-behaviors.rq
+    kind: queries
+  - src: queries/cq-systems-24h-limited.rq
+    dest: sparql/vendor/hcmo/queries/cq-systems-24h-limited.rq
+    kind: queries
+
+  # --- Example A-boxes -----------------------------------------------------
+  - src: examples/abox-minimal.ttl
+    dest: kg/vendor/hcmo/examples/abox-minimal.ttl
+    kind: examples
+  - src: examples/abox-edge-cases.ttl
+    dest: kg/vendor/hcmo/examples/abox-edge-cases.ttl
+    kind: examples

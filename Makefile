@@ -2,7 +2,7 @@
 PYTHON ?= python
 
 .PHONY: help install up down fuseki-up build-profile merge reason load \
-        validate eval reset demo test ui lint
+        validate eval reset demo test ui lint sync-hcmo sync-hcmo-dry
 
 help:
 	@echo "HCMO-KGQA Lab targets:"
@@ -21,6 +21,8 @@ help:
 	@echo "  test           Run the pytest suite"
 	@echo "  ui             Launch the Streamlit app locally"
 	@echo "  lint           Compile-check scripts"
+	@echo "  sync-hcmo      Pull canonical HCMO upstream into vendor/ trees"
+	@echo "  sync-hcmo-dry  Dry-run the sync (fetch + term-diff, no writes)"
 
 install:
 	pip install -e ".[dev]"
@@ -66,3 +68,9 @@ ui:
 
 lint:
 	$(PYTHON) -m py_compile scripts/*.py
+
+sync-hcmo:
+	$(PYTHON) scripts/sync_hcmo.py
+
+sync-hcmo-dry:
+	$(PYTHON) scripts/sync_hcmo.py --dry-run

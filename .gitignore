@@ -32,6 +32,13 @@ kg/generated/*.ttl
 # --- Fuseki persistent data ------------------------------------------------
 fuseki-data/
 
+# --- HCMO sync layer -------------------------------------------------------
+# Archived previous vendor snapshots are transient; do NOT commit them.
+ontology/vendor/_archive/
+# The CURRENT vendored files and the lockfile ARE committed (reproducible
+# synced state): ontology/vendor/hcmo/, shapes/vendor/, sparql/vendor/,
+# kg/vendor/ and sync/HCMO_SYNC.lock.json are intentionally tracked.
+
 # --- OS / editor -----------------------------------------------------------
 .DS_Store
 *.swp

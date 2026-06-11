@@ -1,0 +1,70 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix hcm:  <https://w3id.org/hcmo/ontology/hcm#> .
+
+# 1) ObservationWindow duration constraint: > 24h
+hcm:ObservationWindowShape a sh:NodeShape ;
+  sh:targetClass hcm:ObservationWindow ;
+  sh:property [
+    sh:path hcm:durationHours ;
+    sh:datatype xsd:decimal ;
+    sh:minExclusive 24 ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path hcm:isExtendable ;
+    sh:datatype xsd:boolean ;
+    sh:minCount 0 ;
+  ] .
+
+# 2) Dimensions required (w,l,h), exactly one each
+hcm:DimensionsShape a sh:NodeShape ;
+  sh:targetClass hcm:Dimensions ;
+  sh:property [
+    sh:path hcm:width ;
+    sh:datatype xsd:decimal ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:property [
+    sh:path hcm:length ;
+    sh:datatype xsd:decimal ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] ;
+  sh:property [
+    sh:path hcm:height ;
+    sh:datatype xsd:decimal ;
+    sh:minCount 1 ;
+    sh:maxCount 1 ;
+  ] .
+
+# 3) System must have enclosure/hardware/software (>=1 each)
+hcm:SystemShape a sh:NodeShape ;
+  sh:targetClass hcm:System ;
+  sh:property [
+    sh:path hcm:hasEnclosure ;
+    sh:class hcm:Enclosure ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path hcm:hasHardware ;
+    sh:class hcm:Hardware ;
+    sh:minCount 1 ;
+  ] ;
+  sh:property [
+    sh:path hcm:hasSoftware ;
+    sh:class hcm:Software ;
+    sh:minCount 1 ;
+  ] .
+
+# (Optional) Enclosure should have a space region
+hcm:EnclosureShape a sh:NodeShape ;
+  sh:targetClass hcm:Enclosure ;
+  sh:property [
+    sh:path hcm:hasSpaceRegion ;
+    sh:class hcm:PhysicalSpace ;
+    sh:minCount 1 ;
+  ] .

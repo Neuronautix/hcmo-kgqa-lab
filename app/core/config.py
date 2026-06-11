@@ -72,6 +72,16 @@ class Settings(BaseSettings):
     KG_GENERATED_DIR: Optional[Path] = None
     SPARQL_TEMPLATES_DIR: Optional[Path] = None
 
+    # --- HCMO upstream sync layer ----------------------------------------
+    # The lab vendors the canonical HCMO ontology/shapes/queries into
+    # ``ontology/vendor/hcmo`` (and sibling vendor trees). These fields drive
+    # scripts/sync_hcmo.py and let a single env flip switch the lab onto the
+    # real HCMO once it has been reshaped. Import-safe: no network at import.
+    HCMO_REPO_URL: str = "https://github.com/Neuronautix/HCMO"
+    HCMO_REF: str = "main"
+    HCMO_VENDOR_DIR: Optional[Path] = None  # derived: REPO_ROOT/ontology/vendor/hcmo
+    HCMO_ACTIVE_SOURCE: str = "synthetic"  # "synthetic" | "vendor"
+
     # ------------------------------------------------------------------ #
     # Derived path properties
     # ------------------------------------------------------------------ #
@@ -122,6 +132,35 @@ class Settings(BaseSettings):
     @property
     def profile_json_path(self) -> Path:
         return self.profiles_dir / "hcmo_profile.json"
+
+    # ------------------------------------------------------------------ #
+    # HCMO sync-layer properties
+    # ------------------------------------------------------------------ #
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def vendor_ontology_dir(self) -> Path:
+        """Directory holding the vendored upstream HCMO ontology modules."""
+        return self.HCMO_VENDOR_DIR or (self._root() / "ontology" / "vendor" / "hcmo")
+
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def hcmo_lock_path(self) -> Path:
+        """Path to the sync lockfile recording the vendored upstream state."""
+        return self._root() / "sync" / "HCMO_SYNC.lock.json"
+
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def active_ontology_path(self) -> Path:
+        """The ontology the lab should treat as active.
+
+        Defaults to the synthetic demo ontology (current behaviour). Setting
+        ``HCMO_ACTIVE_SOURCE=vendor`` switches to the vendored upstream HCMO
+        primary module once it has been synced/reshaped. This does NOT alter
+        the default ``ontology_path`` behaviour.
+        """
+        if str(self.HCMO_ACTIVE_SOURCE).lower() == "vendor":
+            return self.vendor_ontology_dir / "hcm.ttl"
+        return self.ontology_path
 
     # ------------------------------------------------------------------ #
     # Fuseki endpoint properties
