@@ -12,8 +12,8 @@ from app.llm.provider import LLMProvider, LLMProviderError
 _HEURISTICS = [
     ("vcg_readiness", ["vcg", "ready", "readiness", "missing", "metadata", "complete", "reuse"]),
     ("datasets_by_system", ["dataset", "system", "platform", "digigait", "phenomaster", "produced by"]),
-    ("metrics_for_experiment", ["metric", "measure", "readout", "behavioral", "behaviour", "distance", "sleep"]),
-    ("experiments_by_species", ["species", "strain", "mouse", "mice", "b6", "balb", "wistar", "cohort", "animal"]),
+    ("metrics_for_experiment", ["metric", "measure", "readout", "behavioral", "behaviour", "distance travelled"]),
+    ("experiments_by_species", ["species", "strain", "strains", "mouse", "mice", "b6", "balb", "wistar", "cohort", "animal"]),
     ("systems_overview", ["systems", "vendor", "list systems", "which systems", "available systems"]),
 ]
 

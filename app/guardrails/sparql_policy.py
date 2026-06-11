@@ -18,10 +18,12 @@ def _strip_comments(text: str) -> str:
 
 
 def _query_form(text: str) -> Optional[str]:
-    # First keyword after any PREFIX lines.
-    body = re.sub(r"(?im)^\s*prefix\s+\S+\s*:\s*<[^>]*>\s*", "", text).strip()
-    m = re.match(r"(?is)\s*(SELECT|ASK|CONSTRUCT|DESCRIBE|INSERT|DELETE|DROP|LOAD|CLEAR|CREATE)",
-                 body)
+    # Drop PREFIX / BASE declaration lines, then read the first form keyword.
+    body = re.sub(r"(?im)^\s*(?:prefix|base)\b[^\n]*\n?", "", text).strip()
+    m = re.search(
+        r"(?is)\b(SELECT|ASK|CONSTRUCT|DESCRIBE|INSERT|DELETE|DROP|LOAD|CLEAR|CREATE)\b",
+        body,
+    )
     return m.group(1).upper() if m else None
 
 

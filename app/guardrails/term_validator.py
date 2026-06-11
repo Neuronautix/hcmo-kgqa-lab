@@ -17,10 +17,16 @@ _IRI_RE = re.compile(r"<([^>]+)>")
 def extract_terms(query_text: str, prefixes: Optional[Dict[str, str]] = None) -> List[str]:
     """Return absolute IRIs referenced in the query (prefixed + full)."""
     prefixes = prefixes or load_prefixes()
+    text = query_text or ""
+    # Ignore IRIs inside PREFIX / BASE declarations (namespace definitions).
+    body = re.sub(r"(?im)^\s*(?:prefix|base)\b[^\n]*\n?", "", text)
     iris: List[str] = []
-    for full in _IRI_RE.findall(query_text or ""):
+    for full in _IRI_RE.findall(body):
+        # Skip bare namespace IRIs (ending in '#' or '/') and empty matches.
+        if not full or full.endswith("#") or full.endswith("/"):
+            continue
         iris.append(full)
-    for pfx, local in _PREFIXED_RE.findall(query_text or ""):
+    for pfx, local in _PREFIXED_RE.findall(body):
         if pfx in prefixes:
             iris.append(prefixes[pfx] + local)
     # de-dup preserving order

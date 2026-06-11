@@ -1,0 +1,20 @@
+# NL test questions with expected intent for KGQA evaluation.
+questions:
+  - id: q1
+    question: "Which datasets were produced using the DigiGait system?"
+    expected_intent: datasets_by_system
+  - id: q2
+    question: "What behavioral metrics does the metabolic phenotyping experiment measure?"
+    expected_intent: metrics_for_experiment
+  - id: q3
+    question: "Which experiments studied BALB/c mice?"
+    expected_intent: experiments_by_species
+  - id: q4
+    question: "Which datasets are VCG-ready and which are missing required metadata?"
+    expected_intent: vcg_readiness
+  - id: q5
+    question: "List all home cage systems and their vendors."
+    expected_intent: systems_overview
+  - id: q6
+    question: "What strains were used across the sleep monitoring experiments?"
+    expected_intent: experiments_by_species

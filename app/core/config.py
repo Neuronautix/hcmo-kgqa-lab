@@ -22,11 +22,11 @@ def _detect_repo_root() -> Path:
     """
     here = Path(__file__).resolve()
     for parent in [here.parent, *here.parents]:
-        if (
-            (parent / "pyproject.toml").exists()
-            or (parent / ".git").exists()
-            or (parent / "ontology").is_dir()
-        ):
+        if (parent / "pyproject.toml").exists() or (parent / ".git").exists():
+            return parent
+        # The ``ontology/current`` asset layout marks the repo root (avoids
+        # matching the ``app/ontology`` package directory).
+        if (parent / "ontology" / "current").is_dir():
             return parent
     return here.parents[2]
 

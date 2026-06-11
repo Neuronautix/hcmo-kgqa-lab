@@ -1,0 +1,29 @@
+# Expected ontology terms (IRIs) per test question, for retrieval evaluation.
+expected_terms:
+  q1:
+    - http://w3id.org/hcmo#Dataset
+    - http://w3id.org/hcmo#HomeCageSystem
+    - http://w3id.org/hcmo#usesSystem
+    - http://w3id.org/hcmo#hasDataset
+  q2:
+    - http://w3id.org/hcmo#HomeCageExperiment
+    - http://w3id.org/hcmo#BehavioralMetric
+    - http://w3id.org/hcmo#measuresMetric
+  q3:
+    - http://w3id.org/hcmo#HomeCageExperiment
+    - http://w3id.org/hcmo#AnimalCohort
+    - http://w3id.org/hcmo#hasCohort
+    - http://w3id.org/hcmo#strain
+  q4:
+    - http://w3id.org/hcmo#Dataset
+    - http://w3id.org/hcmo#VCGReadyDataset
+    - http://w3id.org/hcmo#identifier
+    - http://w3id.org/hcmo#title
+  q5:
+    - http://w3id.org/hcmo#HomeCageSystem
+    - http://w3id.org/hcmo#systemName
+    - http://w3id.org/hcmo#vendor
+  q6:
+    - http://w3id.org/hcmo#AnimalCohort
+    - http://w3id.org/hcmo#strain
+    - http://w3id.org/hcmo#HomeCageExperiment
