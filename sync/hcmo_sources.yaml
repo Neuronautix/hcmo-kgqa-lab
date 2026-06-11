@@ -10,41 +10,63 @@
 # When a new HCMO is published with different file names, update the `files`
 # list below and re-run `make sync-hcmo` -- nothing else needs to change.
 #
+# Upstream now publishes a stable release manifest (hcmo.yaml) and a built
+# dist/ directory (merged ontology + profile). We prefer the merged
+# dist/hcmo.ttl as the primary ontology so the lab consumes exactly what the
+# HCMO repo publishes, rather than re-merging modules itself.
+#
 # Each mapping has:
 #   src  : path of the file inside the upstream repo
 #   dest : path (relative to this lab's repo root) to vendor the file into
-#   kind : one of ontology | shapes | queries | examples | context
-#          (informational; "ontology" / "context" files are also the inputs
-#           used for namespace detection and the term-diff/profile build)
+#   kind : one of ontology | shapes | queries | examples | context | manifest
 # ===========================================================================
 
-repo_url: https://github.com/Neuronautix/HCMO
+repo_url: https://github.com/dhuzard/HCMO
 
 # Track `main` by default. Pin to a tag or commit SHA here (or via --ref /
 # HCMO_REF) for reproducible builds; the resolved commit SHA is always
 # recorded in sync/HCMO_SYNC.lock.json regardless of what `ref` says.
 ref: main
 
-# The primary ontology module. Used for namespace detection, the term-diff
-# report and the vendored profile. Must appear in `files` below as well.
-primary_ontology: ontology/vendor/hcmo/hcm.ttl
+# The merged, built ontology published by upstream. Used for namespace
+# detection, the term-diff report and the vendored profile.
+primary_ontology: ontology/vendor/hcmo/hcmo.ttl
 
 files:
-  # --- Ontology modules ----------------------------------------------------
-  - src: ontology/hcm.ttl
-    dest: ontology/vendor/hcmo/hcm.ttl
+  # --- Upstream release manifest (the contract) ----------------------------
+  - src: hcmo.yaml
+    dest: ontology/vendor/hcmo/hcmo.yaml
+    kind: manifest
+
+  # --- Built / merged ontology artifacts (preferred entry points) ----------
+  - src: dist/hcmo.ttl
+    dest: ontology/vendor/hcmo/hcmo.ttl
     kind: ontology
-  - src: ontology/hcm-align.ttl
-    dest: ontology/vendor/hcmo/hcm-align.ttl
+  - src: dist/hcmo.owl
+    dest: ontology/vendor/hcmo/hcmo.owl
     kind: ontology
-  - src: ontology/hcm-metadata.ttl
-    dest: ontology/vendor/hcmo/hcm-metadata.ttl
+  - src: dist/hcmo.json
+    dest: ontology/vendor/hcmo/hcmo.json
+    kind: context
+  - src: dist/profile.json
+    dest: ontology/vendor/hcmo/upstream_profile.json
+    kind: manifest
+
+  # --- Hand-authored modular sources (kept for reference / reasoning) -------
+  - src: ontology/modules/hcm-core.ttl
+    dest: ontology/vendor/hcmo/modules/hcm-core.ttl
     kind: ontology
-  - src: ontology/hcm-bridge-animal.ttl
-    dest: ontology/vendor/hcmo/hcm-bridge-animal.ttl
+  - src: ontology/modules/hcm-bio.ttl
+    dest: ontology/vendor/hcmo/modules/hcm-bio.ttl
+    kind: ontology
+  - src: ontology/modules/hcm-env.ttl
+    dest: ontology/vendor/hcmo/modules/hcm-env.ttl
+    kind: ontology
+  - src: ontology/modules/hcm-obs.ttl
+    dest: ontology/vendor/hcmo/modules/hcm-obs.ttl
     kind: ontology
 
-  # --- JSON-LD context (sits beside the ontology modules) ------------------
+  # --- JSON-LD context -----------------------------------------------------
   - src: ontology/context.jsonld
     dest: ontology/vendor/hcmo/context.jsonld
     kind: context
@@ -55,7 +77,9 @@ files:
     kind: shapes
 
   # --- Competency queries --------------------------------------------------
-  # Add new cq-*.rq files here as upstream publishes them (one line each).
+  - src: queries/competency_questions.yaml
+    dest: sparql/vendor/hcmo/queries/competency_questions.yaml
+    kind: queries
   - src: queries/cq-animals-by-enclosure.rq
     dest: sparql/vendor/hcmo/queries/cq-animals-by-enclosure.rq
     kind: queries

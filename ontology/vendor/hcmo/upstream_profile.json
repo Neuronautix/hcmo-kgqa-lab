@@ -1,1098 +1,757 @@
 {
+  "_generated": "tooling/build.py \u2014 DO NOT EDIT; regenerate from ontology/modules/",
+  "annotation_properties": [
+    {
+      "comment": null,
+      "iri": "http://purl.org/dc/elements/1.1/creator",
+      "label": null
+    },
+    {
+      "comment": null,
+      "iri": "http://purl.org/dc/elements/1.1/description",
+      "label": null
+    },
+    {
+      "comment": null,
+      "iri": "http://purl.org/dc/elements/1.1/title",
+      "label": null
+    },
+    {
+      "comment": null,
+      "iri": "http://www.w3.org/2002/07/owl#versionInfo",
+      "label": null
+    }
+  ],
   "classes": [
     {
       "comment": null,
       "iri": "http://www.owl-ontologies.com/UNKNOWN#StudyFactors",
-      "label": "Study Factors",
-      "local_name": "StudyFactors"
+      "label": "Study Factors"
     },
     {
       "comment": null,
       "iri": "http://www.owl-ontologies.com/ns#Class2",
-      "label": "Class2",
-      "local_name": "Class2"
+      "label": "Class2"
     },
     {
       "comment": null,
       "iri": "http://www.w3.org/2006/time#TemporalEntity",
-      "label": "Temporal Entity",
-      "local_name": "TemporalEntity"
+      "label": "Temporal Entity"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#CategoricalResult",
-      "label": "Categorical Result",
-      "local_name": "CategoricalResult"
+      "label": "Categorical Result"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#Enrichment",
-      "label": "Enrichment",
-      "local_name": "Enrichment"
+      "label": "Enrichment"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#Hardware",
-      "label": "Hardware",
-      "local_name": "Hardware"
+      "label": "Hardware"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#MonitoredEnclosure",
-      "label": "Monitored Enclosure",
-      "local_name": "MonitoredEnclosure"
+      "label": "Monitored Enclosure"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#OWL-Timeintervaltable",
-      "label": "O W L- Timeintervaltable",
-      "local_name": "OWL-Timeintervaltable"
+      "label": "O W L- Timeintervaltable"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#ObservationResult",
-      "label": "Observation Result",
-      "local_name": "ObservationResult"
+      "label": "Observation Result"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#QuantityValue",
-      "label": "Quantity Value",
-      "local_name": "QuantityValue"
+      "label": "Quantity Value"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#Sensor",
-      "label": "Sensor",
-      "local_name": "Sensor"
+      "label": "Sensor"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#Software",
-      "label": "Software",
-      "local_name": "Software"
+      "label": "Software"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#Structural&LocationTable",
-      "label": "Structural& Location Table",
-      "local_name": "Structural&LocationTable"
+      "label": "Structural& Location Table"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm#TimeSeries",
-      "label": "Time Series",
-      "local_name": "TimeSeries"
+      "label": "Time Series"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#ExperimentalGroup",
-      "label": "Experimental Group",
-      "local_name": "ExperimentalGroup"
+      "label": "Experimental Group"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#Subject",
-      "label": "Subject",
-      "local_name": "Subject"
+      "label": "Subject"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#EnclosureDimensions",
-      "label": "Enclosure Dimensions",
-      "local_name": "EnclosureDimensions"
+      "label": "Enclosure Dimensions"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#EnvironmentProfile",
-      "label": "Environment Profile",
-      "local_name": "EnvironmentProfile"
+      "label": "Environment Profile"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#EnvironmentalProperty",
-      "label": "Environmental Property",
-      "local_name": "EnvironmentalProperty"
+      "label": "Environmental Property"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#GasConcentrationProfile",
-      "label": "Gas Concentration Profile",
-      "local_name": "GasConcentrationProfile"
+      "label": "Gas Concentration Profile"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#LightCycle",
-      "label": "Light Cycle",
-      "local_name": "LightCycle"
+      "label": "Light Cycle"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#MeasurementSpecification",
-      "label": "Measurement Specification",
-      "local_name": "MeasurementSpecification"
+      "label": "Measurement Specification"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#ThriveProfile",
-      "label": "Thrive Profile",
-      "local_name": "ThriveProfile"
+      "label": "Thrive Profile"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#BehaviorObservation",
-      "label": "Behavior Observation",
-      "local_name": "BehaviorObservation"
+      "label": "Behavior Observation"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#BehaviorResult",
-      "label": "Behavior Result",
-      "local_name": "BehaviorResult"
+      "label": "Behavior Result"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#EnvironmentObservation",
-      "label": "Environment Observation",
-      "local_name": "EnvironmentObservation"
+      "label": "Environment Observation"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#GasConcentrationObservation",
-      "label": "Gas Concentration Observation",
-      "local_name": "GasConcentrationObservation"
+      "label": "Gas Concentration Observation"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#HealthStatusObservation",
-      "label": "Health Status Observation",
-      "local_name": "HealthStatusObservation"
+      "label": "Health Status Observation"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#HousingAssignment",
-      "label": "Housing Assignment",
-      "local_name": "HousingAssignment"
+      "label": "Housing Assignment"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#WeightObservation",
-      "label": "Weight Observation",
-      "local_name": "WeightObservation"
+      "label": "Weight Observation"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/semts/ontology/120#DataDimension",
-      "label": "Data Dimension",
-      "local_name": "DataDimension"
+      "label": "Data Dimension"
     },
     {
       "comment": null,
       "iri": "https://w3id.org/semts/ontology/120#TimeSeriesSegment",
-      "label": "Time Series Segment",
-      "local_name": "TimeSeriesSegment"
+      "label": "Time Series Segment"
     }
   ],
   "counts": {
+    "annotation_properties": 4,
     "classes": 32,
     "datatype_properties": 73,
     "object_properties": 38,
-    "triples": 919
+    "triples": 614
   },
   "datatype_properties": [
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#captures",
-      "label": "captures",
-      "local_name": "captures",
-      "range": []
+      "label": "captures"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasActuators",
-      "label": "has actuators",
-      "local_name": "hasActuators",
-      "range": []
+      "label": "has actuators"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasCondition",
-      "label": "has condition",
-      "local_name": "hasCondition",
-      "range": []
+      "label": "has condition"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasDarkPhaseDuration",
-      "label": "has dark phase duration",
-      "local_name": "hasDarkPhaseDuration",
-      "range": []
+      "label": "has dark phase duration"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasDarkPhaseStart",
-      "label": "has dark phase start",
-      "local_name": "hasDarkPhaseStart",
-      "range": []
+      "label": "has dark phase start"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasDawnDuration",
-      "label": "has dawn duration",
-      "local_name": "hasDawnDuration",
-      "range": []
+      "label": "has dawn duration"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasDimUnit",
-      "label": "has dim unit",
-      "local_name": "hasDimUnit",
-      "range": []
+      "label": "has dim unit"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasDuskDuration",
-      "label": "has dusk duration",
-      "local_name": "hasDuskDuration",
-      "range": []
+      "label": "has dusk duration"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasEnrichmentType",
-      "label": "has enrichment type",
-      "local_name": "hasEnrichmentType",
-      "range": []
+      "label": "has enrichment type"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasFacilityType",
-      "label": "has facility type",
-      "local_name": "hasFacilityType",
-      "range": []
+      "label": "has facility type"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasFirmware",
-      "label": "has firmware",
-      "local_name": "hasFirmware",
-      "range": []
+      "label": "has firmware"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasFloorArea",
-      "label": "has floor area",
-      "local_name": "hasFloorArea",
-      "range": []
+      "label": "has floor area"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasFoodReq",
-      "label": "has food req",
-      "local_name": "hasFoodReq",
-      "range": []
+      "label": "has food req"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasHeight",
-      "label": "has height",
-      "local_name": "hasHeight",
-      "range": []
+      "label": "has height"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasLength",
-      "label": "has length",
-      "local_name": "hasLength",
-      "range": []
+      "label": "has length"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasLightPhaseDuration",
-      "label": "has light phase duration",
-      "local_name": "hasLightPhaseDuration",
-      "range": []
+      "label": "has light phase duration"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasModelNumber",
-      "label": "has model number",
-      "local_name": "hasModelNumber",
-      "range": []
+      "label": "has model number"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasName",
-      "label": "has name",
-      "local_name": "hasName",
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#string"
-      ]
+      "label": "has name"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasProtocol",
-      "label": "has protocol",
-      "local_name": "hasProtocol",
-      "range": []
+      "label": "has protocol"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasSafetyReq",
-      "label": "has safety req",
-      "local_name": "hasSafetyReq",
-      "range": []
+      "label": "has safety req"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasSamplingRate",
-      "label": "has sampling rate",
-      "local_name": "hasSamplingRate",
-      "range": []
+      "label": "has sampling rate"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasSensorIdentifier",
-      "label": "has sensor identifier",
-      "local_name": "hasSensorIdentifier",
-      "range": []
+      "label": "has sensor identifier"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasSensorTechnology",
-      "label": "has sensor technology",
-      "local_name": "hasSensorTechnology",
-      "range": []
+      "label": "has sensor technology"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasSensorType",
-      "label": "has sensor type",
-      "local_name": "hasSensorType",
-      "range": []
+      "label": "has sensor type"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasSocialReq",
-      "label": "has social req",
-      "local_name": "hasSocialReq",
-      "range": []
+      "label": "has social req"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasType",
-      "label": "has type",
-      "local_name": "hasType",
-      "range": []
+      "label": "has type"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasVersion",
-      "label": "has version",
-      "local_name": "hasVersion",
-      "range": []
+      "label": "has version"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasWaterReq",
-      "label": "has water req",
-      "local_name": "hasWaterReq",
-      "range": []
+      "label": "has water req"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasWidth",
-      "label": "has width",
-      "local_name": "hasWidth",
-      "range": []
+      "label": "has width"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#isCalibrated",
-      "label": "is calibrated",
-      "local_name": "isCalibrated",
-      "range": []
+      "label": "is calibrated"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#isOccupied",
-      "label": "is occupied",
-      "local_name": "isOccupied",
-      "range": []
+      "label": "is occupied"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#isOperational",
-      "label": "is operational",
-      "local_name": "isOperational",
-      "range": []
+      "label": "is operational"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#partOF",
-      "label": "part o f",
-      "local_name": "partOF",
-      "range": []
+      "label": "part o f"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/2001/XMLSchema#boolean",
-      "label": "boolean",
-      "local_name": "boolean",
-      "range": []
+      "label": "boolean"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/2001/XMLSchema#integer",
-      "label": "integer",
-      "local_name": "integer",
-      "range": []
+      "label": "integer"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/2006/time#hasBeginning",
-      "label": "has beginning",
-      "local_name": "hasBeginning",
-      "range": []
+      "label": "has beginning"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/2006/time#hasEnd",
-      "label": "has end",
-      "local_name": "hasEnd",
-      "range": []
+      "label": "has end"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/2006/time#inXSDDateTime",
-      "label": "in x s d date time",
-      "local_name": "inXSDDateTime",
-      "range": []
+      "label": "in x s d date time"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/ns/sosa/hasResult",
-      "label": "has result",
-      "local_name": "hasResult",
-      "range": []
+      "label": "has result"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/ns/sosa/observedProperty",
-      "label": "observed property",
-      "local_name": "observedProperty",
-      "range": []
+      "label": "observed property"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/ns/sosa/phenomenonTime",
-      "label": "phenomenon time",
-      "local_name": "phenomenonTime",
-      "range": []
+      "label": "phenomenon time"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/ns/sosa/resultTime",
-      "label": "result time",
-      "local_name": "resultTime",
-      "range": []
+      "label": "result time"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/ns/sosa/usedProcedure",
-      "label": "used procedure",
-      "local_name": "usedProcedure",
-      "range": []
+      "label": "used procedure"
     },
     {
       "comment": null,
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#MonitoredEnclosure"
-      ],
       "iri": "https://w3id.org/hcmo/ontology/hcm#Enclosure",
-      "label": "enclosure",
-      "local_name": "Enclosure",
-      "range": []
+      "label": "enclosure"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasCapacity",
-      "label": "has capacity",
-      "local_name": "hasCapacity",
-      "range": []
+      "label": "has capacity"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasCategory",
-      "label": "has category",
-      "local_name": "hasCategory",
-      "range": []
+      "label": "has category"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasDescription",
-      "label": "has description",
-      "local_name": "hasDescription",
-      "range": []
+      "label": "has description"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnclosureIdentifier",
-      "label": "has enclosure identifier",
-      "local_name": "hasEnclosureIdentifier",
-      "range": []
+      "label": "has enclosure identifier"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnrichment",
-      "label": "has enrichment",
-      "local_name": "hasEnrichment",
-      "range": []
+      "label": "has enrichment"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnvironment",
-      "label": "has environment",
-      "local_name": "hasEnvironment",
-      "range": []
+      "label": "has environment"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasFileFormat",
-      "label": "has file format",
-      "local_name": "hasFileFormat",
-      "range": []
+      "label": "has file format"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasManufacturer",
-      "label": "has manufacturer",
-      "local_name": "hasManufacturer",
-      "range": []
+      "label": "has manufacturer"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasMonitoredAnimals",
-      "label": "has monitored animals",
-      "local_name": "hasMonitoredAnimals",
-      "range": []
+      "label": "has monitored animals"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasNumericValue",
-      "label": "has numeric value",
-      "local_name": "hasNumericValue",
-      "range": []
+      "label": "has numeric value"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasSamplingRate",
-      "label": "has sampling rate",
-      "local_name": "hasSamplingRate",
-      "range": []
+      "label": "has sampling rate"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasStoragePath",
-      "label": "has storage path",
-      "local_name": "hasStoragePath",
-      "range": []
+      "label": "has storage path"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasUnit",
-      "label": "has unit",
-      "local_name": "hasUnit",
-      "range": []
+      "label": "has unit"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#isOccupied",
-      "label": "is occupied",
-      "local_name": "isOccupied",
-      "range": []
+      "label": "is occupied"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#locatedIn",
-      "label": "located in",
-      "local_name": "locatedIn",
-      "range": []
+      "label": "located in"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasBiologicalSex",
-      "label": "has biological sex",
-      "local_name": "hasBiologicalSex",
-      "range": []
+      "label": "has biological sex"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasDateOfBirth",
-      "label": "has date of birth",
-      "local_name": "hasDateOfBirth",
-      "range": []
+      "label": "has date of birth"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasSpecies",
-      "label": "has species",
-      "local_name": "hasSpecies",
-      "range": []
+      "label": "has species"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasStrain",
-      "label": "has strain",
-      "local_name": "hasStrain",
-      "range": []
+      "label": "has strain"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasTreatment",
-      "label": "has treatment",
-      "local_name": "hasTreatment",
-      "range": []
+      "label": "has treatment"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasGasType",
-      "label": "has gas type",
-      "local_name": "hasGasType",
-      "range": []
+      "label": "has gas type"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasUnit",
-      "label": "has unit",
-      "local_name": "hasUnit",
-      "range": []
+      "label": "has unit"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasValue",
-      "label": "has value",
-      "local_name": "hasValue",
-      "range": []
+      "label": "has value"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasBehaviorType",
-      "label": "has behavior type",
-      "local_name": "hasBehaviorType",
-      "range": []
+      "label": "has behavior type"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasConfidenceScore",
-      "label": "has confidence score",
-      "local_name": "hasConfidenceScore",
-      "range": []
+      "label": "has confidence score"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasHealthStatusTerm",
-      "label": "has health status term",
-      "local_name": "hasHealthStatusTerm",
-      "range": []
+      "label": "has health status term"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasInterval",
-      "label": "has interval",
-      "local_name": "hasInterval",
-      "range": []
+      "label": "has interval"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/semts/ontology/120#dimensionUnit",
-      "label": "dimension unit",
-      "local_name": "dimensionUnit",
-      "range": []
+      "label": "dimension unit"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/semts/ontology/120#title",
-      "label": "title",
-      "local_name": "title",
-      "range": []
+      "label": "title"
     }
   ],
+  "namespace": "https://w3id.org/hcmo/ontology/hcm#",
   "object_properties": [
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#communicatesWith",
-      "label": "communicates with",
-      "local_name": "communicatesWith",
-      "range": []
+      "label": "communicates with"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasEnrichmentReq",
-      "label": "has enrichment req",
-      "local_name": "hasEnrichmentReq",
-      "range": []
+      "label": "has enrichment req"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#hasSensors",
-      "label": "has sensors",
-      "local_name": "hasSensors",
-      "range": []
+      "label": "has sensors"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#runsOn",
-      "label": "runs on",
-      "local_name": "runsOn",
-      "range": []
+      "label": "runs on"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/UNKNOWN#supportsEnclosure",
-      "label": "supports enclosure",
-      "local_name": "supportsEnclosure",
-      "range": []
+      "label": "supports enclosure"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.owl-ontologies.com/ns#objectProperty",
-      "label": "object property",
-      "local_name": "objectProperty",
-      "range": []
+      "label": "object property"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/ns/sosa/hasFeatureOfInterest",
-      "label": "has feature of interest",
-      "local_name": "hasFeatureOfInterest",
-      "range": []
+      "label": "has feature of interest"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/ns/sosa/hasResult",
-      "label": "has result",
-      "local_name": "hasResult",
-      "range": []
+      "label": "has result"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/ns/sosa/madeBySensor",
-      "label": "made by sensor",
-      "local_name": "madeBySensor",
-      "range": []
+      "label": "made by sensor"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/ns/sosa/madeObservation",
-      "label": "made observation",
-      "local_name": "madeObservation",
-      "range": []
+      "label": "made observation"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "http://www.w3.org/ns/sosa/observedProperty",
-      "label": "observed property",
-      "local_name": "observedProperty",
-      "range": []
+      "label": "observed property"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasDimensions",
-      "label": "has dimensions",
-      "local_name": "hasDimensions",
-      "range": []
+      "label": "has dimensions"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasResult",
-      "label": "has result",
-      "local_name": "hasResult",
-      "range": []
+      "label": "has result"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasThriveProfile",
-      "label": "has thrive profile",
-      "local_name": "hasThriveProfile",
-      "range": []
+      "label": "has thrive profile"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#installedIn",
-      "label": "installed in",
-      "local_name": "installedIn",
-      "range": []
+      "label": "installed in"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm#monitoredBy",
-      "label": "monitored by",
-      "local_name": "monitoredBy",
-      "range": []
+      "label": "monitored by"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#belongsToGroup",
-      "label": "belongs to group",
-      "local_name": "belongsToGroup",
-      "range": []
+      "label": "belongs to group"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasBehaviorObservation",
-      "label": "has behavior observation",
-      "local_name": "hasBehaviorObservation",
-      "range": []
+      "label": "has behavior observation"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasHealthStatusObservation",
-      "label": "has health status observation",
-      "local_name": "hasHealthStatusObservation",
-      "range": []
+      "label": "has health status observation"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasHousingAssignment",
-      "label": "has housing assignment",
-      "local_name": "hasHousingAssignment",
-      "range": []
+      "label": "has housing assignment"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasMember",
-      "label": "has member",
-      "local_name": "hasMember",
-      "range": []
+      "label": "has member"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasWeightObservation",
-      "label": "has weight observation",
-      "local_name": "hasWeightObservation",
-      "range": []
+      "label": "has weight observation"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#AmbientTemperature",
-      "label": "ambient temperature",
-      "local_name": "AmbientTemperature",
-      "range": []
+      "label": "ambient temperature"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#AmmoniaConcentration",
-      "label": "ammonia concentration",
-      "local_name": "AmmoniaConcentration",
-      "range": []
+      "label": "ammonia concentration"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#CarbonDioxideConcentration",
-      "label": "carbon dioxide concentration",
-      "local_name": "CarbonDioxideConcentration",
-      "range": []
+      "label": "carbon dioxide concentration"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#LightState",
-      "label": "light state",
-      "local_name": "LightState",
-      "range": []
+      "label": "light state"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#OxygenConcentration",
-      "label": "oxygen concentration",
-      "local_name": "OxygenConcentration",
-      "range": []
+      "label": "oxygen concentration"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#RelativeHumidity",
-      "label": "relative humidity",
-      "local_name": "RelativeHumidity",
-      "range": []
+      "label": "relative humidity"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasGasConcentrationProfile",
-      "label": "has gas concentration profile",
-      "local_name": "hasGasConcentrationProfile",
-      "range": []
+      "label": "has gas concentration profile"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasLightCycle",
-      "label": "has light cycle",
-      "local_name": "hasLightCycle",
-      "range": []
+      "label": "has light cycle"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasMeasurementSpec",
-      "label": "has measurement spec",
-      "local_name": "hasMeasurementSpec",
-      "range": []
+      "label": "has measurement spec"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#",
-      "label": "",
-      "local_name": "",
-      "range": []
+      "label": ""
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#assignedToEnclosure",
-      "label": "assigned to enclosure",
-      "local_name": "assignedToEnclosure",
-      "range": []
+      "label": "assigned to enclosure"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/hcmo/ontology/hcm/obs#occursIn",
-      "label": "occurs in",
-      "local_name": "occursIn",
-      "range": []
+      "label": "occurs in"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/semts/ontology/120#during",
-      "label": "during",
-      "local_name": "during",
-      "range": []
+      "label": "during"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/semts/ontology/120#generated",
-      "label": "generated",
-      "local_name": "generated",
-      "range": []
+      "label": "generated"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/semts/ontology/120#hasDimension",
-      "label": "has dimension",
-      "local_name": "hasDimension",
-      "range": []
+      "label": "has dimension"
     },
     {
       "comment": null,
-      "domain": [],
       "iri": "https://w3id.org/semts/ontology/120#isPartOf",
-      "label": "is part of",
-      "local_name": "isPartOf",
-      "range": []
+      "label": "is part of"
     }
-  ]
+  ],
+  "ontology_iri": "https://w3id.org/hcmo/ontology/hcm",
+  "version": "0.0.1",
+  "version_iri": "https://w3id.org/hcmo/ontology/hcm/0.0.1"
 }

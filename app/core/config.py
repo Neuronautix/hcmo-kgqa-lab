@@ -77,7 +77,7 @@ class Settings(BaseSettings):
     # ``ontology/vendor/hcmo`` (and sibling vendor trees). These fields drive
     # scripts/sync_hcmo.py and let a single env flip switch the lab onto the
     # real HCMO once it has been reshaped. Import-safe: no network at import.
-    HCMO_REPO_URL: str = "https://github.com/Neuronautix/HCMO"
+    HCMO_REPO_URL: str = "https://github.com/dhuzard/HCMO"
     HCMO_REF: str = "main"
     HCMO_VENDOR_DIR: Optional[Path] = None  # derived: REPO_ROOT/ontology/vendor/hcmo
     HCMO_ACTIVE_SOURCE: str = "synthetic"  # "synthetic" | "vendor"
