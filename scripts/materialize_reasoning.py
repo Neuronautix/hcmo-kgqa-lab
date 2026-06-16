@@ -97,6 +97,22 @@ def main(argv=None) -> int:
     mode_used = _expand(closed, args.mode)
     info(f"Reasoning mode: {mode_used}")
 
+    # OWL-RL's eq-ref rule entails reflexive owl:sameAs over *every* term in the
+    # graph, including literals (e.g. ``"0.1.0" owl:sameAs "0.1.0"``). Literals
+    # in subject position are not valid RDF and Fuseki/Jena rejects the upload
+    # with "Subject is not a URI or blank node". Drop any triple whose subject
+    # is not an IRI/blank node (and, defensively, any non-IRI predicate).
+    from rdflib import BNode, URIRef
+
+    invalid = [
+        t for t in closed
+        if not (isinstance(t[0], (URIRef, BNode)) and isinstance(t[1], URIRef))
+    ]
+    for t in invalid:
+        closed.remove(t)
+    if invalid:
+        info(f"Dropped {len(invalid)} entailed triple(s) with non-IRI subjects")
+
     # inferred = closure minus the pre-closure graph
     inferred = Graph()
     for t in closed:
