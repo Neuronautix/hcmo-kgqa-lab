@@ -29,8 +29,33 @@ def _load_questions(path: Path):
         return []
     data = yaml.safe_load(path.read_text(encoding="utf-8")) or []
     if isinstance(data, dict):
-        data = data.get("questions", [])
+        if data.get("questions"):
+            return data["questions"]
+        # Curated competency-question set: normalize template -> expected_intent.
+        if data.get("competency_questions"):
+            return [
+                {
+                    "id": cq.get("id"),
+                    "question": cq.get("question", ""),
+                    "expected_intent": cq.get("template"),
+                }
+                for cq in data["competency_questions"]
+            ]
+        return []
     return data
+
+
+def _resolve_provider(name, settings):
+    """Build an LLM provider, optionally overriding the configured one by name."""
+    from app.llm.provider import get_provider
+
+    if not name:
+        return get_provider(settings)
+    try:
+        s = settings.model_copy(update={"LLM_PROVIDER": name})
+    except Exception:  # noqa: BLE001
+        s = settings
+    return get_provider(s)
 
 
 def _find_runner():
@@ -55,15 +80,19 @@ def _print_table(results) -> None:
     if not results:
         info("No results to display.")
         return
-    print(f"\n{'#':<3} {'intent':<24} {'ok':<4} {'rows':<6} question")
-    print("-" * 72)
+    print(f"\n{'#':<3} {'P':<2} {'intent (pred / expected)':<40} {'rows':<5} question")
+    print("-" * 92)
     for i, r in enumerate(results, 1):
         get = (lambda k, d=None: r.get(k, d)) if isinstance(r, dict) else (lambda k, d=None: getattr(r, k, d))
+        pred = get("predicted_intent") or "-"
+        exp = get("expected_intent") or "-"
+        intent = f"{pred} / {exp}"
+        rows = get("row_count")
+        mark = "✓" if get("ok") else "✗"
         print(
-            f"{i:<3} {str(get('intent', '')):<24} "
-            f"{str(get('ok', get('correct', '')))!s:<4} "
-            f"{str(get('rows', get('row_count', ''))):<6} "
-            f"{str(get('question', ''))[:40]}"
+            f"{i:<3} {mark:<2} {intent[:39]:<40} "
+            f"{(str(rows) if rows is not None else '-'):<5} "
+            f"{str(get('question', ''))[:38]}"
         )
 
 
@@ -72,14 +101,23 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--mode", choices=["template", "generated"], default="template")
     parser.add_argument("--provider", default=None)
+    default_questions = Path(settings.REPO_ROOT) / "app" / "evaluation" / "test_questions.yaml"
+    competency_set = Path(settings.REPO_ROOT) / "sparql" / "competency_questions.yaml"
+    parser.add_argument("--questions", default=str(default_questions))
     parser.add_argument(
-        "--questions",
-        default=str(Path(settings.REPO_ROOT) / "app" / "evaluation" / "test_questions.yaml"),
+        "--competency", action="store_true",
+        help="Evaluate the full curated competency-question set instead.",
     )
+    parser.add_argument(
+        "--no-execute", action="store_true",
+        help="Skip Fuseki execution (offline: validate + build only).",
+    )
+    parser.add_argument("--report", default=None, help="Write the full JSON report to PATH.")
     args = parser.parse_args(argv)
 
-    questions = _load_questions(Path(args.questions))
-    info(f"Loaded {len(questions)} question(s); mode={args.mode}")
+    qpath = competency_set if args.competency else Path(args.questions)
+    questions = _load_questions(qpath)
+    info(f"Loaded {len(questions)} question(s) from {qpath.name}; mode={args.mode}")
     if not questions:
         warn("Nothing to evaluate (no questions). The evaluation set may not "
             "be authored yet.")
@@ -95,17 +133,33 @@ def main(argv=None) -> int:
         return 0
 
     info(f"Using evaluation entry point: {runner.__name__}")
+    provider = _resolve_provider(args.provider, settings)
     try:
-        results = runner(questions, mode=args.mode, provider=args.provider)
+        results = runner(
+            questions, mode=args.mode, provider=provider, execute=not args.no_execute
+        )
     except TypeError:
         results = runner(questions)
-    metrics = results.get("metrics") if isinstance(results, dict) else None
-    rows = results.get("results") if isinstance(results, dict) else results
+
+    rows = results.get("records") if isinstance(results, dict) else results
     _print_table(rows)
-    if metrics:
-        print("\nMetrics:")
-        for k, v in metrics.items():
-            print(f"  {k}: {v}")
+    if isinstance(results, dict):
+        metrics = results.get("metrics") or {}
+        print(
+            f"\nSummary: n={results.get('n')} mode={results.get('mode')} "
+            f"pass_rate={results.get('pass_rate')}"
+        )
+        if metrics:
+            print("Metrics:")
+            for k, v in metrics.items():
+                print(f"  {k}: {v:.3f}" if isinstance(v, float) else f"  {k}: {v}")
+        if args.report:
+            import json
+
+            Path(args.report).write_text(
+                json.dumps(results, indent=2, default=str), encoding="utf-8"
+            )
+            info(f"Wrote report to {args.report}")
     return 0
 
 
