@@ -55,12 +55,13 @@ if st.button("Merge example graphs into kg/generated"):
 st.subheader("2. Load merged graph into Fuseki")
 if st.button("Load merged graph into Fuseki"):
     try:
-        result, fname = _call(
-            "app.workflows.kg_loading_workflow",
-            ("load_into_fuseki", "load_to_fuseki", "load_merged_graph", "load_graph", "load"),
-        )
-        st.success(f"Loaded via {fname}().")
-        st.write(result)
+        from app.workflows.kg_loading_workflow import build_merged_kg, load_into_fuseki
+
+        # Build the merged graph (examples + ontology schema), then upload it.
+        # ``load_into_fuseki`` requires the graph, so it can't be called bare.
+        graph = build_merged_kg(include_ontology=True, settings=settings)
+        load_into_fuseki(graph, settings=settings)
+        st.success(f"Loaded {len(graph)} triples into Fuseki.")
     except Exception as exc:
         st.error(f"Load failed: {exc}")
 
