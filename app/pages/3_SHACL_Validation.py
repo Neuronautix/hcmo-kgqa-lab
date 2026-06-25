@@ -23,28 +23,27 @@ def get_settings():
 
 
 def run_shacl(graph_choice):
-    """Call the shacl workflow with the most likely function name."""
-    import importlib
+    """Validate the chosen data graph against the HCMO SHACL shapes.
 
-    mod = importlib.import_module("app.workflows.shacl_workflow")
-    candidates = ("run_shacl", "validate_graph", "run_shacl_validation", "validate", "run")
-    last = None
-    for name in candidates:
-        f = getattr(mod, name, None)
-        if callable(f):
-            try:
-                return f(graph_choice), name
-            except TypeError:
-                try:
-                    return f(), name
-                except Exception as exc:
-                    last = exc
-            except Exception as exc:
-                last = exc
-    raise AttributeError(
-        f"shacl_workflow: none of {candidates} usable ({last}). "
-        f"Available: {[n for n in dir(mod) if not n.startswith('_')]}"
-    )
+    ``graph_choice`` is a UI label ("examples" / "generated/merged"), not a
+    file path, so it must be resolved to an actual graph before validation.
+    """
+    from pathlib import Path
+
+    from app.core.config import settings as cfg
+    from app.shacl.validator import run_validation
+    from app.workflows.kg_loading_workflow import build_merged_kg, merge_example_graphs
+
+    if graph_choice == "examples":
+        data_graph = merge_example_graphs(cfg)
+    else:  # "generated/merged"
+        merged_file = Path(cfg.kg_generated_dir) / "merged_kg.ttl"
+        data_graph = (
+            str(merged_file)
+            if merged_file.exists()
+            else build_merged_kg(include_ontology=True, settings=cfg)
+        )
+    return run_validation(data_graph), "run_validation"
 
 
 settings = get_settings()

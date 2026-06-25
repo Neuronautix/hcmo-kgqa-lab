@@ -55,9 +55,39 @@ def run_workflow(question, mode_label, provider_name):
 settings = st.session_state.get("settings")
 default_provider = getattr(settings, "LLM_PROVIDER", "openai") if settings else "openai"
 
+# Curated example questions (the requested one first), covering the competency
+# questions the template-first pipeline supports.
+_PICK_PROMPT = "— pick an example —"
+EXAMPLE_QUESTIONS = [
+    "How many experiments are in each cohort?",
+    "Which datasets were produced using the DigiGait system?",
+    "What behavioral metrics does the metabolic phenotyping experiment measure?",
+    "Which experiments studied BALB/c mice?",
+    "Which datasets are VCG-ready and which are missing required metadata?",
+    "List all home cage systems and their vendors.",
+    "What strains were used across the sleep monitoring experiments?",
+]
+
+if "kgqa_question" not in st.session_state:
+    st.session_state["kgqa_question"] = EXAMPLE_QUESTIONS[0]
+
+
+def _apply_example():
+    choice = st.session_state.get("kgqa_example")
+    if choice and choice != _PICK_PROMPT:
+        st.session_state["kgqa_question"] = choice
+
+
+st.selectbox(
+    "Example questions",
+    [_PICK_PROMPT] + EXAMPLE_QUESTIONS,
+    key="kgqa_example",
+    on_change=_apply_example,
+    help="Pick one to fill the question box; you can still edit it freely.",
+)
 question = st.text_input(
     "Question",
-    value="How many experiments are in each cohort?",
+    key="kgqa_question",
     placeholder="Ask a question about the HCMO knowledge graph",
 )
 mode = st.radio(
