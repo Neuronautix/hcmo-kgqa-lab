@@ -18,35 +18,38 @@ _STATUS_ICON = {"ok": "✅", "success": "✅", "warn": "⚠️", "warning": "⚠
                 "error": "❌", "skipped": "⏭️", "pending": "⏳"}
 
 
-def run_workflow(question, mode, provider):
-    """Dispatch to the template or generated workflow, name-resilient."""
-    import importlib
+_MODE_MAP = {
+    "Auto (template → generated)": "auto",
+    "Template-first": "template",
+    "Generated-SPARQL (experimental)": "generated",
+}
 
-    if mode.startswith("Template"):
-        module_name = "app.workflows.template_kgqa_workflow"
-        candidates = ("run_template_kgqa", "run_kgqa", "run")
-    else:
-        module_name = "app.workflows.generated_sparql_workflow"
-        candidates = ("run_generated_kgqa", "run_kgqa", "run")
 
-    mod = importlib.import_module(module_name)
-    last = None
-    for name in candidates:
-        f = getattr(mod, name, None)
-        if callable(f):
-            try:
-                return f(question, provider=provider), name
-            except TypeError:
-                try:
-                    return f(question), name
-                except Exception as exc:
-                    last = exc
-            except Exception as exc:
-                last = exc
-    raise AttributeError(
-        f"{module_name}: none of {candidates} usable ({last}). "
-        f"Available: {[n for n in dir(mod) if not n.startswith('_')]}"
-    )
+def _resolve_provider(name):
+    """Resolve the provider-override name to an LLMProvider (NullProvider offline)."""
+    from app.llm.provider import get_provider
+
+    try:
+        from app.core.config import get_settings
+
+        s = get_settings()
+    except Exception:
+        s = st.session_state.get("settings")
+    if name and s is not None:
+        try:
+            s = s.model_copy(update={"LLM_PROVIDER": name})
+        except Exception:
+            pass
+    return get_provider(s)
+
+
+def run_workflow(question, mode_label, provider_name):
+    """Run the unified KGQA orchestrator in the chosen mode."""
+    from app.workflows.kgqa_workflow import run_kgqa
+
+    mode = _MODE_MAP.get(mode_label, "auto")
+    provider = _resolve_provider(provider_name)
+    return run_kgqa(question, provider=provider, mode=mode), f"run_kgqa(mode={mode})"
 
 
 settings = st.session_state.get("settings")
@@ -59,21 +62,26 @@ question = st.text_input(
 )
 mode = st.radio(
     "Mode",
-    ["Template-first (default)", "Generated-SPARQL (experimental)"],
+    list(_MODE_MAP.keys()),
     horizontal=True,
+    help="Auto runs the template path and falls back to LLM-generated SPARQL "
+         "when no template fits or the result is empty (needs an LLM provider).",
 )
 provider = st.text_input("LLM provider override (optional)", value=str(default_provider))
 
 if st.button("Run KGQA", type="primary") and question.strip():
     try:
         result, fname = run_workflow(question, mode, provider or None)
-        st.caption(f"Ran via {fname}().")
+        st.caption(f"Ran via {fname}.")
     except Exception as exc:
         st.error(f"Workflow failed to run: {exc}")
         result = None
 
     if result is not None:
         steps = getattr(result, "steps", []) or []
+        strategy = next((s for s in steps if getattr(s, "name", "") == "strategy"), None)
+        if strategy is not None:
+            st.info(f"**Strategy:** {getattr(strategy, 'detail', '')}")
         st.subheader("Workflow trace")
         for step in steps:
             name = getattr(step, "name", "step")

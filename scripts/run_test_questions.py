@@ -99,7 +99,7 @@ def _print_table(results) -> None:
 def main(argv=None) -> int:
     settings = get_settings()
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--mode", choices=["template", "generated"], default="template")
+    parser.add_argument("--mode", choices=["template", "generated", "auto"], default="template")
     parser.add_argument("--provider", default=None)
     default_questions = Path(settings.REPO_ROOT) / "app" / "evaluation" / "test_questions.yaml"
     competency_set = Path(settings.REPO_ROOT) / "sparql" / "competency_questions.yaml"

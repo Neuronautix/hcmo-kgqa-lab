@@ -66,9 +66,9 @@ Keep everything offline by injecting the mock provider and monkeypatching the Fu
 ## Phasing
 
 1. ✅ **Repair loop** in `generated_sparql_workflow` + prompts + tests (self-contained, no orchestrator yet). *Done:* `repair_user_prompt` (`app/llm/prompts.py`), `repair_sparql` (`app/llm/sparql_generator.py`), a bounded validate→repair loop in `run_generated_sparql_kgqa` (`max_attempts`, per-attempt steps, fail-fast on forbidden writes), and deterministic mock-provider tests (`tests/test_generated_repair.py`).
-2. **Auto orchestrator** (`run_kgqa(mode="auto")`) + strategy trace + fallback tests.
-3. **UI wiring** (auto mode default) + docs update.
-4. **Eval**: run the completed harness in `--mode generated` and `auto` over the competency set; the fallback should lift intent/answer coverage above the template-only `pass_rate=0.2`. Capture before/after numbers.
+2. ✅ **Auto orchestrator** (`run_kgqa(mode="auto")`) + strategy trace + fallback tests. *Done:* `app/workflows/kgqa_workflow.py` runs the template path and falls back to generated on the documented triggers (intent=other / low confidence, no/invalid SPARQL, zero rows), records a `strategy` step, merges both traces (template steps prefixed `template:`), and degrades to template-only without a provider. Tests in `tests/test_kgqa_orchestrator.py`.
+3. ✅ **UI wiring** (auto mode default). *Done:* the KGQA Workflow page offers "Auto (template → generated)" as the default mode, routes through `run_kgqa`, resolves the provider override to a real provider, and surfaces the `strategy` decision.
+4. **Eval**: `--mode auto` is wired (`workflow_for_mode`, `run_test_questions.py`). Offline it mirrors template (`pass_rate=0.2`) because fallback needs a provider; capturing the before/after lift requires a configured LLM key. *(pending an LLM provider)*
 
 ## Risks / decisions to confirm
 

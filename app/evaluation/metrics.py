@@ -197,11 +197,15 @@ def record_from_result(
 # Orchestration
 # --------------------------------------------------------------------------- #
 def workflow_for_mode(mode: str) -> Callable[..., KgqaResult]:
-    """Return the KGQA workflow callable for ``mode`` (template|generated)."""
+    """Return the KGQA workflow callable for ``mode`` (template|generated|auto)."""
     if mode == "generated":
         from app.workflows.generated_sparql_workflow import run_generated_sparql_kgqa
 
         return run_generated_sparql_kgqa
+    if mode == "auto":
+        from app.workflows.kgqa_workflow import run_kgqa
+
+        return run_kgqa
     from app.workflows.template_kgqa_workflow import run_template_kgqa
 
     return run_template_kgqa
