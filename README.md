@@ -95,6 +95,25 @@ make demo             # merge + reason + load
 make ui               # streamlit run app/streamlit_app.py
 ```
 
+### Fully offline demo (no Docker / no Fuseki)
+
+When Docker or Fuseki isn't available (restricted network, CI, a quick local
+demo), `scripts/demo_serve.py` serves the merged KG over a small,
+Fuseki-compatible SPARQL endpoint backed by rdflib — the app, SPARQL Playground
+and evaluation harness talk to it unchanged. It is a dev convenience, not a
+production triple store.
+
+```bash
+make install
+make merge && make reason         # build kg/generated/merged_kg.ttl
+make demo-serve                   # Fuseki-compatible endpoint on :3030 (rdflib)
+make ui                           # streamlit on :8501, in another shell
+```
+
+No LLM key is required: the template-first pipeline and all guardrails run on
+the `NullProvider` fallback. `scripts/demo_screenshots.js` (Playwright) captures
+the key pages once the UI is up.
+
 ## The KGQA pipeline
 
 1. **Ontology grounding** — retrieve relevant HCMO terms for the question.
@@ -131,14 +150,30 @@ grounded answer phrasing.
 - [x] Single RDF backend (Apache Jena/Fuseki) — no property graph
 - [x] HCMO OWL ontology + JSON profile/terms/prefixes
 - [x] Example RDF data + merge/reason/load pipeline scripts
+- [x] Reasoning hook: deductive closure (OWL-RL/RDFS) in the loader and as a script
 - [x] SHACL shapes incl. VCG-readiness validation
-- [x] Curated SPARQL competency-question templates
+- [x] Curated SPARQL competency-question templates with dataset-scoped slot binding
 - [x] Read-only SPARQL guardrails (policy, term validation, injection filter)
 - [x] Grounded answer generation honest about empty results
 - [x] Streamlit UI (explorer, loader, SHACL, playground, KGQA)
 - [x] Offline-safe pytest suite
-- [ ] LLM-generated SPARQL fallback fully wired end-to-end
-- [ ] Evaluation harness over the full competency-question set
+- [x] Evaluation harness over the full competency-question set (`make eval`)
+- [ ] LLM-generated SPARQL **auto**-fallback end-to-end — manual generated mode
+  already works; auto-fallback design in
+  [`docs/generated_sparql_plan.md`](docs/generated_sparql_plan.md)
+
+## Evaluation
+
+`make eval` runs the KGQA pipeline over the test questions and prints per-metric
+scores (intent accuracy, retrieval recall, valid-SPARQL rate, unknown-term rate,
+execution success, empty-result honesty, groundedness):
+
+```bash
+python scripts/run_test_questions.py                 # NL test set, template mode
+python scripts/run_test_questions.py --competency    # full competency-question set
+python scripts/run_test_questions.py --mode generated --no-execute
+python scripts/run_test_questions.py --report eval.json   # dump a JSON report
+```
 
 ## Make targets
 

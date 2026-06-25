@@ -2,7 +2,7 @@
 PYTHON ?= python
 
 .PHONY: help install up down fuseki-up build-profile merge reason load \
-        validate eval reset demo test ui lint sync-hcmo sync-hcmo-dry
+        validate eval reset demo demo-serve test ui lint sync-hcmo sync-hcmo-dry
 
 help:
 	@echo "HCMO-KGQA Lab targets:"
@@ -18,6 +18,7 @@ help:
 	@echo "  eval           Run the test-question evaluation harness"
 	@echo "  reset          Clear generated/ + Fuseki and rebuild"
 	@echo "  demo           merge -> reason -> load (presentation pipeline)"
+	@echo "  demo-serve     Offline Fuseki-compatible SPARQL endpoint (rdflib, no Docker)"
 	@echo "  test           Run the pytest suite"
 	@echo "  ui             Launch the Streamlit app locally"
 	@echo "  lint           Compile-check scripts"
@@ -59,6 +60,9 @@ reset:
 
 demo: merge reason load
 	@echo "Demo pipeline complete: merged, reasoned, and loaded into Fuseki."
+
+demo-serve:
+	$(PYTHON) scripts/demo_serve.py
 
 test:
 	$(PYTHON) -m pytest tests/ -q
