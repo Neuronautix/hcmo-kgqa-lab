@@ -153,10 +153,13 @@ class AnthropicProvider(LLMProvider):
         client = self._get_client()
         system = "\n".join(m["content"] for m in messages if m.get("role") == "system")
         convo = [m for m in messages if m.get("role") != "system"]
+        # Only pass ``system`` when non-empty: the Anthropic API rejects an
+        # explicit ``system=None`` ("system: Input should be a valid array").
+        if system:
+            kw["system"] = system
         try:
             resp = client.messages.create(
                 model=self.model,
-                system=system or None,
                 messages=convo or [{"role": "user", "content": ""}],
                 temperature=temperature,
                 max_tokens=max_tokens,
