@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 
 from app.core.models import RetrievedTerms, SparqlQuery
-from app.llm.prompts import sparql_system_prompt, sparql_user_prompt
+from app.llm.prompts import repair_user_prompt, sparql_system_prompt, sparql_user_prompt
 from app.llm.provider import LLMProvider, LLMProviderError
 from app.ontology.loader import prefix_header as _prefix_header
 
@@ -59,6 +59,36 @@ def generate_sparql(
         [
             {"role": "system", "content": sparql_system_prompt()},
             {"role": "user", "content": sparql_user_prompt(question, terms, header)},
+        ]
+    )
+    text = _strip_fences(raw)
+    text = _ensure_prefixes(text, header)
+    return SparqlQuery(text=text, template_name=None, slots={})
+
+
+def repair_sparql(
+    question: str,
+    retrieved_terms: RetrievedTerms,
+    provider: Optional[LLMProvider],
+    prior_query: str,
+    issues: List[str],
+    prefixes: Optional[Dict[str, str]] = None,
+) -> SparqlQuery:
+    """Re-generate a SPARQL query that fixes the given validator ``issues``.
+
+    Same contract as :func:`generate_sparql` but feeds the rejected query and
+    its issues back to the model. Requires an available provider.
+    """
+    header = _prefix_header(prefixes)
+    if provider is None or not getattr(provider, "available", False):
+        raise LLMProviderError(
+            "repair_sparql requires an available LLM provider (no API key configured)"
+        )
+    terms = retrieved_terms.terms if retrieved_terms else []
+    raw = provider.chat(
+        [
+            {"role": "system", "content": sparql_system_prompt()},
+            {"role": "user", "content": repair_user_prompt(question, terms, header, prior_query, issues)},
         ]
     )
     text = _strip_fences(raw)

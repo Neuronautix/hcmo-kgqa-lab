@@ -76,6 +76,32 @@ def sparql_user_prompt(question: str, terms: List[OntologyTerm], prefix_header: 
     )
 
 
+def repair_user_prompt(
+    question: str,
+    terms: List[OntologyTerm],
+    prefix_header: str,
+    prior_query: str,
+    issues: List[str],
+) -> str:
+    """Re-prompt the model to fix a rejected SPARQL query.
+
+    Feeds back the exact validator issues plus the prior query so the model can
+    correct it, constrained to the same prefixes and ontology terms.
+    """
+    issue_block = "\n".join(f"- {m}" for m in issues) if issues else "- (unspecified)"
+    return (
+        f"Prefixes:\n{prefix_header}\n\n"
+        f"Available ontology terms:\n{_terms_block(terms)}\n\n"
+        f"Question: {question}\n\n"
+        f"Your previous query was REJECTED by the safety/term validator:\n"
+        f"{prior_query}\n\n"
+        f"Problems to fix:\n{issue_block}\n\n"
+        "Return a corrected, read-only SPARQL query that resolves every problem "
+        "above, using ONLY the prefixes and ontology terms listed. "
+        "Return ONLY the SPARQL query, no prose, no markdown fences.\n\nSPARQL:"
+    )
+
+
 def answer_system_prompt() -> str:
     return (
         "You answer questions about home cage monitoring experiments STRICTLY "

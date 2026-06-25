@@ -39,6 +39,17 @@ def heuristic_slots(question: str, intent: str, retrieved: RetrievedTerms) -> Di
             slots["metric"] = m
             break
 
+    # Capture an explicit dataset reference so dataset-scoped queries actually
+    # filter (and a non-existent dataset honestly returns no rows). Only bind on
+    # an unambiguous reference: an HCMO dataset identifier ("HCMO-DS-0001") or a
+    # dataset IRI local name ("ds_sleep2023"). A generic mention of "datasets"
+    # must NOT set this slot.
+    dm = re.search(r"\bHCMO-DS-\d+\b", question or "", re.IGNORECASE)
+    if not dm:
+        dm = re.search(r"\bds[_-][a-z0-9_]+\b", q)
+    if dm:
+        slots["dataset"] = dm.group(0)
+
     # Capture a quoted phrase if present, useful for titles/experiment names.
     m = re.search(r'"([^"]+)"', question or "")
     if m:

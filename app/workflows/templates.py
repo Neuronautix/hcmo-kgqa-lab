@@ -42,6 +42,18 @@ SELECT ?experiment ?expLabel ?metric ?metricName WHERE {
               hcmo:measuresMetric ?metric .
   OPTIONAL { ?experiment rdfs:label ?expLabel . }
   OPTIONAL { ?metric hcmo:metricName ?metricName . }
+  {% if dataset %}
+  ?ds a hcmo:Dataset ; hcmo:hasExperiment ?experiment .
+  OPTIONAL { ?ds hcmo:identifier ?dsId . }
+  OPTIONAL { ?ds hcmo:title ?dsTitle . }
+  OPTIONAL { ?ds rdfs:label ?dsLabel . }
+  FILTER(
+    CONTAINS(LCASE(STR(?ds)), "{{ dataset | lower }}")
+    || (BOUND(?dsId) && CONTAINS(LCASE(STR(?dsId)), "{{ dataset | lower }}"))
+    || (BOUND(?dsTitle) && CONTAINS(LCASE(STR(?dsTitle)), "{{ dataset | lower }}"))
+    || (BOUND(?dsLabel) && CONTAINS(LCASE(STR(?dsLabel)), "{{ dataset | lower }}"))
+  )
+  {% endif %}
   {% if metric %}
   FILTER(CONTAINS(LCASE(STR(?metric)), "{{ metric }}")
          || (BOUND(?metricName) && CONTAINS(LCASE(STR(?metricName)), "{{ metric }}")))

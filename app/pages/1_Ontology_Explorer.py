@@ -19,13 +19,20 @@ def load_index():
     try:
         from app.workflows import ontology_workflow as owf
 
-        for fn in ("load_ontology", "build_term_index", "load_term_index", "run"):
+        # Prefer the real term-index builders. ``load_ontology`` is a symbol
+        # re-exported by this module that returns an rdflib Graph (no
+        # ``all_terms``), so it must not be probed here.
+        for fn in ("load_term_index", "build_term_index", "build_ontology_assets", "run"):
             f = getattr(owf, fn, None)
-            if callable(f):
-                obj = f()
-                idx = getattr(obj, "term_index", obj)
-                if idx is not None:
-                    return idx, None
+            if not callable(f):
+                continue
+            obj = f()
+            # Some builders return (profile, index); unwrap to the index.
+            if isinstance(obj, tuple):
+                obj = next((o for o in obj if hasattr(o, "all_terms")), obj[-1])
+            idx = getattr(obj, "term_index", obj)
+            if idx is not None and hasattr(idx, "all_terms"):
+                return idx, None
     except Exception as exc:
         last = exc
     else:
