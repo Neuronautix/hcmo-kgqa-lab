@@ -26,12 +26,6 @@ services:
       # localhost. This explicit value overrides FUSEKI_BASE_URL from .env (which
       # stays http://localhost:3030 for non-Docker `make ui` development).
       FUSEKI_BASE_URL: http://fuseki:3030
-      # Put the project root on sys.path so `import app` resolves to the mounted
-      # ./app volume (current code + assets) instead of the frozen copy that
-      # `pip install .` baked into site-packages. Without this, Streamlit imports
-      # the build-time package — ignoring volume edits and resolving asset paths
-      # (ontology/profiles) under site-packages, where they don't exist.
-      PYTHONPATH: /app
     depends_on:
       - fuseki
     volumes:

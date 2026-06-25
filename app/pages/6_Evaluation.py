@@ -53,53 +53,38 @@ def _test_questions_path(settings):
 
 
 def run_eval(mode, provider, model, test_path):
-    """Call the evaluation harness, resilient to the exact signature.
+    """Run the KGQA evaluation harness for one mode.
 
-    Returns ``(result, fname)``. ``result`` is whatever the harness returns
-    (ideally a list[dict] / dict of per-metric numbers).
+    ``run_evaluation`` expects a *list of question dicts* (not a path) and an
+    *LLMProvider object* (not a provider name), so resolve both here. The
+    optional ``provider`` / ``model`` text inputs override the .env defaults.
+
+    Returns ``(result, fname)`` where ``result`` is the harness result dict.
     """
-    import importlib
-    import inspect
+    from app.core.config import settings as cfg
+    from app.evaluation.metrics import load_test_questions, run_evaluation
+    from app.llm.provider import get_provider
 
-    mod = importlib.import_module("app.evaluation.metrics")
-    candidates = ("run_evaluation", "evaluate", "run", "main")
-    last = None
-    for name in candidates:
-        f = getattr(mod, name, None)
-        if not callable(f):
-            continue
-        # Build a kwargs dict tolerant of varying parameter names.
+    mode_key = "template" if mode.startswith("Template") else "generated"
+    questions = load_test_questions(test_path) if test_path else None
+
+    # Carry any provider/model override into a settings copy, then resolve a
+    # concrete provider object for the harness.
+    s = cfg
+    if provider:
         try:
-            sig = inspect.signature(f)
-            params = set(sig.parameters)
-        except (TypeError, ValueError):
-            params = set()
-
-        kwargs = {}
-        if "mode" in params:
-            kwargs["mode"] = "template" if mode.startswith("Template") else "generated"
-        if "provider" in params and provider:
-            kwargs["provider"] = provider
-        if "model" in params and model:
-            kwargs["model"] = model
-        for pname in ("test_path", "questions_path", "path", "test_questions"):
-            if pname in params and test_path is not None:
-                kwargs[pname] = str(test_path)
-                break
-
+            s = s.model_copy(update={"LLM_PROVIDER": provider})
+        except Exception:
+            pass
+    if model:
         try:
-            return f(**kwargs), name
-        except TypeError:
-            try:
-                return f(), name
-            except Exception as exc:  # noqa: BLE001
-                last = exc
-        except Exception as exc:  # noqa: BLE001
-            last = exc
-    raise AttributeError(
-        f"app.evaluation.metrics: none of {candidates} usable ({last}). "
-        f"Available: {[n for n in dir(mod) if not n.startswith('_')]}"
-    )
+            s = s.model_copy(update={"LLM_MODEL": model})
+        except Exception:
+            pass
+    prov_obj = get_provider(s)
+
+    result = run_evaluation(test_questions=questions, provider=prov_obj, mode=mode_key)
+    return result, "run_evaluation"
 
 
 # --------------------------------------------------------------------------- #
