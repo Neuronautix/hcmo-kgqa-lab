@@ -44,12 +44,16 @@ def write_asserted_kg(graph: Graph, settings: Optional[Settings] = None) -> Path
 
 def build_merged_kg(
     include_ontology: bool = True,
+    reason: bool = False,
+    reason_mode: str = "auto",
     settings: Optional[Settings] = None,
 ) -> Graph:
     """Produce the merged KG (examples + optionally ontology schema).
 
-    The reasoning/inference hook is a placeholder: callers may post-process
-    this graph with an external reasoner before loading.
+    When ``reason`` is set, a deductive closure (OWL-RL / RDFS) is materialized
+    over the merged graph via :func:`app.kg.reasoner.apply_reasoning` so the
+    entailed triples are available to downstream loaders. ``reason_mode`` is
+    forwarded to the reasoner (``"auto"``, ``"owlrl"`` or ``"rdfs"``).
     """
     s = settings or _default_settings
     graph = merge_example_graphs(s)
@@ -58,6 +62,12 @@ def build_merged_kg(
             graph += load_ontology()
         except Exception as exc:  # noqa: BLE001
             logger.warning("Could not merge ontology schema: %s", exc)
+    if reason:
+        from app.kg.reasoner import apply_reasoning
+
+        before = len(graph)
+        graph = apply_reasoning(graph, mode=reason_mode)
+        logger.info("Reasoning expanded merged KG from %d to %d triples", before, len(graph))
     return graph
 
 
@@ -86,15 +96,19 @@ def load_into_fuseki(
 def run_kg_loading(
     write_files: bool = True,
     load_fuseki: bool = True,
+    reason: bool = False,
     settings: Optional[Settings] = None,
 ) -> dict:
-    """End-to-end: merge -> write asserted/merged -> load into Fuseki."""
+    """End-to-end: merge -> write asserted/merged -> load into Fuseki.
+
+    Set ``reason=True`` to materialize a deductive closure into the merged KG.
+    """
     s = settings or _default_settings
     asserted = merge_example_graphs(s)
     result = {"asserted_triples": len(asserted), "files_written": [], "loaded": False}
     if write_files:
         result["files_written"].append(str(write_asserted_kg(asserted, s)))
-        merged = build_merged_kg(include_ontology=True, settings=s)
+        merged = build_merged_kg(include_ontology=True, reason=reason, settings=s)
         result["files_written"].append(str(write_merged_kg(merged, s)))
         result["merged_triples"] = len(merged)
     if load_fuseki:
