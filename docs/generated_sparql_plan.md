@@ -65,7 +65,7 @@ Keep everything offline by injecting the mock provider and monkeypatching the Fu
 
 ## Phasing
 
-1. **Repair loop** in `generated_sparql_workflow` + prompts + tests (self-contained, no orchestrator yet).
+1. ✅ **Repair loop** in `generated_sparql_workflow` + prompts + tests (self-contained, no orchestrator yet). *Done:* `repair_user_prompt` (`app/llm/prompts.py`), `repair_sparql` (`app/llm/sparql_generator.py`), a bounded validate→repair loop in `run_generated_sparql_kgqa` (`max_attempts`, per-attempt steps, fail-fast on forbidden writes), and deterministic mock-provider tests (`tests/test_generated_repair.py`).
 2. **Auto orchestrator** (`run_kgqa(mode="auto")`) + strategy trace + fallback tests.
 3. **UI wiring** (auto mode default) + docs update.
 4. **Eval**: run the completed harness in `--mode generated` and `auto` over the competency set; the fallback should lift intent/answer coverage above the template-only `pass_rate=0.2`. Capture before/after numbers.

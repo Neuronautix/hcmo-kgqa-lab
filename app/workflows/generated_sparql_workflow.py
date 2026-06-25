@@ -24,7 +24,7 @@ from app.guardrails.term_validator import validate_terms
 from app.kg.sparql_client import FusekiClient, FusekiError
 from app.llm.answer_generator import generate_answer
 from app.llm.provider import LLMProvider, LLMProviderError, get_provider
-from app.llm.sparql_generator import generate_sparql
+from app.llm.sparql_generator import generate_sparql, repair_sparql
 from app.ontology.loader import load_prefixes
 from app.ontology.retriever import OntologyTermRetriever
 from app.ontology.term_index import TermIndex
@@ -40,8 +40,15 @@ def run_generated_sparql_kgqa(
     client: Optional[FusekiClient] = None,
     settings: Optional[Settings] = None,
     execute: bool = True,
+    max_attempts: int = 2,
 ) -> KgqaResult:
-    """Run the generated-SPARQL KGQA workflow."""
+    """Run the generated-SPARQL KGQA workflow.
+
+    The query is produced by a bounded validate -> repair loop: up to
+    ``max_attempts`` generations, where each rejected query is re-prompted with
+    its exact validator issues. Forbidden write operations fail fast (never
+    repaired). Each attempt is recorded as a workflow step.
+    """
     s = settings or _default_settings
     provider = provider if provider is not None else get_provider(s)
     idx = index or (retriever.index if retriever else TermIndex.load())
@@ -64,12 +71,59 @@ def run_generated_sparql_kgqa(
     steps.append(WorkflowStep(name="retriever", status="ok",
                               detail=f"{len(retrieved.terms)} terms", data=retrieved.model_dump()))
 
-    # Generate SPARQL via LLM
+    # Run guardrails for one candidate query: returns the validation result, the
+    # effective (LIMIT-normalized) query, the used terms, and whether it tried a
+    # forbidden write (which is never repaired).
+    def _guard(text: str):
+        policy_result, effective = validate_sparql(text, prefixes)
+        term_split = validate_terms(effective, idx, prefixes)
+        used = term_split["known"] + term_split["data"]
+        validation = SparqlValidationResult(
+            ok=policy_result.ok and not term_split["unknown"],
+            issues=list(policy_result.issues),
+            used_terms=used,
+        )
+        if term_split["unknown"]:
+            validation.issues.append(ValidationIssue(
+                level="error", message=f"Unknown ontology terms: {term_split['unknown']}",
+                location="query"))
+        has_write = any(
+            i.message.startswith("Forbidden operation") for i in policy_result.issues
+        )
+        return validation, effective, used, has_write
+
+    # Generate SPARQL via LLM, with a bounded validate -> repair loop.
+    sparql = None
+    validation = None
+    effective = ""
+    used: list = []
     try:
-        sparql = generate_sparql(cleaned, retrieved, provider, prefixes)
-        result.sparql = sparql
-        steps.append(WorkflowStep(name="sparql_generator", status="ok",
-                                  detail="generated", data={"sparql": sparql.text}))
+        for attempt in range(1, max_attempts + 1):
+            if attempt == 1:
+                sparql = generate_sparql(cleaned, retrieved, provider, prefixes)
+            else:
+                prior_issues = [i.message for i in validation.issues if i.level == "error"]
+                sparql = repair_sparql(
+                    cleaned, retrieved, provider, sparql.text, prior_issues, prefixes)
+            result.sparql = sparql
+            steps.append(WorkflowStep(
+                name="sparql_generator", status="ok",
+                detail="generated" if attempt == 1 else f"repair attempt {attempt}",
+                data={"attempt": attempt, "sparql": sparql.text}))
+
+            validation, effective, used, has_write = _guard(sparql.text)
+            result.validation = validation
+            last = attempt == max_attempts
+            if validation.ok:
+                guard_status, guard_detail = "ok", "passed"
+            elif has_write or last:
+                guard_status, guard_detail = "error", "violation"
+            else:
+                guard_status, guard_detail = "warn", "rejected — repairing"
+            steps.append(WorkflowStep(name="guardrails", status=guard_status,
+                                      detail=guard_detail, data=validation.model_dump()))
+            if validation.ok or has_write:
+                break  # accepted, or a write attempt we refuse to repair
     except LLMProviderError as exc:
         steps.append(WorkflowStep(name="sparql_generator", status="error", detail=str(exc)))
         result.answer = GroundedAnswer(
@@ -77,29 +131,12 @@ def run_generated_sparql_kgqa(
             grounded=True, caveats=[str(exc)])
         return result
 
-    # Guardrails
-    policy_result, effective = validate_sparql(sparql.text, prefixes)
-    term_split = validate_terms(effective, idx, prefixes)
-    used = term_split["known"] + term_split["data"]
-    validation = SparqlValidationResult(
-        ok=policy_result.ok and not term_split["unknown"],
-        issues=list(policy_result.issues),
-        used_terms=used,
-    )
-    if term_split["unknown"]:
-        validation.issues.append(ValidationIssue(
-            level="error", message=f"Unknown ontology terms: {term_split['unknown']}",
-            location="query"))
-    result.validation = validation
-    steps.append(WorkflowStep(name="guardrails", status="ok" if validation.ok else "error",
-                              detail="passed" if validation.ok else "violation",
-                              data=validation.model_dump()))
-
-    if not validation.ok:
+    if validation is None or not validation.ok:
+        issues = validation.issues if validation else []
         result.answer = GroundedAnswer(
             answer="The generated query failed safety/term validation and was not executed.",
             grounded=True,
-            caveats=[i.message for i in validation.issues if i.level == "error"])
+            caveats=[i.message for i in issues if i.level == "error"])
         return result
 
     if not execute:
