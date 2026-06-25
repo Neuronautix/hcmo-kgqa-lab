@@ -96,18 +96,18 @@ if report is not None:
 
     if st.button("Explain with LLM"):
         try:
-            import importlib
+            from app.llm.provider import get_provider
+            from app.workflows.shacl_workflow import explain_report
 
-            mod = importlib.import_module("app.workflows.shacl_workflow")
-            explainer = None
-            for name in ("explain_report", "explain", "explain_with_llm"):
-                explainer = getattr(mod, name, None)
-                if callable(explainer):
-                    break
-            if explainer is None:
-                st.warning("No LLM explanation function found in shacl_workflow.")
+            # explain_report(report, provider) needs a configured provider.
+            provider = get_provider()
+            if not getattr(provider, "available", False):
+                st.warning(
+                    "No LLM provider configured — set LLM_PROVIDER and LLM_API_KEY "
+                    "in .env to enable explanations."
+                )
             else:
-                st.write(explainer(report))
+                st.write(explain_report(report, provider))
         except Exception as exc:
             st.warning(f"LLM explanation unavailable: {exc}")
 else:
