@@ -1,632 +1,1066 @@
 {
+  "_generated": "tooling/build.py \u2014 DO NOT EDIT; regenerate from ontology/modules/",
+  "annotation_properties": [],
   "classes": [
     {
-      "comment": "A device that elicits or perturbs behavior or physiology.",
+      "comment": "Deprecated in HCMO 0.1.0. A device that elicits or perturbs behavior or physiology.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#Actuator",
-      "label": "Actuator",
-      "local_name": "Actuator"
+      "label": "Actuator"
     },
     {
-      "comment": "An experimental animal housed in an enclosure.",
+      "comment": "Deprecated in HCMO 0.1.0. An experimental animal housed in an enclosure.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#Animal",
-      "label": "Animal",
-      "local_name": "Animal"
+      "label": "Animal"
     },
     {
-      "comment": "Provisioning covering food, water, social contacts, safety, enrichment.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile",
-      "label": "Animal Need Profile",
-      "local_name": "AnimalNeedProfile"
-    },
-    {
-      "comment": "Observed behavioral or physiological process displayed by an animal.",
+      "comment": "Deprecated in HCMO 0.1.0. Observed behavioral or physiological process displayed by an animal.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology",
-      "label": "Behavior and Physiology",
-      "local_name": "BehaviorAndPhysiology"
+      "label": "Behavior and Physiology"
     },
     {
-      "comment": "A circadian rhythm associated with a behavior or physiology process.",
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#CategoricalResult",
+      "label": "Categorical Result"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. A circadian rhythm associated with a behavior or physiology process.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#CircadianRhythm",
-      "label": "Circadian Rhythm",
-      "local_name": "CircadianRhythm"
+      "label": "Circadian Rhythm"
     },
     {
-      "comment": "Deprecated; model actuators via hcm:hasActuatorComponent on Hardware.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#CollectionOfActuators",
-      "label": "Collection Of Actuators (deprecated)",
-      "local_name": "CollectionOfActuators"
+      "comment": "Deprecated in HCMO 0.1.0. Contact detail associated with a submitted system or supplier.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#ContactPoint",
+      "label": "Contact Point"
     },
     {
-      "comment": "Deprecated; model sensors via hcm:hasSensorComponent on Hardware.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#CollectionOfSensors",
-      "label": "Collection Of Sensors (deprecated)",
-      "local_name": "CollectionOfSensors"
+      "comment": "Deprecated in HCMO 0.1.0. Data artifact or link associated with a submitted system.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#DataProduct",
+      "label": "Data Product"
     },
     {
-      "comment": "A commercial supplier that produces a system.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#CommercialSupplier",
-      "label": "Commercial Supplier",
-      "local_name": "CommercialSupplier"
-    },
-    {
-      "comment": "Geometric dimensions (width, length, height) of a physical space.",
+      "comment": "Deprecated in HCMO 0.1.0. Geometric dimensions of a physical space or enclosure.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#Dimensions",
-      "label": "Dimensions",
-      "local_name": "Dimensions"
+      "label": "Dimensions"
     },
     {
-      "comment": "A physical enclosure (artifact) where animals live and behaviors are displayed.",
+      "comment": "A physical housing enclosure used as part of a home-cage monitoring system.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#Enclosure",
-      "label": "Enclosure",
-      "local_name": "Enclosure"
+      "label": "Enclosure"
     },
     {
-      "comment": "An environmental enrichment need or provision for an animal.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#EnvironmentalEnrichment",
-      "label": "Environmental Enrichment",
-      "local_name": "EnvironmentalEnrichment"
+      "comment": "A dimensions record describing the physical size of an enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#EnclosureDimensions",
+      "label": "Enclosure Dimensions"
     },
     {
-      "comment": "A food need or provision for an animal.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#Food",
-      "label": "Food",
-      "local_name": "Food"
+      "comment": "A material or structure provided within an enclosure to support animal welfare or experimental conditions.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Enrichment",
+      "label": "Enrichment"
     },
     {
-      "comment": "Physical computing hardware component(s) of a system.",
+      "comment": "Deprecated in HCMO 0.1.0. Physical computing hardware component of a home-cage monitoring system.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#Hardware",
-      "label": "Hardware",
-      "local_name": "Hardware"
+      "label": "Hardware"
     },
     {
-      "comment": "Deprecated; use hcm:LimitedInteractionWithHumans as a condition.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#HumanInteractionProfile",
-      "label": "Human Interaction Profile (deprecated)",
-      "local_name": "HumanInteractionProfile"
-    },
-    {
-      "comment": "A laboratory that produces a system.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#Laboratory",
-      "label": "Laboratory",
-      "local_name": "Laboratory"
-    },
-    {
-      "comment": "A condition indicating minimal human interference during observation.",
+      "comment": "Deprecated in HCMO 0.1.0. A condition indicating minimal human interference during observation.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#LimitedInteractionWithHumans",
-      "label": "Limited Interaction With Humans",
-      "local_name": "LimitedInteractionWithHumans"
+      "label": "Limited Interaction With Humans"
     },
     {
-      "comment": "Deprecated; use hcm:AnimalNeedProfile with object-based needs.",
+      "comment": "A physical enclosure equipped for the longitudinal monitoring of housed biological subjects.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#MonitoredEnclosure",
+      "label": "Monitored Enclosure"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Legacy boolean need-profile record used by current examples; prefer a future object-based need profile for richer modeling.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#NeedsSequence",
-      "label": "Needs Sequence (deprecated)",
-      "local_name": "NeedsSequence"
+      "label": "Needs Sequence"
     },
     {
-      "comment": "An observation time window for behavior capture (must be > 24h; may be extendable indefinitely).",
+      "comment": "Deprecated invalid Chowlk/spreadsheet artifact; it never denoted a defined OWL-Time interval table and has no replacement.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#OWL-Timeintervaltable",
+      "label": "O W L- Timeintervaltable"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#ObservationResult",
+      "label": "Observation Result"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. An observation time window for behavior capture.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#ObservationWindow",
-      "label": "Observation Window",
-      "local_name": "ObservationWindow"
+      "label": "Observation Window"
     },
     {
-      "comment": "A spatial region relevant to HCM (e.g., the interior space of an enclosure).",
+      "comment": "An activity that assesses whether a monitored enclosure is operational and generates a time-bounded operational status record.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#OperationalAssessment",
+      "label": "Operational Assessment"
+    },
+    {
+      "comment": "An evidence-backed information record stating the operational status of a monitored enclosure during a specified validity interval.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#OperationalStatusRecord",
+      "label": "Operational Status Record"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. A spatial region associated with an enclosure.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#PhysicalSpace",
-      "label": "Physical Space",
-      "local_name": "PhysicalSpace"
+      "label": "Physical Space"
     },
     {
-      "comment": "A safety-from-threat need or provision for an animal.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#SafetyFromThreat",
-      "label": "Safety From Threat",
-      "local_name": "SafetyFromThreat"
+      "comment": "Deprecated in HCMO 0.1.0. A protocol, SOP, or approval reference governing a system submission.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Protocol",
+      "label": "Protocol"
     },
     {
-      "comment": "A device that captures signals related to behavior or physiology.",
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#QuantityValue",
+      "label": "Quantity Value"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#Sensor",
-      "label": "Sensor",
-      "local_name": "Sensor"
+      "label": "Sensor"
     },
     {
-      "comment": "A social contact need or provision for an animal.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#SocialContacts",
-      "label": "Social Contacts",
-      "local_name": "SocialContacts"
-    },
-    {
-      "comment": "Software component(s) of a system.",
+      "comment": "Deprecated in HCMO 0.1.0. Software component of a home-cage monitoring system.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#Software",
-      "label": "Software",
-      "local_name": "Software"
+      "label": "Software"
     },
     {
-      "comment": "Commercial supplier or laboratory providing the system.",
+      "comment": "Deprecated spreadsheet-derived result-table term; use hcm-obs:LocationResultTable.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#Structural&LocationTable",
+      "label": "Structural& Location Table"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#StudyFactors",
+      "label": "Study Factors"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Commercial supplier or laboratory providing the system.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#Supplier",
-      "label": "Supplier",
-      "local_name": "Supplier"
+      "label": "Supplier"
     },
     {
-      "comment": "A home-cage monitoring system comprising an enclosure, hardware, and software.",
+      "comment": "Deprecated in HCMO 0.1.0. This aggregate system concept has no exact replacement: migrate its enclosure, hardware, software, sensor, and actuator components separately.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#System",
-      "label": "System",
-      "local_name": "System"
+      "label": "System"
     },
     {
-      "comment": "Deprecated; use hcm:ObservationWindow.",
+      "comment": "Deprecated in HCMO 0.1.0. Deprecated; use hcm:ObservationWindow.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#TimeInterval",
-      "label": "Time Interval (deprecated)",
-      "local_name": "TimeInterval"
+      "label": "Time Interval"
     },
     {
-      "comment": "A water need or provision for an animal.",
-      "iri": "https://w3id.org/hcmo/ontology/hcm#Water",
-      "label": "Water",
-      "local_name": "Water"
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#TimeSeries",
+      "label": "Time Series"
+    },
+    {
+      "comment": "A group of biological subjects sharing an experimental condition, treatment, or study role.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#ExperimentalGroup",
+      "label": "Experimental Group"
+    },
+    {
+      "comment": "An information-content record documenting the actual housing of a subject or group in an enclosure during a stated validity interval. It is distinct from a planned assignment and from the allocation execution that establishes the housing.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#HousingAssignment",
+      "label": "Housing Assignment"
+    },
+    {
+      "comment": "A transient collection of two or more subjects that jointly take part in a behavior during an observed interval, such as two animals in contact or three animals huddling together. It is defined by the observed behavior, not by the study design, and is therefore distinct from an experimental group.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#InteractingGroup",
+      "label": "Interacting Group"
+    },
+    {
+      "comment": "An independent-variable specification that is part of a study design and identifies a variable the investigation is designed to vary systematically in order to determine its effect on subjects or observations.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#StudyFactors",
+      "label": "Study Factor"
+    },
+    {
+      "comment": "A biological individual, such as a laboratory animal, observed in a home-cage monitoring context.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#Subject",
+      "label": "Subject"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#EnclosureDimensions",
+      "label": "Enclosure Dimensions"
+    },
+    {
+      "comment": "A structured profile describing environmental conditions or requirements for a monitored enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#EnvironmentProfile",
+      "label": "Environment Profile"
+    },
+    {
+      "comment": "An environmental parameter that may be measured, specified, or controlled in a home-cage monitoring context.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#EnvironmentalProperty",
+      "label": "Environmental Property"
+    },
+    {
+      "comment": "A measurement specification describing a target or required concentration for a gas-specific environmental property.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#GasConcentrationProfile",
+      "label": "Gas Concentration Profile"
+    },
+    {
+      "comment": "A description of the timing and transitions of light and dark phases in an enclosure environment.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#LightCycle",
+      "label": "Light Cycle"
+    },
+    {
+      "comment": "A specification describing how an environmental property is measured, represented, or constrained.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#MeasurementSpecification",
+      "label": "Measurement Specification"
+    },
+    {
+      "comment": "A normative environment profile specifying husbandry and environmental conditions intended to support animal thriving; linking one to an enclosure does not assert compliance or an animal outcome.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#ThriveProfile",
+      "label": "Thrive Profile"
+    },
+    {
+      "comment": "A SOSA-style observation about the behavior of a subject, or of an interacting group of subjects, in a home-cage monitoring context. A behavior involving several animals has the interacting group as its feature of interest; when the behavior is directed, the initiating and receiving subjects are stated with has initiator and has recipient.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#BehaviorObservation",
+      "label": "Behavior Observation"
+    },
+    {
+      "comment": "An observation result representing a detected, classified, or recorded behavior.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#BehaviorResult",
+      "label": "Behavior Result"
+    },
+    {
+      "comment": "An observation result represented by a category rather than a numeric value.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#CategoricalResult",
+      "label": "Categorical Result"
+    },
+    {
+      "comment": "A SOSA-style observation about an environmental property of a monitored enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#EnvironmentObservation",
+      "label": "Environment Observation"
+    },
+    {
+      "comment": "An environment observation measuring or reporting the concentration of a gas.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#GasConcentrationObservation",
+      "label": "Gas Concentration Observation"
+    },
+    {
+      "comment": "A SOSA-style observation about the health status of a biological subject.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#HealthStatusObservation",
+      "label": "Health Status Observation"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#HousingAssignment",
+      "label": "Housing Assignment"
+    },
+    {
+      "comment": "A tabular observation result representing a time-series segment of location values, optionally described by one or more data dimensions.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#LocationResultTable",
+      "label": "Location Result Table"
+    },
+    {
+      "comment": "An information artifact produced as the result of a home-cage monitoring observation.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#ObservationResult",
+      "label": "Observation Result"
+    },
+    {
+      "comment": "An observation result represented as a QUDT quantity value with a numeric value and unit.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#QuantityValue",
+      "label": "Quantity Value"
+    },
+    {
+      "comment": "A SOSA-style observation reporting the body weight of a biological subject.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#WeightObservation",
+      "label": "Weight Observation"
+    },
+    {
+      "comment": "A device that elicits or perturbs behavior, physiology, or the monitored environment.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#Actuator",
+      "label": "Actuator"
+    },
+    {
+      "comment": "An activity that calibrates a sensor and generates a time-bounded calibration record.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#CalibrationActivity",
+      "label": "Calibration Activity"
+    },
+    {
+      "comment": "An evidence-backed information record stating a sensor's calibration status during a specified validity interval.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#CalibrationRecord",
+      "label": "Calibration Record"
+    },
+    {
+      "comment": "Physical computing hardware component of a home-cage monitoring system.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#Hardware",
+      "label": "Hardware"
+    },
+    {
+      "comment": "A device that captures signals related to behavior, physiology, or enclosure environment.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#Sensor",
+      "label": "Sensor"
+    },
+    {
+      "comment": "Software component used to acquire, process, store, or analyse home-cage monitoring data.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#Software",
+      "label": "Software"
+    },
+    {
+      "comment": "An ordered sequence of time-indexed measurements or outputs produced in a monitoring workflow.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#TimeSeries",
+      "label": "Time Series"
     }
   ],
   "counts": {
-    "classes": 27,
-    "datatype_properties": 8,
-    "object_properties": 33,
-    "triples": 491
+    "annotation_properties": 0,
+    "classes": 61,
+    "datatype_properties": 75,
+    "object_properties": 73,
+    "triples": 1464
   },
   "datatype_properties": [
     {
-      "comment": "Duration of the observation window in hours (must be > 24).",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#ObservationWindow"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Duration of an observation window in hours.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#durationHours",
-      "label": "duration (hours)",
-      "local_name": "durationHours",
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#decimal"
-      ]
+      "label": "duration hours"
     },
     {
-      "comment": "Height magnitude for Dimensions (units specified in unit).",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Dimensions"
-      ],
+      "comment": "Records the intended capacity of an enclosure, such as the number of animals it can house.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasCapacity",
+      "label": "has capacity"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasCategory",
+      "label": "has category"
+    },
+    {
+      "comment": "Provides a textual description for an HCMO resource.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasDescription",
+      "label": "has description"
+    },
+    {
+      "comment": "Deprecated shared unit string. Each dimension now links to its own QUDT QuantityValue carrying qudt:hasUnit.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasDimUnit",
+      "label": "has dim unit"
+    },
+    {
+      "comment": "Records the identifier assigned to an enclosure or monitored enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnclosureIdentifier",
+      "label": "has enclosure identifier"
+    },
+    {
+      "comment": "Records a textual or coded enrichment requirement for an enclosure or monitored enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnrichmentRequirement",
+      "label": "has enrichment requirement"
+    },
+    {
+      "comment": "Records the type or category of enrichment associated with an enrichment resource.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnrichmentType",
+      "label": "has enrichment type"
+    },
+    {
+      "comment": "Deprecated datatype-property artifact. Use hcm-env:hasEnvironment to link an enclosure to a structured environment profile; existing literal values require curation.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnvironment",
+      "label": "has environment"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Boolean flag indicating whether environmental enrichment is provided in a legacy need profile.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnvironmentalEnrichment",
+      "label": "has environmental enrichment"
+    },
+    {
+      "comment": "Records the type of facility or housing area associated with an enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasFacilityType",
+      "label": "has facility type"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasFileFormat",
+      "label": "has file format"
+    },
+    {
+      "comment": "Deprecated numeric literal. Use hasFloorAreaQuantity with a QUDT QuantityValue.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasFloorArea",
+      "label": "has floor area"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Boolean flag indicating whether food is provided in a legacy need profile.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasFood",
+      "label": "has food"
+    },
+    {
+      "comment": "Records a textual or coded food-provision requirement for an enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasFoodRequirement",
+      "label": "has food requirement"
+    },
+    {
+      "comment": "Deprecated numeric literal. Use hasHeightQuantity with a QUDT QuantityValue.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasHeight",
+      "label": "has height"
+    },
+    {
+      "comment": "Deprecated numeric literal. Use hasLengthQuantity with a QUDT QuantityValue.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasLength",
+      "label": "has length"
+    },
+    {
+      "comment": "Records the manufacturer name for an enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasManufacturer",
+      "label": "has manufacturer"
+    },
+    {
+      "comment": "Records a human-readable name for an HCMO resource.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasName",
+      "label": "has name"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasNumericValue",
+      "label": "has numeric value"
+    },
+    {
+      "comment": "Records the assessed operational-status value within a time-bounded operational status record.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasOperationalStatusValue",
+      "label": "has operational status value"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Boolean flag indicating whether safety from threat is provided in a legacy need profile.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSafetyFromThreat",
+      "label": "has safety from threat"
+    },
+    {
+      "comment": "Records a textual or coded safety requirement for an enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSafetyRequirement",
+      "label": "has safety requirement"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSamplingRate",
+      "label": "has sampling rate"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Boolean flag indicating whether social contacts are provided in a legacy need profile.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSocialContacts",
+      "label": "has social contacts"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasStoragePath",
+      "label": "has storage path"
+    },
+    {
+      "comment": "Deprecated unit string. Use qudt:hasUnit on a QUDT QuantityValue.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasUnit",
+      "label": "has unit"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasVersion",
+      "label": "has version"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Boolean flag indicating whether water is provided in a legacy need profile.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasWater",
+      "label": "has water"
+    },
+    {
+      "comment": "Records a textual or coded water-provision requirement for an enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasWaterRequirement",
+      "label": "has water requirement"
+    },
+    {
+      "comment": "Deprecated numeric literal. Use hasWidthQuantity with a QUDT QuantityValue.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasWidth",
+      "label": "has width"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Height magnitude for a dimensions record.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#height",
-      "label": "height",
-      "local_name": "height",
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#decimal"
-      ]
+      "label": "height"
     },
     {
-      "comment": "Deprecated; represent extendability with hcm:isExtendable.",
-      "domain": [],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#indefinitelyExtendable",
-      "label": "indefinitely extendable (deprecated)",
-      "local_name": "indefinitelyExtendable",
-      "range": []
-    },
-    {
-      "comment": "Whether the observation window is extendable.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#ObservationWindow"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Whether the observation window is extendable.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#isExtendable",
-      "label": "is extendable",
-      "local_name": "isExtendable",
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#boolean"
-      ]
+      "label": "is extendable"
     },
     {
-      "comment": "Length magnitude for Dimensions (units specified in unit).",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Dimensions"
-      ],
+      "comment": "Deprecated timeless occupancy flag. Determine occupancy at an explicit reference time from HousingAssignment validity intervals.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#isOccupied",
+      "label": "is occupied"
+    },
+    {
+      "comment": "Deprecated timeless operational flag. Use hasOperationalStatusRecord with a validity interval and generating assessment.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#isOperational",
+      "label": "is operational"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Length magnitude for a dimensions record.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#length",
-      "label": "length",
-      "local_name": "length",
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#decimal"
-      ]
+      "label": "length"
     },
     {
-      "comment": "Deprecated; use hcm:hasCondition with hcm:LimitedInteractionWithHumans.",
-      "domain": [],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#limitedHumanInteraction",
-      "label": "limited human interaction (deprecated boolean)",
-      "local_name": "limitedHumanInteraction",
-      "range": []
+      "comment": "Deprecated in HCMO 0.1.0. Textual protocol, SOP, DOI, or approval reference.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#protocolReference",
+      "label": "protocol reference"
     },
     {
-      "comment": "Unit label for dimensions (e.g., 'cm').",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Dimensions"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Unit label for dimensions values.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#unit",
-      "label": "unit",
-      "local_name": "unit",
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#string"
-      ]
+      "label": "unit"
     },
     {
-      "comment": "Width magnitude for Dimensions (units specified in unit).",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Dimensions"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Width magnitude for a dimensions record.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#width",
-      "label": "width",
-      "local_name": "width",
-      "range": [
-        "http://www.w3.org/2001/XMLSchema#decimal"
-      ]
+      "label": "width"
+    },
+    {
+      "comment": "Records the biological sex reported for a subject.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasBiologicalSex",
+      "label": "has biological sex"
+    },
+    {
+      "comment": "Records the date of birth reported for a subject. The xsd:date datatype is enforced by SHACL because it is outside the OWL 2 datatype map used by HCMO's reasoner.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasDateOfBirth",
+      "label": "has date of birth"
+    },
+    {
+      "comment": "Records a social housing or care requirement for a subject or experimental group.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasSocialRequirement",
+      "label": "has social requirement"
+    },
+    {
+      "comment": "Records the species name or identifier reported for a subject.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasSpecies",
+      "label": "has species"
+    },
+    {
+      "comment": "Records the strain, line, or breed reported for a subject.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasStrain",
+      "label": "has strain"
+    },
+    {
+      "comment": "Deprecated ambiguous treatment string. Represent planned factor assignment through the study-factor model and executed treatment through an explicit provenance process.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasTreatment",
+      "label": "has treatment"
+    },
+    {
+      "comment": "Records the duration of the dark phase in a light cycle; xsd:duration is enforced by SHACL because that datatype is outside the OWL 2 datatype map.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasDarkPhaseDuration",
+      "label": "has dark phase duration"
+    },
+    {
+      "comment": "Records the start time of the dark phase in a light cycle; xsd:time is enforced by SHACL because that datatype is outside the OWL 2 datatype map.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasDarkPhaseStart",
+      "label": "has dark phase start"
+    },
+    {
+      "comment": "Records the duration of the dawn transition in a light cycle; xsd:duration is enforced by SHACL because that datatype is outside the OWL 2 datatype map.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasDawnDuration",
+      "label": "has dawn duration"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasDimUnit",
+      "label": "has dim unit"
+    },
+    {
+      "comment": "Records the duration of the dusk transition in a light cycle; xsd:duration is enforced by SHACL because that datatype is outside the OWL 2 datatype map.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasDuskDuration",
+      "label": "has dusk duration"
+    },
+    {
+      "comment": "Deprecated gas-name string. Identify a gas-specific EnvironmentalProperty resource with specifiesProperty.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasGasType",
+      "label": "has gas type"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasHeight",
+      "label": "has height"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasLength",
+      "label": "has length"
+    },
+    {
+      "comment": "Records the duration of the light phase in a light cycle; xsd:duration is enforced by SHACL because that datatype is outside the OWL 2 datatype map.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasLightPhaseDuration",
+      "label": "has light phase duration"
+    },
+    {
+      "comment": "Deprecated duplicate; use the consolidated hcm:hasUnit property for quantitative results and measurement specifications.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasUnit",
+      "label": "has unit"
+    },
+    {
+      "comment": "Deprecated untyped literal. Use hasSpecifiedValue for specifications or sosa:hasResult for observations with QUDT QuantityValue nodes.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasValue",
+      "label": "has value"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasWidth",
+      "label": "has width"
+    },
+    {
+      "comment": "Records the behavior type or behavior category associated with a behavior observation or result.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasBehaviorType",
+      "label": "has behavior type"
+    },
+    {
+      "comment": "Records the category assigned to a categorical observation result.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasCategory",
+      "label": "has category"
+    },
+    {
+      "comment": "Records a numeric confidence score associated with an observation result.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasConfidenceScore",
+      "label": "has confidence score"
+    },
+    {
+      "comment": "Records a textual or coded health-status term associated with a health-status observation.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasHealthStatusTerm",
+      "label": "has health status term"
+    },
+    {
+      "comment": "Records a duration associated with an observation; use sosa:phenomenonTime for a temporal entity. The xsd:duration datatype is enforced by SHACL because it is outside the OWL 2 datatype map.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasInterval",
+      "label": "has interval"
+    },
+    {
+      "comment": "Deprecated numeric literal. Use qudt:numericValue on the QUDT QuantityValue result.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasNumericValue",
+      "label": "has numeric value"
+    },
+    {
+      "comment": "Records the assessed calibration-status value within a time-bounded calibration record.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasCalibrationStatusValue",
+      "label": "has calibration status value"
+    },
+    {
+      "comment": "Records the file format of a software or time-series artifact.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasFileFormat",
+      "label": "has file format"
+    },
+    {
+      "comment": "Records the firmware identifier or version installed on a hardware or sensor component.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasFirmware",
+      "label": "has firmware"
+    },
+    {
+      "comment": "Records the manufacturer model number for a hardware, sensor, or actuator component.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasModelNumber",
+      "label": "has model number"
+    },
+    {
+      "comment": "Records the communication, acquisition, or processing protocol used by a technical component.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasProtocol",
+      "label": "has protocol"
+    },
+    {
+      "comment": "Deprecated sampling-rate string. Use hasSamplingRateQuantity with a QUDT QuantityValue.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasSamplingRate",
+      "label": "has sampling rate"
+    },
+    {
+      "comment": "Records an identifier assigned to a sensor.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasSensorIdentifier",
+      "label": "has sensor identifier"
+    },
+    {
+      "comment": "Records the sensing technology or modality used by a sensor.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasSensorTechnology",
+      "label": "has sensor technology"
+    },
+    {
+      "comment": "Records the functional type or category of a sensor.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasSensorType",
+      "label": "has sensor type"
+    },
+    {
+      "comment": "Records a path or locator for stored data, software, or time-series resources.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasStoragePath",
+      "label": "has storage path"
+    },
+    {
+      "comment": "Records a version string for software, firmware, hardware, or data artifacts.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasVersion",
+      "label": "has version"
+    },
+    {
+      "comment": "Deprecated timeless calibration flag. Use hasCalibrationRecord with a validity interval and generating calibration activity.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#isCalibrated",
+      "label": "is calibrated"
     }
   ],
+  "namespace": "https://w3id.org/hcmo/ontology/hcm#",
   "object_properties": [
     {
-      "comment": "A Sensor captures signals of a behavior or physiology.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Sensor"
-      ],
+      "comment": "Relates an operational assessment to the monitored enclosure whose operational state it evaluates.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#assessesEnclosure",
+      "label": "assesses enclosure"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Relates a sensor to a behavior or physiology process it captures.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#captures",
-      "label": "captures",
-      "local_name": "captures",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
-      ]
+      "label": "captures"
     },
     {
-      "comment": "Hardware communicates with software component(s).",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Hardware"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0 with no exact replacement. Use hcm:hasMonitoredAnimals for enclosure occupancy and sosa:hasFeatureOfInterest for the subject of a specific observation.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#collectsInfoOn",
+      "label": "collects info on"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Relates hardware to software that it communicates with.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#communicatesWith",
-      "label": "communicates with",
-      "local_name": "communicatesWith",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Software"
-      ]
+      "label": "communicates with"
     },
     {
-      "comment": "An Animal displays a behavior or physiological process.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Animal"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Relates an animal to a behavior or physiology process it displays.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#displays",
-      "label": "displays",
-      "local_name": "displays",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
-      ]
+      "label": "displays"
     },
     {
-      "comment": "An Actuator elicits or perturbs a behavior or physiology.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Actuator"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Relates an actuator to a behavior or physiology process it elicits or perturbs.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#elicits",
-      "label": "elicits",
-      "local_name": "elicits",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
-      ]
+      "label": "elicits"
     },
     {
-      "comment": "Deprecated; use hcm:isCapturedOver.",
-      "domain": [],
+      "comment": "Deprecated in HCMO 0.1.0. Deprecated legacy relation from a behavior process to a sufficient observation window.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#extendsEnoughToCapture",
-      "label": "extends enough to capture (deprecated)",
-      "local_name": "extendsEnoughToCapture",
-      "range": []
+      "label": "extends enough to capture"
     },
     {
-      "comment": "Deprecated; no direct replacement; model with hcm:ObservationWindow if needed.",
-      "domain": [],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#extendsOver",
-      "label": "extends over (deprecated)",
-      "local_name": "extendsOver",
-      "range": []
+      "comment": "Deprecated in HCMO 0.1.0. Relates a system submission to a governing protocol or SOP reference.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#followsProtocol",
+      "label": "follows protocol"
     },
     {
-      "comment": "Derived (via property chain) from hasHardware o hasActuatorComponent.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#System"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0 with no context-free replacement because its subject was an aggregate system. For an actuator associated with a monitored enclosure, use hcm-tech:hasActuator.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasActuator",
-      "label": "has actuator",
-      "local_name": "hasActuator",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Actuator"
-      ]
+      "label": "has actuator"
     },
     {
-      "comment": "Links Hardware to an Actuator component.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Hardware"
-      ],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasActuatorComponent",
-      "label": "has actuator component",
-      "local_name": "hasActuatorComponent",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Actuator"
-      ]
-    },
-    {
-      "comment": "Deprecated; use hcm:hasActuatorComponent.",
-      "domain": [],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasActuatorSet",
-      "label": "has actuator set (deprecated)",
-      "local_name": "hasActuatorSet",
-      "range": []
-    },
-    {
-      "comment": "Associates a behavior or physiology process with a circadian rhythm.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Relates a behavior or physiology process to its circadian rhythm.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasCircadianRhythm",
-      "label": "has circadian rhythm",
-      "local_name": "hasCircadianRhythm",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#CircadianRhythm"
-      ]
+      "label": "has circadian rhythm"
     },
     {
-      "comment": "Links an ObservationWindow to an observation condition.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#ObservationWindow"
-      ],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasCondition",
-      "label": "has condition",
-      "local_name": "hasCondition",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#LimitedInteractionWithHumans"
-      ]
-    },
-    {
-      "comment": "Links a PhysicalSpace to its Dimensions record.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#PhysicalSpace"
-      ],
+      "comment": "Links an enclosure to its dimensions record.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasDimensions",
-      "label": "has dimensions",
-      "local_name": "hasDimensions",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Dimensions"
-      ]
+      "label": "has dimensions"
     },
     {
-      "comment": "Links a System to its Enclosure.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#System"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Links a system to its enclosure.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnclosure",
-      "label": "has enclosure",
-      "local_name": "hasEnclosure",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Enclosure"
-      ]
+      "label": "has enclosure"
     },
     {
-      "comment": "Links an AnimalNeedProfile to EnvironmentalEnrichment.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
-      ],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnvironmentalEnrichment",
-      "label": "has environmental enrichment",
-      "local_name": "hasEnvironmentalEnrichment",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#EnvironmentalEnrichment"
-      ]
+      "comment": "Relates an enclosure or monitored enclosure to an enrichment present or specified for it.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasEnrichment",
+      "label": "has enrichment"
     },
     {
-      "comment": "Links an AnimalNeedProfile to a Food need.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
-      ],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasFood",
-      "label": "has food",
-      "local_name": "hasFood",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Food"
-      ]
+      "comment": "Relates an enclosure dimensions record to a QUDT quantity value for floor area.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasFloorAreaQuantity",
+      "label": "has floor area quantity"
     },
     {
-      "comment": "Links a System to its Hardware component.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#System"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Links a system to its hardware component.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasHardware",
-      "label": "has hardware",
-      "local_name": "hasHardware",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Hardware"
-      ]
+      "label": "has hardware"
     },
     {
-      "comment": "Deprecated; use hcm:hasCondition with hcm:LimitedInteractionWithHumans.",
-      "domain": [],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasLimitedHumanInteraction",
-      "label": "has limited human interaction (deprecated)",
-      "local_name": "hasLimitedHumanInteraction",
-      "range": []
+      "comment": "Relates an enclosure dimensions record to a QUDT quantity value for height.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasHeightQuantity",
+      "label": "has height quantity"
     },
     {
-      "comment": "Deprecated; use hcm:hasSpaceRegion.",
-      "domain": [],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasPhysicalSpace",
-      "label": "has physical space (deprecated)",
-      "local_name": "hasPhysicalSpace",
-      "range": []
+      "comment": "Relates an enclosure dimensions record to a QUDT quantity value for length.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasLengthQuantity",
+      "label": "has length quantity"
     },
     {
-      "comment": "Deprecated; use hcm:hasCondition.",
-      "domain": [],
+      "comment": "Deprecated timeless shortcut. Derive enclosure membership at an explicit reference time from time-bounded HousingAssignment records.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasMonitoredAnimals",
+      "label": "has monitored animals"
+    },
+    {
+      "comment": "Relates a monitored enclosure to an evidence-backed, time-bounded operational status record.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasOperationalStatusRecord",
+      "label": "has operational status record"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Deprecated legacy relation from an observation window to an observation condition.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasProperty",
-      "label": "has property (deprecated)",
-      "local_name": "hasProperty",
-      "range": []
+      "label": "has property"
     },
     {
-      "comment": "Links an AnimalNeedProfile to SafetyFromThreat.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
-      ],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSafetyFromThreat",
-      "label": "has safety from threat",
-      "local_name": "hasSafetyFromThreat",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#SafetyFromThreat"
-      ]
+      "comment": "Deprecated in HCMO 0.1.0 with no equivalence assertion because legacy restrictions used this relation in the reverse of the SOSA observation-to-result direction. Model current observations with sosa:hasResult.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasResult",
+      "label": "has result"
     },
     {
-      "comment": "Derived (via property chain) from hasHardware o hasSensorComponent.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#System"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0 with no context-free replacement because its subject was an aggregate system. For a sensor monitoring an enclosure, use hcm-tech:monitoredBy. Use hcm-tech:installedIn separately only for physical installation.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasSensor",
-      "label": "has sensor",
-      "local_name": "hasSensor",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Sensor"
-      ]
+      "label": "has sensor"
     },
     {
-      "comment": "Links Hardware to a Sensor component.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Hardware"
-      ],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSensorComponent",
-      "label": "has sensor component",
-      "local_name": "hasSensorComponent",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Sensor"
-      ]
-    },
-    {
-      "comment": "Deprecated; use hcm:hasSensorComponent.",
-      "domain": [],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSensorSet",
-      "label": "has sensor set (deprecated)",
-      "local_name": "hasSensorSet",
-      "range": []
-    },
-    {
-      "comment": "Links an AnimalNeedProfile to SocialContacts.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
-      ],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasSocialContacts",
-      "label": "has social contacts",
-      "local_name": "hasSocialContacts",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#SocialContacts"
-      ]
-    },
-    {
-      "comment": "Links a System to its Software component.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#System"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Links a system to its software component.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasSoftware",
-      "label": "has software",
-      "local_name": "hasSoftware",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Software"
-      ]
+      "label": "has software"
     },
     {
-      "comment": "Links an enclosure (artifact) to its relevant spatial region (e.g., internal cage volume).",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Enclosure"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Links an enclosure to the physical space it contains or bounds.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#hasSpaceRegion",
-      "label": "has space region",
-      "local_name": "hasSpaceRegion",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#PhysicalSpace"
-      ]
+      "label": "has space region"
     },
     {
-      "comment": "Links an AnimalNeedProfile to a Water need.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
-      ],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#hasWater",
-      "label": "has water",
-      "local_name": "hasWater",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Water"
-      ]
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasThriveProfile",
+      "label": "has thrive profile"
     },
     {
-      "comment": "Links a behavior or physiology process to an observation window sufficient to capture it.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
-      ],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#isCapturedOver",
-      "label": "is captured over",
-      "local_name": "isCapturedOver",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#ObservationWindow"
-      ]
+      "comment": "Relates an enclosure dimensions record to a QUDT quantity value for width.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#hasWidthQuantity",
+      "label": "has width quantity"
     },
     {
-      "comment": "Behavior or physiology occurs inside an Enclosure.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#BehaviorAndPhysiology"
-      ],
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#installedIn",
+      "label": "installed in"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Relates a behavior or physiology process to the enclosure where it occurs.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#isDisplayedInside",
-      "label": "is displayed inside",
-      "local_name": "isDisplayedInside",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Enclosure"
-      ]
+      "label": "is displayed inside"
     },
     {
-      "comment": "Animal lives in (is housed in) an Enclosure.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Animal"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Relates an animal to the enclosure it lives in.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#livesIn",
-      "label": "lives in",
-      "local_name": "livesIn",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Enclosure"
-      ]
+      "label": "lives in"
     },
     {
-      "comment": "Links a System to the supplier or laboratory that produced it.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#System"
-      ],
+      "comment": "Relates an enclosure or monitored enclosure to the facility, room, rack, or other place in which it is situated.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#locatedIn",
+      "label": "located in"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#monitoredBy",
+      "label": "monitored by"
+    },
+    {
+      "comment": "Deprecated in HCMO 0.1.0. Links a system to the supplier or laboratory that produced it.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#producedBy",
-      "label": "produced by",
-      "local_name": "producedBy",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#Supplier"
-      ]
+      "label": "produced by"
     },
     {
-      "comment": "Needs provisioning provided by the enclosure context.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Enclosure"
-      ],
-      "iri": "https://w3id.org/hcmo/ontology/hcm#providesNeedProfile",
-      "label": "provides need profile",
-      "local_name": "providesNeedProfile",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
-      ]
+      "comment": "Deprecated in HCMO 0.1.0. Relates an enclosure to a need profile it provides.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm#provides",
+      "label": "provides"
     },
     {
-      "comment": "Links an Animal to the AnimalNeedProfile it requires.",
-      "domain": [
-        "https://w3id.org/hcmo/ontology/hcm#Animal"
-      ],
+      "comment": "Deprecated in HCMO 0.1.0. Relates an animal to the need profile it requires.",
       "iri": "https://w3id.org/hcmo/ontology/hcm#requiresToThrive",
-      "label": "requires to thrive",
-      "local_name": "requiresToThrive",
-      "range": [
-        "https://w3id.org/hcmo/ontology/hcm#AnimalNeedProfile"
-      ]
+      "label": "requires to thrive"
+    },
+    {
+      "comment": "Relates a housing assignment to the enclosure or monitored enclosure involved in that assignment.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#assignedToEnclosure",
+      "label": "assigned to enclosure"
+    },
+    {
+      "comment": "Relates a subject to an experimental group of which it is a member.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#belongsToGroup",
+      "label": "belongs to group"
+    },
+    {
+      "comment": "Deprecated subject-to-observation shortcut. Query the inverse of sosa:hasFeatureOfInterest instead.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasBehaviorObservation",
+      "label": "has behavior observation"
+    },
+    {
+      "comment": "Deprecated subject-to-observation shortcut. Query the inverse of sosa:hasFeatureOfInterest instead.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasHealthStatusObservation",
+      "label": "has health status observation"
+    },
+    {
+      "comment": "Relates a subject or experimental group to a housing assignment record.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasHousingAssignment",
+      "label": "has housing assignment"
+    },
+    {
+      "comment": "Relates an experimental or interacting group to a subject that is a member of the group.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasMember",
+      "label": "has member"
+    },
+    {
+      "comment": "Deprecated subject-to-observation shortcut. Query the inverse of sosa:hasFeatureOfInterest instead.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/bio#hasWeightObservation",
+      "label": "has weight observation"
+    },
+    {
+      "comment": "Deprecated role-conflating relation. Profiles use hasMeasurementSpec, specifications use specifiesProperty, and observations use sosa:observedProperty.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#AmbientTemperature",
+      "label": "ambient temperature"
+    },
+    {
+      "comment": "Deprecated role-conflating relation. Profiles use hasMeasurementSpec, specifications use specifiesProperty, and observations use sosa:observedProperty.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#AmmoniaConcentration",
+      "label": "ammonia concentration"
+    },
+    {
+      "comment": "Deprecated role-conflating relation. Profiles use hasMeasurementSpec, specifications use specifiesProperty, and observations use sosa:observedProperty.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#CarbonDioxideConcentration",
+      "label": "carbon dioxide concentration"
+    },
+    {
+      "comment": "Deprecated role-conflating relation. Profiles use hasMeasurementSpec, specifications use specifiesProperty, and observations use sosa:observedProperty.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#LightIntensity",
+      "label": "light intensity"
+    },
+    {
+      "comment": "Deprecated role-conflating relation. Profiles use hasMeasurementSpec, specifications use specifiesProperty, and observations use sosa:observedProperty.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#LightState",
+      "label": "light state"
+    },
+    {
+      "comment": "Deprecated role-conflating relation. Profiles use hasMeasurementSpec, specifications use specifiesProperty, and observations use sosa:observedProperty.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#OxygenConcentration",
+      "label": "oxygen concentration"
+    },
+    {
+      "comment": "Deprecated role-conflating relation. Profiles use hasMeasurementSpec, specifications use specifiesProperty, and observations use sosa:observedProperty.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#RelativeHumidity",
+      "label": "relative humidity"
+    },
+    {
+      "comment": "Relates an enclosure to a structured environment profile.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasEnvironment",
+      "label": "has environment"
+    },
+    {
+      "comment": "Relates an environment profile to a gas concentration profile.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasGasConcentrationProfile",
+      "label": "has gas concentration profile"
+    },
+    {
+      "comment": "Relates an environment profile to a light cycle.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasLightCycle",
+      "label": "has light cycle"
+    },
+    {
+      "comment": "Relates an environment profile to a measurement specification.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasMeasurementSpec",
+      "label": "has measurement spec"
+    },
+    {
+      "comment": "Relates a measurement specification to a QUDT quantity value expressing its target or required value.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasSpecifiedValue",
+      "label": "has specified value"
+    },
+    {
+      "comment": "Relates a monitored enclosure to the thrive profile that specifies suitable husbandry or environmental conditions.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#hasThriveProfile",
+      "label": "has thrive profile"
+    },
+    {
+      "comment": "Relates a measurement specification to the environmental property for which it specifies a target or requirement.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/env#specifiesProperty",
+      "label": "specifies property"
+    },
+    {
+      "comment": "Deprecated HCMO 0.0.1 term retained for backward compatibility.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#assignedToEnclosure",
+      "label": "assigned to enclosure"
+    },
+    {
+      "comment": "A non-causal contextual link from an observation to a resource describing a condition relevant during interpretation. It does not assert a study factor, factor value, treatment assignment, or executed intervention.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasCondition",
+      "label": "has condition"
+    },
+    {
+      "comment": "Relates a directed behavior observation to the subject that performs or initiates the behavior, such as the animal that approaches, follows, or escapes.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasInitiator",
+      "label": "has initiator"
+    },
+    {
+      "comment": "Relates a directed behavior observation to the subject toward which the behavior is directed, such as the animal that is approached, followed, or escaped from.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#hasRecipient",
+      "label": "has recipient"
+    },
+    {
+      "comment": "Relates a behavior observation to a subject that takes part in the observed behavior with a stated role. Use its sub-properties has initiator and has recipient for directed behaviors; members of an interacting group without a distinct role are stated with has member on the group.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#involvesSubject",
+      "label": "involves subject"
+    },
+    {
+      "comment": "Relates an observation to the enclosure in which it occurs.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/obs#occursIn",
+      "label": "occurs in"
+    },
+    {
+      "comment": "Relates a calibration activity to the sensor that it calibrates.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#calibratesSensor",
+      "label": "calibrates sensor"
+    },
+    {
+      "comment": "Relates a sensor to the property it observes or captures.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#captures",
+      "label": "captures"
+    },
+    {
+      "comment": "Relates a technical component to another hardware or software component with which it exchanges data or commands.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#communicatesWith",
+      "label": "communicates with"
+    },
+    {
+      "comment": "Relates a monitored enclosure to an actuator associated with it.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasActuator",
+      "label": "has actuator"
+    },
+    {
+      "comment": "Relates a sensor to an evidence-backed, time-bounded calibration record.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasCalibrationRecord",
+      "label": "has calibration record"
+    },
+    {
+      "comment": "Relates a software or time-series artifact to the SKOS concept that identifies how its data can be obtained, such as a database or an application programming interface, in the HCMO data-access-method vocabulary. It complements the file format, which describes the serialization of exported files.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasDataAccessMethod",
+      "label": "has data access method"
+    },
+    {
+      "comment": "Relates a software or time-series artifact to the SKOS concept that identifies its file format in the HCMO file-format vocabulary. It is the canonical form of the file-format statement; the has file format string remains for backward compatibility and should carry the concept's notation.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasFileFormatConcept",
+      "label": "has file format concept"
+    },
+    {
+      "comment": "Relates a sensor or time series to a QUDT quantity value expressing its sampling rate.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#hasSamplingRateQuantity",
+      "label": "has sampling rate quantity"
+    },
+    {
+      "comment": "Relates a sensor to a monitored enclosure in which the sensor is physically installed. This relation does not imply that the sensor monitors that enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#installedIn",
+      "label": "installed in"
+    },
+    {
+      "comment": "Relates a monitored enclosure to a sensor that monitors it, independently of whether the sensor is physically installed in that enclosure.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#monitoredBy",
+      "label": "monitored by"
+    },
+    {
+      "comment": "Relates software to the hardware or platform on which it executes.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#runsOn",
+      "label": "runs on"
+    },
+    {
+      "comment": "Relates a technical component to the monitored enclosure that it supports.",
+      "iri": "https://w3id.org/hcmo/ontology/hcm/tech#supportsEnclosure",
+      "label": "supports enclosure"
     }
-  ]
+  ],
+  "ontology_iri": "https://w3id.org/hcmo/ontology/hcm",
+  "version": "0.4.1",
+  "version_iri": "https://w3id.org/hcmo/ontology/hcm/0.4.1"
 }

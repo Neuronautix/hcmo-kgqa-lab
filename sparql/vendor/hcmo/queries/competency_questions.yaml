@@ -1,0 +1,137 @@
+# Competency questions index for the Home-Cage Monitoring Ontology (HCMO).
+# Every query is checked against its complete reviewed answer rows, including
+# unbound variables represented as null. Counts alone are not acceptance
+# evidence.
+version: 0.4.1
+dir: queries
+questions:
+  - id: animals-by-enclosure
+    question: Which biological subjects are assigned to each monitored enclosure?
+    file: queries/cq-animals-by-enclosure.rq
+    expected_answers:
+      - enclosure: https://example.org/hcmo/isa-crate/cage-12
+        subjects: https://example.org/hcmo/isa-crate/animal-1
+      - enclosure: https://example.org/hcmo/minimal/cage-12
+        subjects: https://example.org/hcmo/minimal/mouse-1, https://example.org/hcmo/minimal/mouse-2
+      - enclosure: https://w3id.org/hcmo/id/example-submission/enclosure-example-hcm
+        subjects: https://w3id.org/hcmo/id/example-submission/subject-example-hcm
+
+  - id: isa-factor-group-assignment
+    question: Which subject, experimental group, study factor, and STATO factor level form the reviewed ISA evidence assignment?
+    file: queries/cq-isa-factor-group-assignment.rq
+    expected_answers:
+      - subject: https://example.org/hcmo/isa-crate/animal-1
+        group: https://example.org/hcmo/isa-crate/ambient-temperature-group
+        factor: https://example.org/hcmo/isa-crate/ambient-temperature-factor
+        factorValue: https://example.org/hcmo/isa-crate/ambient-temperature-22c
+
+  - id: isa-recording-provenance
+    question: Which execution, protocol, sensor, and enclosure generated the reviewed raw ISA data file?
+    file: queries/cq-isa-recording-provenance.rq
+    expected_answers:
+      - file: https://example.org/hcmo/isa-crate/activity-file
+        execution: https://example.org/hcmo/isa-crate/acquisition-process
+        protocol: https://example.org/hcmo/isa-crate/recording-protocol
+        sensor: https://example.org/hcmo/isa-crate/sensor-1
+        enclosure: https://example.org/hcmo/isa-crate/cage-12
+
+  - id: isa-statistical-result-provenance
+    question: Which OBI data transformation links the raw file, output file, and typed STATO result?
+    file: queries/cq-isa-statistical-result-provenance.rq
+    expected_answers:
+      - result: https://example.org/hcmo/isa-crate/mean-activity
+        execution: https://example.org/hcmo/isa-crate/activity-summary-process
+        inputFile: https://example.org/hcmo/isa-crate/activity-file
+        outputFile: https://example.org/hcmo/isa-crate/activity-summary-file
+
+  - id: missing-dimensions
+    question: Which enclosures are missing dimension records?
+    file: queries/cq-missing-dimensions.rq
+    expected_answers: []
+
+  - id: environment-spec-observation
+    question: Which explicit property and QUDT quantities connect an environmental target specification to its observation?
+    file: queries/cq-environment-spec-observation.rq
+    expected_answers:
+      - property: https://example.org/hcmo/minimal/ambient-temperature
+        specifiedValue: "22.0"
+        specifiedUnit: http://qudt.org/vocab/unit/DEG_C
+        observedValue: "21.8"
+        observedUnit: http://qudt.org/vocab/unit/DEG_C
+
+  - id: current-housing-at-time
+    question: Which enclosure contains the reviewed animal at the stated reference time according to time-bounded housing assignments?
+    file: queries/cq-current-housing-at-time.rq
+    expected_answers:
+      - subject: https://example.org/hcmo/minimal/mouse-1
+        enclosure: https://example.org/hcmo/minimal/cage-12
+        assignment: https://example.org/hcmo/minimal/mouse-1-cage-12-assignment
+
+  - id: status-evidence-at-time
+    question: Which evidence-generating activities support the enclosure's operational and sensor-calibration status at the stated time?
+    file: queries/cq-status-evidence-at-time.rq
+    expected_answers:
+      - enclosure: https://example.org/hcmo/minimal/cage-12
+        operational: "true"
+        operationalAssessment: https://example.org/hcmo/minimal/cage-12-operational-assessment
+        sensor: https://example.org/hcmo/minimal/ir-sensor-1
+        calibrated: "true"
+        calibrationActivity: https://example.org/hcmo/minimal/ir-sensor-1-calibration-activity
+
+  - id: needs-provisioning
+    question: Which housed subjects are assigned to enclosures with incomplete husbandry requirements?
+    file: queries/cq-needs-provisioning.rq
+    expected_answers:
+      - subject: https://example.org/hcmo/isa-crate/animal-1
+        enclosure: https://example.org/hcmo/isa-crate/cage-12
+      - subject: https://example.org/hcmo/minimal/mouse-1
+        enclosure: https://example.org/hcmo/minimal/cage-12
+      - subject: https://example.org/hcmo/minimal/mouse-2
+        enclosure: https://example.org/hcmo/minimal/cage-12
+      - subject: https://w3id.org/hcmo/id/example-submission/subject-example-hcm
+        enclosure: https://w3id.org/hcmo/id/example-submission/enclosure-example-hcm
+
+  - id: sensors-behaviors
+    question: Which properties does each monitored enclosure's sensor capture?
+    file: queries/cq-sensors-behaviors.rq
+    expected_answers:
+      - enclosure: https://example.org/hcmo/isa-crate/cage-12
+        sensor: https://example.org/hcmo/isa-crate/sensor-1
+        property: null
+      - enclosure: https://example.org/hcmo/minimal/cage-12
+        sensor: https://example.org/hcmo/minimal/ir-sensor-1
+        property: https://example.org/hcmo/minimal/locomotor-activity
+      - enclosure: https://example.org/hcmo/minimal/cage-12
+        sensor: https://example.org/hcmo/minimal/temperature-sensor-1
+        property: https://example.org/hcmo/minimal/ambient-temperature
+      - enclosure: https://example.org/hcmo/minimal/cage-12
+        sensor: https://example.org/hcmo/minimal/depth-camera-1
+        property: https://example.org/hcmo/minimal/social-behavior
+      - enclosure: https://w3id.org/hcmo/id/example-submission/enclosure-example-hcm
+        sensor: https://w3id.org/hcmo/id/example-submission/sensor-ir-camera
+        property: null
+
+  - id: systems-24h-limited
+    question: Which monitored enclosures have behavior observations lasting at least 24 hours under a stated condition?
+    file: queries/cq-systems-24h-limited.rq
+    expected_answers:
+      - enclosure: https://example.org/hcmo/minimal/cage-12
+        observation: https://example.org/hcmo/minimal/observation-1
+        duration: "24.0"
+        unit: http://www.w3.org/2006/time#unitHour
+        condition: https://example.org/hcmo/minimal/limited-human-interaction
+
+  - id: social-interaction-partners
+    question: Which subjects took part in a behavior together with another subject, which behavior was it, and what was each subject's role?
+    file: queries/cq-social-interaction-partners.rq
+    expected_answers:
+      - subject: https://example.org/hcmo/minimal/mouse-1
+        partner: https://example.org/hcmo/minimal/mouse-2
+        behavior: approach
+        role: initiator
+        observation: https://example.org/hcmo/minimal/observation-2
+      - subject: https://example.org/hcmo/minimal/mouse-2
+        partner: https://example.org/hcmo/minimal/mouse-1
+        behavior: approach
+        role: recipient
+        observation: https://example.org/hcmo/minimal/observation-2

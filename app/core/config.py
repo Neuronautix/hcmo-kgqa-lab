@@ -73,12 +73,13 @@ class Settings(BaseSettings):
     SPARQL_TEMPLATES_DIR: Optional[Path] = None
 
     # --- HCMO upstream sync layer ----------------------------------------
-    # The lab vendors the canonical HCMO ontology/shapes/queries into
-    # ``ontology/vendor/hcmo`` (and sibling vendor trees). These fields drive
-    # scripts/sync_hcmo.py and let a single env flip switch the lab onto the
-    # real HCMO once it has been reshaped. Import-safe: no network at import.
-    HCMO_REPO_URL: str = "https://github.com/Neuronautix/HCMO"
-    HCMO_REF: str = "main"
+    # The lab vendors a PINNED canonical HCMO release (ontology/shapes/queries/
+    # examples) into ``ontology/vendor/hcmo`` and sibling vendor trees. The
+    # authoritative pin (tag + commit + sha256s) lives in sync/hcmo_sources.yaml
+    # and sync/HCMO_SYNC.lock.json; these fields mirror it for display and let
+    # a single env flip switch the lab onto the real HCMO. Import-safe.
+    HCMO_REPO_URL: str = "https://github.com/dhuzard/HCMO"
+    HCMO_REF: str = "v0.4.1"
     HCMO_VENDOR_DIR: Optional[Path] = None  # derived: REPO_ROOT/ontology/vendor/hcmo
     HCMO_ACTIVE_SOURCE: str = "synthetic"  # "synthetic" | "vendor"
 
@@ -154,12 +155,12 @@ class Settings(BaseSettings):
         """The ontology the lab should treat as active.
 
         Defaults to the synthetic demo ontology (current behaviour). Setting
-        ``HCMO_ACTIVE_SOURCE=vendor`` switches to the vendored upstream HCMO
-        primary module once it has been synced/reshaped. This does NOT alter
+        ``HCMO_ACTIVE_SOURCE=vendor`` switches to the vendored merged HCMO
+        release graph (``hcmo.ttl``, the release asset). This does NOT alter
         the default ``ontology_path`` behaviour.
         """
         if str(self.HCMO_ACTIVE_SOURCE).lower() == "vendor":
-            return self.vendor_ontology_dir / "hcm.ttl"
+            return self.vendor_ontology_dir / "hcmo.ttl"
         return self.ontology_path
 
     # ------------------------------------------------------------------ #

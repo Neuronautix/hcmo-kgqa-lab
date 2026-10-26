@@ -1,6 +1,11 @@
 # Recommended layout for the HCMO repository
 
-This is a proposal for how to (re)shape **https://github.com/Neuronautix/HCMO**
+> **Historical proposal.** The canonical HCMO repository is now
+> **https://github.com/dhuzard/HCMO** (it adopted the `hcmo.yaml` release
+> manifest described here); the lab pins its releases as described in
+> [`hcmo_sync.md`](hcmo_sync.md).
+
+This is a proposal for how to (re)shape the HCMO repository
 so that it is clean as a standalone ontology project *and* trivially
 consumable by downstream tools such as this `hcmo-kgqa-lab`.
 
@@ -167,33 +172,36 @@ the manifest stays accurate.
 ## 5. How the two repos combine (current implementation)
 
 ```text
-HCMO repo (main or a tag)
+HCMO repo (a pinned release tag, e.g. v0.4.1)
    hcmo.yaml ─┐
    dist/hcmo.ttl, dist/profile.json
    shapes/hcm-shapes.ttl
    queries/*.rq, examples/*.ttl
-              │  (git clone --depth 1 @ ref)
+              │  (git clone --depth 1 @ tag; commit SHA + release assets verified)
               ▼
 hcmo-kgqa-lab  scripts/sync_hcmo.py  (manifest-driven, no hardcoded terms)
    → ontology/vendor/hcmo/      (merged ontology + profile)
    → shapes/vendor/hcmo/
    → sparql/vendor/hcmo/queries/
    → kg/vendor/hcmo/examples/
-   → sync/HCMO_SYNC.lock.json   (resolved commit SHA + term-diff)
+   → sync/HCMO_SYNC.lock.json   (tag, commit SHA, sha256 per file, terms)
               │  (flip HCMO_ACTIVE_SOURCE=vendor)
               ▼
    Jena/Fuseki single RDF graph → KGQA / SHACL / reasoning
 ```
 
-Until the reshaped HCMO lands, the lab keeps its synthetic demo model and
-just exercises the sync plumbing. When you publish the new HCMO:
+The lab keeps its synthetic demo model as the default and vendors the pinned
+release alongside it. To move to a new HCMO release:
 
-1. `make sync-hcmo` → vendors the new ontology, prints the **term-diff**
-   (added/removed classes & properties) and records the commit SHA.
-2. Review the **adaptation surface** checklist in `docs/hcmo_sync.md`
-   (SHACL/templates/intent-maps/expected counts) against the diff.
-3. Set `HCMO_ACTIVE_SOURCE=vendor` to switch the lab onto the real HCMO.
+1. edit `release_tag` / `commit_sha` / `version` in `sync/hcmo_sources.yaml`
+   and run `make sync-hcmo` → vendors the release, prints the **term-diff**
+   (added/removed classes & properties) and writes sha256 pins.
+2. `make eval-hcmo` and `make test` → the upstream competency questions must
+   still return their reviewed answers on the vendored copy.
+3. Review the **adaptation surface** checklist in `docs/hcmo_sync.md` and
+   record changed answers in a `docs/HCMO_<version>_MIGRATION.md` note.
+4. Set `HCMO_ACTIVE_SOURCE=vendor` to switch the lab onto the real HCMO.
 
-The weekly `sync-hcmo.yml` GitHub Action keeps the vendored copy current by
-opening a PR whenever upstream `main` changes — so the lab never silently
-drifts from the published ontology.
+The weekly `sync-hcmo.yml` GitHub Action is report-only: it verifies the pins,
+re-runs the vendored competency questions and reports (in the job summary)
+when a newer upstream release exists. It needs no secrets and never opens PRs.

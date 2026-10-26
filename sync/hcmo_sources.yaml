@@ -1,50 +1,67 @@
 # ===========================================================================
-# HCMO upstream sync manifest
+# HCMO upstream pin manifest
 # ===========================================================================
-# This is the SINGLE PLACE to edit when the upstream HCMO repository changes
-# its file names, adds/removes modules, or moves things around.
+# This is the SINGLE PLACE to edit when the lab moves to a new HCMO release.
 #
-# The sync layer (scripts/sync_hcmo.py) is ontology-agnostic: it does NOT
-# hardcode any class names, property names, or the upstream namespace. It only
-# knows the repo URL, the git ref to track, and this list of file mappings.
-# When a new HCMO is published with different file names, update the `files`
-# list below and re-run `make sync-hcmo` -- nothing else needs to change.
+# The lab vendors a PINNED HCMO release, never a moving branch:
+#   * `release_tag` + `commit_sha` identify the exact upstream state. The pin
+#     script refuses to vendor if the tag does not resolve to `commit_sha`.
+#   * Files marked `release_asset` are also downloaded from the GitHub release
+#     and must be byte-identical to the file in the tagged tree.
+#   * Every vendored file's sha256 is recorded in sync/HCMO_SYNC.lock.json and
+#     checked offline by `python scripts/sync_hcmo.py --verify` (and the tests).
 #
-# Each mapping has:
-#   src  : path of the file inside the upstream repo
-#   dest : path (relative to this lab's repo root) to vendor the file into
-#   kind : one of ontology | shapes | queries | examples | context
-#          (informational; "ontology" / "context" files are also the inputs
-#           used for namespace detection and the term-diff/profile build)
+# The pin script (scripts/sync_hcmo.py) is ontology-agnostic: it does NOT
+# hardcode any class names, property names, or the upstream namespace.
+#
+# To move to a new release (manual, human-reviewed):
+#   1. `python scripts/sync_hcmo.py --check-upstream`  (reports the latest tag)
+#   2. edit `release_tag`, `commit_sha`, `version` (and `files` if upstream
+#      paths changed; see the release's hcmo.yaml),
+#   3. `python scripts/sync_hcmo.py`  (fetch, verify, vendor, write lockfile,
+#      print the term-diff),
+#   4. `python -m pytest` and update docs/HCMO_<version>_MIGRATION.md for any
+#      competency-question answer that changed.
+#
+# Each file mapping has:
+#   src           : path of the file inside the upstream repo at the tag
+#   dest          : path (relative to this lab's repo root) to vendor it into
+#   kind          : ontology | profile | manifest | context | shapes |
+#                   queries | examples   (informational)
+#   release_asset : (optional) name of the GitHub release asset that must be
+#                   byte-identical to `src`
 # ===========================================================================
 
-repo_url: https://github.com/Neuronautix/HCMO
+repo_url: https://github.com/dhuzard/HCMO
+release_tag: v0.4.1
+commit_sha: 9503ae4827525d3c82cb0a2cc56a1ce52da39159
+version: "0.4.1"
+version_iri: https://w3id.org/hcmo/ontology/hcm/0.4.1
+# Zenodo concept DOI for all HCMO versions (from the release's CITATION.cff).
+# The 0.4.1 version DOI is not recorded in the tagged CITATION.cff, so it is
+# deliberately not pinned here.
+concept_doi: 10.5281/zenodo.18925284
 
-# Track `main` by default. Pin to a tag or commit SHA here (or via --ref /
-# HCMO_REF) for reproducible builds; the resolved commit SHA is always
-# recorded in sync/HCMO_SYNC.lock.json regardless of what `ref` says.
-ref: main
-
-# The primary ontology module. Used for namespace detection, the term-diff
-# report and the vendored profile. Must appear in `files` below as well.
-primary_ontology: ontology/vendor/hcmo/hcm.ttl
+# The merged release graph. Used for namespace detection, the term-diff report
+# and HCMO_ACTIVE_SOURCE=vendor. Must appear in `files` below as well.
+primary_ontology: ontology/vendor/hcmo/hcmo.ttl
 
 files:
-  # --- Ontology modules ----------------------------------------------------
-  - src: ontology/hcm.ttl
-    dest: ontology/vendor/hcmo/hcm.ttl
+  # --- Release artefacts (also attached to the GitHub release) -------------
+  - src: dist/hcmo.ttl
+    dest: ontology/vendor/hcmo/hcmo.ttl
     kind: ontology
-  - src: ontology/hcm-align.ttl
-    dest: ontology/vendor/hcmo/hcm-align.ttl
-    kind: ontology
-  - src: ontology/hcm-metadata.ttl
-    dest: ontology/vendor/hcmo/hcm-metadata.ttl
-    kind: ontology
-  - src: ontology/hcm-bridge-animal.ttl
-    dest: ontology/vendor/hcmo/hcm-bridge-animal.ttl
-    kind: ontology
+    release_asset: hcmo.ttl
+  - src: dist/profile.json
+    dest: ontology/vendor/hcmo/profile.json
+    kind: profile
+    release_asset: profile.json
+  - src: hcmo.yaml
+    dest: ontology/vendor/hcmo/hcmo.yaml
+    kind: manifest
+    release_asset: hcmo.yaml
 
-  # --- JSON-LD context (sits beside the ontology modules) ------------------
+  # --- JSON-LD context -----------------------------------------------------
   - src: ontology/context.jsonld
     dest: ontology/vendor/hcmo/context.jsonld
     kind: context
@@ -54,10 +71,27 @@ files:
     dest: shapes/vendor/hcmo/hcm-shapes.ttl
     kind: shapes
 
-  # --- Competency queries --------------------------------------------------
-  # Add new cq-*.rq files here as upstream publishes them (one line each).
+  # --- Competency questions (index with reviewed expected answers + queries)
+  - src: queries/competency_questions.yaml
+    dest: sparql/vendor/hcmo/queries/competency_questions.yaml
+    kind: queries
   - src: queries/cq-animals-by-enclosure.rq
     dest: sparql/vendor/hcmo/queries/cq-animals-by-enclosure.rq
+    kind: queries
+  - src: queries/cq-current-housing-at-time.rq
+    dest: sparql/vendor/hcmo/queries/cq-current-housing-at-time.rq
+    kind: queries
+  - src: queries/cq-environment-spec-observation.rq
+    dest: sparql/vendor/hcmo/queries/cq-environment-spec-observation.rq
+    kind: queries
+  - src: queries/cq-isa-factor-group-assignment.rq
+    dest: sparql/vendor/hcmo/queries/cq-isa-factor-group-assignment.rq
+    kind: queries
+  - src: queries/cq-isa-recording-provenance.rq
+    dest: sparql/vendor/hcmo/queries/cq-isa-recording-provenance.rq
+    kind: queries
+  - src: queries/cq-isa-statistical-result-provenance.rq
+    dest: sparql/vendor/hcmo/queries/cq-isa-statistical-result-provenance.rq
     kind: queries
   - src: queries/cq-missing-dimensions.rq
     dest: sparql/vendor/hcmo/queries/cq-missing-dimensions.rq
@@ -68,14 +102,32 @@ files:
   - src: queries/cq-sensors-behaviors.rq
     dest: sparql/vendor/hcmo/queries/cq-sensors-behaviors.rq
     kind: queries
+  - src: queries/cq-social-interaction-partners.rq
+    dest: sparql/vendor/hcmo/queries/cq-social-interaction-partners.rq
+    kind: queries
+  - src: queries/cq-status-evidence-at-time.rq
+    dest: sparql/vendor/hcmo/queries/cq-status-evidence-at-time.rq
+    kind: queries
   - src: queries/cq-systems-24h-limited.rq
     dest: sparql/vendor/hcmo/queries/cq-systems-24h-limited.rq
     kind: queries
 
-  # --- Example A-boxes -----------------------------------------------------
+  # --- Example A-boxes (as listed in the release's hcmo.yaml) --------------
+  # Positive examples (the competency-question answers are computed over the
+  # release graph plus these):
   - src: examples/abox-minimal.ttl
     dest: kg/vendor/hcmo/examples/abox-minimal.ttl
     kind: examples
+  - src: examples/user-submission.ttl
+    dest: kg/vendor/hcmo/examples/user-submission.ttl
+    kind: examples
+  - src: examples/isa-hcmo-bridge.ttl
+    dest: kg/vendor/hcmo/examples/isa-hcmo-bridge.ttl
+    kind: examples
+  # Negative probes (expected NOT to conform to the shapes):
   - src: examples/abox-edge-cases.ttl
     dest: kg/vendor/hcmo/examples/abox-edge-cases.ttl
+    kind: examples
+  - src: examples/abox-inferred-invalid.ttl
+    dest: kg/vendor/hcmo/examples/abox-inferred-invalid.ttl
     kind: examples

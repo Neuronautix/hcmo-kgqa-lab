@@ -1,0 +1,69 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix ex: <https://w3id.org/hcmo/id/example-submission/> .
+@prefix hcm: <https://w3id.org/hcmo/ontology/hcm#> .
+@prefix hcm-bio: <https://w3id.org/hcmo/ontology/hcm/bio#> .
+@prefix hcm-env: <https://w3id.org/hcmo/ontology/hcm/env#> .
+@prefix hcm-tech: <https://w3id.org/hcmo/ontology/hcm/tech#> .
+@prefix qudt: <http://qudt.org/schema/qudt/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <https://schema.org/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix unit: <http://qudt.org/vocab/unit/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:enclosure-example-hcm a hcm:MonitoredEnclosure ;
+  rdfs:label "Example HCM enclosure submission" ;
+  rdfs:comment "Example generated from the HCMO contribution-form pattern." ;
+  dcterms:contributor ex:contributor-jane-doe ;
+  dcterms:relation ex:data-product-example-hcm ;
+  dcterms:source "https://example.org/hcm-system" ;
+  hcm:hasEnclosureIdentifier "example-cage-01" ;
+  hcm:hasManufacturer "Example Vendor" ;
+  hcm:hasDimensions ex:dimensions-example-hcm ;
+  hcm-tech:monitoredBy ex:sensor-ir-camera .
+
+ex:dimensions-example-hcm a hcm:EnclosureDimensions ;
+  hcm:hasHeightQuantity [ a qudt:QuantityValue ; qudt:numericValue 20.0 ; qudt:hasUnit unit:CentiM ] ;
+  hcm:hasLengthQuantity [ a qudt:QuantityValue ; qudt:numericValue 45.0 ; qudt:hasUnit unit:CentiM ] ;
+  hcm:hasWidthQuantity [ a qudt:QuantityValue ; qudt:numericValue 30.0 ; qudt:hasUnit unit:CentiM ] .
+
+ex:sensor-ir-camera a hcm-tech:Sensor ;
+  rdfs:label "Infrared camera" ;
+  hcm-tech:hasSensorIdentifier "camera-01" ;
+  hcm-tech:hasSensorTechnology "infrared video" ;
+  hcm-tech:hasSamplingRateQuantity ex:camera-sampling-rate ;
+  hcm-tech:installedIn ex:enclosure-example-hcm .
+
+ex:camera-sampling-rate a qudt:QuantityValue ;
+  qudt:numericValue 4.0 ;
+  qudt:hasUnit unit:HZ .
+
+ex:subject-example-hcm a hcm-bio:Subject ;
+  rdfs:label "Example mouse subject" ;
+  hcm-bio:hasBiologicalSex "female" ;
+  hcm-bio:hasSpecies "Mus musculus" ;
+  hcm-bio:hasStrain "C57BL/6J" ;
+  hcm-bio:hasHousingAssignment ex:housing-assignment-example-hcm .
+
+ex:housing-assignment-example-hcm a hcm-bio:HousingAssignment ;
+  hcm-bio:assignedToEnclosure ex:enclosure-example-hcm ;
+  time:hasTime ex:housing-validity-example-hcm .
+
+ex:housing-validity-example-hcm a time:Interval ;
+  time:hasBeginning [ a time:Instant ; time:inXSDDateTime "2026-01-01T00:00:00Z"^^xsd:dateTime ] ;
+  time:hasEnd [ a time:Instant ; time:inXSDDateTime "2026-12-31T23:59:59Z"^^xsd:dateTime ] .
+
+ex:data-product-example-hcm a hcm-tech:TimeSeries ;
+  rdfs:label "Example CSV activity output" ;
+  dcterms:license "CC BY 4.0" ;
+  hcm-tech:hasFileFormat "text/csv" ;
+  hcm-tech:hasFileFormatConcept <https://w3id.org/hcmo/id/vocab/file-format/csv> ;
+  hcm-tech:hasDataAccessMethod <https://w3id.org/hcmo/id/vocab/data-access-method/file-export> ;
+  hcm-tech:hasSamplingRateQuantity ex:camera-sampling-rate ;
+  hcm-tech:hasStoragePath "https://example.org/hcm-system/day-01.csv" .
+
+ex:contributor-jane-doe a schema:Person ;
+  schema:affiliation "Example Institute" ;
+  schema:email "jane@example.org" ;
+  schema:name "Jane Doe" ;
+  schema:roleName "Researcher / PI" .
