@@ -114,6 +114,18 @@ No LLM key is required: the template-first pipeline and all guardrails run on
 the `NullProvider` fallback. `scripts/demo_screenshots.js` (Playwright) captures
 the key pages once the UI is up.
 
+### Canonical HCMO (pinned release)
+
+Next to the synthetic demo model, the lab vendors the canonical
+[HCMO](https://github.com/dhuzard/HCMO) release **0.4.1** (tag `v0.4.1`,
+commit `9503ae4`), with a sha256 pin per file in `sync/HCMO_SYNC.lock.json`.
+`make eval-hcmo` runs the upstream competency questions and SHACL checks on
+the vendored copy offline. `make hcmo-check-upstream` reports newer releases.
+Moving to a new release is a manual step described in
+[`docs/hcmo_sync.md`](docs/hcmo_sync.md). See
+[`docs/HCMO_0.4.1_MIGRATION.md`](docs/HCMO_0.4.1_MIGRATION.md) for the
+change from the previously vendored legacy files.
+
 ## The KGQA pipeline
 
 1. **Ontology grounding** — retrieve relevant HCMO terms for the question.
