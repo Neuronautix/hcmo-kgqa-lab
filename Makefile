@@ -2,7 +2,7 @@
 PYTHON ?= python
 
 .PHONY: help install up down fuseki-up build-profile merge reason load \
-        validate eval reset demo demo-serve test ui lint sync-hcmo sync-hcmo-dry
+        validate eval reset demo demo-serve test ui lint sync-hcmo sync-hcmo-dry         hcmo-verify hcmo-check-upstream eval-hcmo
 
 help:
 	@echo "HCMO-KGQA Lab targets:"
@@ -22,8 +22,11 @@ help:
 	@echo "  test           Run the pytest suite"
 	@echo "  ui             Launch the Streamlit app locally"
 	@echo "  lint           Compile-check scripts"
-	@echo "  sync-hcmo      Pull canonical HCMO upstream into vendor/ trees"
-	@echo "  sync-hcmo-dry  Dry-run the sync (fetch + term-diff, no writes)"
+	@echo "  sync-hcmo      Vendor the HCMO release pinned in sync/hcmo_sources.yaml"
+	@echo "  sync-hcmo-dry  Dry-run the pin (fetch + verify + term-diff, no writes)"
+	@echo "  hcmo-verify    Offline: check vendored HCMO files against the lockfile"
+	@echo "  hcmo-check-upstream  Report whether a newer HCMO release exists"
+	@echo "  eval-hcmo      Offline: run upstream CQs + SHACL on the vendored release"
 
 install:
 	pip install -e ".[dev]"
@@ -78,3 +81,12 @@ sync-hcmo:
 
 sync-hcmo-dry:
 	$(PYTHON) scripts/sync_hcmo.py --dry-run
+
+hcmo-verify:
+	$(PYTHON) scripts/sync_hcmo.py --verify
+
+hcmo-check-upstream:
+	$(PYTHON) scripts/sync_hcmo.py --check-upstream
+
+eval-hcmo:
+	$(PYTHON) scripts/eval_hcmo_release.py

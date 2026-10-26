@@ -53,7 +53,8 @@ def test_manifest_loads_and_has_required_keys():
     mod = _load_sync_module()
     data = mod.load_manifest(MANIFEST)
     assert data["repo_url"]
-    assert data["ref"]
+    assert data["release_tag"]
+    assert data["commit_sha"]
     assert isinstance(data["files"], list) and data["files"]
     for entry in data["files"]:
         assert "src" in entry and "dest" in entry
@@ -92,6 +93,48 @@ def test_detect_namespace_and_terms(tmp_path):
     assert set(terms["classes"]) == {"Animal", "Enclosure"}
     assert terms["object_properties"] == ["livesIn"]
     assert terms["datatype_properties"] == ["weightGrams"]
+
+
+def test_detect_namespace_prefers_versioned_ontology(tmp_path):
+    """A merged release graph may declare several owl:Ontology nodes; the one
+    with an owl:versionIRI is the release itself."""
+    mod = _load_sync_module()
+    ont = tmp_path / "merged.ttl"
+    ont.write_text(
+        FIXTURE_TTL.replace("ex: a owl:Ontology .", "")
+        + "<https://example.org/aaa-upper> a owl:Ontology .\n"
+        + "<https://example.org/test/ont> a owl:Ontology ; "
+        + "owl:versionIRI <https://example.org/test/ont/1.0.0> .\n",
+        encoding="utf-8",
+    )
+    assert mod.detect_namespace(ont) == "https://example.org/test/ont#"
+
+
+def test_legacy_ref_key_is_accepted(tmp_path):
+    mod = _load_sync_module()
+    legacy = tmp_path / "legacy.yaml"
+    legacy.write_text(
+        "repo_url: https://github.com/x/y\nref: v1.0.0\nfiles:\n"
+        "  - {src: a.ttl, dest: ontology/vendor/hcmo/a.ttl}\n",
+        encoding="utf-8",
+    )
+    assert mod.load_manifest(legacy)["release_tag"] == "v1.0.0"
+
+
+def test_verify_lock_flags_tampered_file(tmp_path, monkeypatch):
+    mod = _load_sync_module()
+    monkeypatch.setattr(mod, "REPO_ROOT", tmp_path)
+    (tmp_path / "v").mkdir()
+    f = tmp_path / "v" / "a.ttl"
+    f.write_bytes(b"original\n")
+    manifest = {"repo_url": "r", "release_tag": "v1", "commit_sha": "c",
+                "files": [{"src": "a.ttl", "dest": "v/a.ttl"}]}
+    lock = {"repo_url": "r", "release_tag": "v1", "commit_sha": "c",
+            "files": [{"src": "a.ttl", "dest": "v/a.ttl", "sha256": mod._sha256(f)}]}
+    assert mod.verify_lock(manifest, lock) == []
+    f.write_bytes(b"original\r\n")  # e.g. a CRLF conversion
+    assert any("sha256 mismatch" in p for p in mod.verify_lock(manifest, lock))
+    assert any("commit_sha" in p for p in mod.verify_lock({**manifest, "commit_sha": "d"}, lock))
 
 
 def test_validate_vendored_detects_bad_ttl(tmp_path):
@@ -190,4 +233,6 @@ def test_active_ontology_vendor_flip():
     config = pytest.importorskip("app.core.config")
     s = config.Settings(HCMO_ACTIVE_SOURCE="vendor")
     assert "vendor" in str(s.active_ontology_path)
-    assert s.active_ontology_path.name == "hcm.ttl"
+    # HCMO 0.4.1 ships one merged release graph (dist/hcmo.ttl, also a release
+    # asset); the legacy single-module hcm.ttl is no longer part of a release.
+    assert s.active_ontology_path.name == "hcmo.ttl"

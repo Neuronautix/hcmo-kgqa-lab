@@ -1,0 +1,8 @@
+# Vendored HCMO release files are pinned by sha256 in sync/HCMO_SYNC.lock.json.
+# Store and check them out byte-for-byte (no line-ending conversion) so the
+# hashes hold on every platform, including Windows with core.autocrlf=true.
+ontology/vendor/** -text
+shapes/vendor/** -text
+sparql/vendor/** -text
+kg/vendor/** -text
+sync/HCMO_SYNC.lock.json -text
